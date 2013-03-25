@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <!-- barra-topo com login ----------------------------->
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <section>
+                    @Html.Partial("_LoginPartial")
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- cabeçalho com logo ------------------------------->
+    <div class="container">
+        <header id="" class="subnav">
+            <div class="pagination-centered">
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/Resources/Logo_CM_maior.fw.png" alt="ConsultaMed" /></a>
+            </div>
+        </header>
+        <section id="box-menu">
+            @Html.Partial("_MenuPartial")
+        </section>
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/funcoes")
+    @Scripts.Render("~/bundles/jqueryui")  @* TODO colocar somente na página que utiliza o JQuery Ui*@
+    @Styles.Render("~/Content/themes/overcast/css") @* TODO colocar somente na pagina que utiliza o JQuery Css*@
+    @RenderSection("scripts", false)
+
+</body>
+</html>

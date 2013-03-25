@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsultaMed_WEB", "ConsultaMed_WEB\ConsultaMed_WEB.csproj", "{1E45D47F-B1BC-4DD6-93FF-D02C95504319}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsultaMed_ModelBD", "ConsultaMed_ModelBD\ConsultaMed_ModelBD.csproj", "{239C3D00-8ED9-4D4A-9F61-71D2DCC3342E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E45D47F-B1BC-4DD6-93FF-D02C95504319}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E45D47F-B1BC-4DD6-93FF-D02C95504319}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E45D47F-B1BC-4DD6-93FF-D02C95504319}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E45D47F-B1BC-4DD6-93FF-D02C95504319}.Release|Any CPU.Build.0 = Release|Any CPU
+		{239C3D00-8ED9-4D4A-9F61-71D2DCC3342E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{239C3D00-8ED9-4D4A-9F61-71D2DCC3342E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{239C3D00-8ED9-4D4A-9F61-71D2DCC3342E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{239C3D00-8ED9-4D4A-9F61-71D2DCC3342E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,45 @@
+﻿<div class="container">
+    @Html.ActionLink(Roles.GetRolesForUser()[0], "Index", "Home", null, new { @class = "brand" })
+    <div class="nav-collapse">
+        <ul class="nav">
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Inserir Usuário", "Registrar", "Usuario")</li>
+                    <li>@Html.ActionLink("Gerenciar Usuário", "Gerenciar", "Usuario")</li>
+                    <li>@Html.ActionLink("Gerenciar Perfil", "Gerenciar", "Perfil")</li>
+                </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Clínicas<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Inserir Clínica", "Adicionar", "Clinica")</li>
+                    <li>@Html.ActionLink("Gerenciar Clínicas", "Gerenciar", "Clinica")</li>
+                    <li>@Html.ActionLink("Associar Convênios", "AssociarConvenio", "Clinica")</li>
+                </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Convênios<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Cadastrar Convênios", "Adicionar", "Convenio")</li>
+                    <li>@Html.ActionLink("Gerenciar Convênios", "Gerenciar", "Convenio")</li>
+                </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Informações<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Gerenciar Patrocinios", "#", "Administrador")</li>
+                    <li>@Html.ActionLink("Propagandas", "#", "Administrador")</li>
+                    <li>@Html.ActionLink("Balanço Mensal", "", "Administrador")</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="navbar-search pull-right">
+            <form class="fbuscar form-search">
+                <div class="input-append">
+                    <input class="search-query span3" id="appendedInputButton" type="text" placeholder="Buscar">
+                    <button class="btn btn-inverse" type="submit"><i class="icon-white icon-search"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

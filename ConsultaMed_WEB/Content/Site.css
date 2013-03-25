@@ -1,0 +1,94 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.flogin, .fbuscar {
+    margin: 0;
+}
+
+.fdLogin {
+    padding: 10px;
+}
+
+.iptLogin {
+    margin-top: 8px;
+}
+
+div.ui-datepicker {
+    font-size: 90.5%;
+}
+
+.textData {
+    width: 90px;
+}
+
+.textHora {
+    width: 70px;
+}
+.txtEstado {
+    width: 70px;
+}
+
+.spanEmail {
+    width: 180px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #f7252e;
+    font-weight: bold;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input[type="text"].input-validation-error {
+    border: 1px solid #f7252e;
+}
+
+input[type="password"].input-validation-error {
+    border: 1px solid #f7252e;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #fffcfd;
+    font-weight: bold;
+    font-size: 1.1em;
+    list-style: none;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+form.frmLogout {
+    margin: 0;
+}
+
+a.logout {
+    display: block;
+    padding: 11px 10px 8px;
+    text-shadow: 0px 1px 0px #ffffff;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3);
+    float: none;
+    text-decoration: none;
+}
+
+.linkN {
+    font-weight: bold;
+}
+
+.esconde {
+    display: none;
+}
+
+.centro {
+    margin-left: auto;
+    margin-right: auto;
+}

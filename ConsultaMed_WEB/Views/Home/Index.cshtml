@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "Página Inicial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h2>Tema da Página</h2>
+</div>
+<div>
+    <em>Este trecho demostra um texto em itálico</em>
+    <p class="lead">Este paragrafo se sobressai sobre os outros</p>
+</div>
+@* Exemplo de Forms********************************************************** *@
+<form class="form-inline">
+    @Html.TextBox("Data", null, new { @id = "datepicker", @class = "textData" })
+    <button class="btn btn-danger">Enviar</button>
+</form>
+<br />
+<div class="form-horizontal well">
+    <fieldset>
+        <legend>Exemplo de Controle de Forms Suportados</legend>
+        <div class="control-group">
+            <label class="control-label">Nome:</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge span3" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Sobrenome:</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge span3" />
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">Email:</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge span3" />
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">Senha:</label>
+            <div class="controls">
+                <input type="password" class="input-xlarge span2" />
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="reset" class="btn btn-danger">Cancelar</button>
+        </div>
+
+    </fieldset>
+</div>
+@* Exemplo de mensagem de erro************************************************* *@
+<div class="row">
+    <div class="span4">
+        <div class="alert alert-error">
+            <a class="close">x
+            </a>
+            <strong>Erro</strong>
+            Esta é uma mensagem de erro padrão que será exibida pelo ConsultaMed
+        </div>
+    </div>
+</div>
+
+@* Exemplo de tabela************************************************************ *@
+<div class="page-header">
+    <h2>Tabelas
+    </h2>
+</div>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Usuario</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Jonatas</td>
+            <td>Arantes</td>
+            <td>jarantes</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Jonatas</td>
+            <td>Arantes</td>
+            <td>jarantes</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Jonatas</td>
+            <td>Arantes</td>
+            <td>jarantes</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Button to trigger modal -->
+<a href="#myModal" role="button" class="btn" data-toggle="modal">Executar modal de demo</a>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Modal header</h3>
+    </div>
+    <div class="modal-body">
+        <p>Um corpo fino …</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+        <button class="btn btn-primary">Salvar mudanças</button>
+    </div>
+</div>
+

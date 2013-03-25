@@ -1,0 +1,1091 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Model.Store.__MigrationHistory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Agendamento" EntityType="Model.Store.Agendamento" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Clinica" EntityType="Model.Store.Clinica" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Convenio" EntityType="Model.Store.Convenio" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ConvenioClinica" EntityType="Model.Store.ConvenioClinica" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Endereco" EntityType="Model.Store.Endereco" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Especialidade" EntityType="Model.Store.Especialidade" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Exame" EntityType="Model.Store.Exame" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Horario" EntityType="Model.Store.Horario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HorarioTemp" EntityType="Model.Store.HorarioTemp" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Prontuario" EntityType="Model.Store.Prontuario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserProfile" EntityType="Model.Store.UserProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Usuario" EntityType="Model.Store.Usuario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_Membership" EntityType="Model.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="Model.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_Roles" EntityType="Model.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_UsersInRoles" EntityType="Model.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_dbo_Agendamento_dbo_Usuario_MedicoUserId" Association="Model.Store.FK_dbo_Agendamento_dbo_Usuario_MedicoUserId">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Agendamento" EntitySet="Agendamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Agendamento_dbo_Usuario_PacienteUserId" Association="Model.Store.FK_dbo_Agendamento_dbo_Usuario_PacienteUserId">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Agendamento" EntitySet="Agendamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Clinica_dbo_Endereco_EnderecoId" Association="Model.Store.FK_dbo_Clinica_dbo_Endereco_EnderecoId">
+            <End Role="Endereco" EntitySet="Endereco" />
+            <End Role="Clinica" EntitySet="Clinica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ConvenioClinica_dbo_Clinica_Clinica_ClinicaId" Association="Model.Store.FK_dbo_ConvenioClinica_dbo_Clinica_Clinica_ClinicaId">
+            <End Role="Clinica" EntitySet="Clinica" />
+            <End Role="ConvenioClinica" EntitySet="ConvenioClinica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ConvenioClinica_dbo_Convenio_Convenio_ConvenioId" Association="Model.Store.FK_dbo_ConvenioClinica_dbo_Convenio_Convenio_ConvenioId">
+            <End Role="Convenio" EntitySet="Convenio" />
+            <End Role="ConvenioClinica" EntitySet="ConvenioClinica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Horario_dbo_Usuario_UserId" Association="Model.Store.FK_dbo_Horario_dbo_Usuario_UserId">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Horario" EntitySet="Horario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_HorarioTemp_dbo_Usuario_UserId" Association="Model.Store.FK_dbo_HorarioTemp_dbo_Usuario_UserId">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="HorarioTemp" EntitySet="HorarioTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Prontuario_dbo_Exame_ExameId" Association="Model.Store.FK_dbo_Prontuario_dbo_Exame_ExameId">
+            <End Role="Exame" EntitySet="Exame" />
+            <End Role="Prontuario" EntitySet="Prontuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Prontuario_dbo_Usuario_UserId" Association="Model.Store.FK_dbo_Prontuario_dbo_Usuario_UserId">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Prontuario" EntitySet="Prontuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Usuario_dbo_Clinica_ClinicaId" Association="Model.Store.FK_dbo_Usuario_dbo_Clinica_ClinicaId">
+            <End Role="Clinica" EntitySet="Clinica" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Usuario_dbo_Convenio_ConvenioId" Association="Model.Store.FK_dbo_Usuario_dbo_Convenio_ConvenioId">
+            <End Role="Convenio" EntitySet="Convenio" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Usuario_dbo_Endereco_EnderecoId" Association="Model.Store.FK_dbo_Usuario_dbo_Endereco_EnderecoId">
+            <End Role="Endereco" EntitySet="Endereco" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Usuario_dbo_Especialidade_EspecialidadeId" Association="Model.Store.FK_dbo_Usuario_dbo_Especialidade_EspecialidadeId">
+            <End Role="Especialidade" EntitySet="Especialidade" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoleId" Association="Model.Store.fk_RoleId">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserId" Association="Model.Store.fk_UserId">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Agendamento">
+          <Key>
+            <PropertyRef Name="AgendamentoId" />
+          </Key>
+          <Property Name="AgendamentoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MarcadorId" Type="int" Nullable="false" />
+          <Property Name="Horario" Type="datetime" Nullable="false" />
+          <Property Name="Data" Type="datetime" Nullable="false" />
+          <Property Name="PacienteUserId" Type="int" Nullable="false" />
+          <Property Name="MedicoUserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clinica">
+          <Key>
+            <PropertyRef Name="ClinicaId" />
+          </Key>
+          <Property Name="ClinicaId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Site" Type="nvarchar(max)" />
+          <Property Name="HorarioAtendimento" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EnderecoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Convenio">
+          <Key>
+            <PropertyRef Name="ConvenioId" />
+          </Key>
+          <Property Name="ConvenioId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConvenioClinica">
+          <Key>
+            <PropertyRef Name="Convenio_ConvenioId" />
+            <PropertyRef Name="Clinica_ClinicaId" />
+          </Key>
+          <Property Name="Convenio_ConvenioId" Type="int" Nullable="false" />
+          <Property Name="Clinica_ClinicaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Endereco">
+          <Key>
+            <PropertyRef Name="EnderecoId" />
+          </Key>
+          <Property Name="EnderecoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Rua" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Cidade" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Bairro" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="Complemento" Type="nvarchar(max)" />
+          <Property Name="Cep" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Especialidade">
+          <Key>
+            <PropertyRef Name="EspecialidadeId" />
+          </Key>
+          <Property Name="EspecialidadeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Exame">
+          <Key>
+            <PropertyRef Name="ExameId" />
+          </Key>
+          <Property Name="ExameId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Horario">
+          <Key>
+            <PropertyRef Name="HorarioId" />
+          </Key>
+          <Property Name="HorarioId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HorarioIni" Type="datetime" Nullable="false" />
+          <Property Name="HorarioFim" Type="datetime" Nullable="false" />
+          <Property Name="TempoConsulta" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PerInicio" Type="datetime" Nullable="false" />
+          <Property Name="PerFim" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HorarioTemp">
+          <Key>
+            <PropertyRef Name="HorarioTempId" />
+          </Key>
+          <Property Name="HorarioTempId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HorarioIni" Type="datetime" Nullable="false" />
+          <Property Name="HorarioFim" Type="datetime" Nullable="false" />
+          <Property Name="TempoConsulta" Type="datetime" Nullable="false" />
+          <Property Name="Data" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prontuario">
+          <Key>
+            <PropertyRef Name="ProntuarioId" />
+          </Key>
+          <Property Name="ProntuarioId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ExameId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sobrenome" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Cpf" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Rg" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Telefone" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Celular" Type="nvarchar(max)" />
+          <Property Name="DataNascimento" Type="datetime" Nullable="false" />
+          <Property Name="ClinicaId" Type="int" Nullable="false" />
+          <Property Name="ConvenioId" Type="int" />
+          <Property Name="EnderecoId" Type="int" Nullable="false" />
+          <Property Name="Crm" Type="nvarchar(max)" />
+          <Property Name="EspecialidadeId" Type="int" />
+          <Property Name="NumeroConvenio" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="Perfil" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsConfirmed" Type="bit" />
+          <Property Name="LastPasswordFailureDate" Type="datetime" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordChangedDate" Type="datetime" />
+          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="ProviderUserId" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="webpages_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Agendamento_dbo_Usuario_MedicoUserId">
+          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="1" />
+          <End Role="Agendamento" Type="Model.Store.Agendamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Agendamento">
+              <PropertyRef Name="MedicoUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Agendamento_dbo_Usuario_PacienteUserId">
+          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="1" />
+          <End Role="Agendamento" Type="Model.Store.Agendamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Agendamento">
+              <PropertyRef Name="PacienteUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Clinica_dbo_Endereco_EnderecoId">
+          <End Role="Endereco" Type="Model.Store.Endereco" Multiplicity="1" />
+          <End Role="Clinica" Type="Model.Store.Clinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Endereco">
+              <PropertyRef Name="EnderecoId" />
+            </Principal>
+            <Dependent Role="Clinica">
+              <PropertyRef Name="EnderecoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ConvenioClinica_dbo_Clinica_Clinica_ClinicaId">
+          <End Role="Clinica" Type="Model.Store.Clinica" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ConvenioClinica" Type="Model.Store.ConvenioClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clinica">
+              <PropertyRef Name="ClinicaId" />
+            </Principal>
+            <Dependent Role="ConvenioClinica">
+              <PropertyRef Name="Clinica_ClinicaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ConvenioClinica_dbo_Convenio_Convenio_ConvenioId">
+          <End Role="Convenio" Type="Model.Store.Convenio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ConvenioClinica" Type="Model.Store.ConvenioClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Convenio">
+              <PropertyRef Name="ConvenioId" />
+            </Principal>
+            <Dependent Role="ConvenioClinica">
+              <PropertyRef Name="Convenio_ConvenioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Horario_dbo_Usuario_UserId">
+          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Horario" Type="Model.Store.Horario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Horario">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_HorarioTemp_dbo_Usuario_UserId">
+          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HorarioTemp" Type="Model.Store.HorarioTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="HorarioTemp">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Prontuario_dbo_Exame_ExameId">
+          <End Role="Exame" Type="Model.Store.Exame" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Prontuario" Type="Model.Store.Prontuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exame">
+              <PropertyRef Name="ExameId" />
+            </Principal>
+            <Dependent Role="Prontuario">
+              <PropertyRef Name="ExameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Prontuario_dbo_Usuario_UserId">
+          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Prontuario" Type="Model.Store.Prontuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Prontuario">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Usuario_dbo_Clinica_ClinicaId">
+          <End Role="Clinica" Type="Model.Store.Clinica" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clinica">
+              <PropertyRef Name="ClinicaId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="ClinicaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Usuario_dbo_Convenio_ConvenioId">
+          <End Role="Convenio" Type="Model.Store.Convenio" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Convenio">
+              <PropertyRef Name="ConvenioId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="ConvenioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Usuario_dbo_Endereco_EnderecoId">
+          <End Role="Endereco" Type="Model.Store.Endereco" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Endereco">
+              <PropertyRef Name="EnderecoId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="EnderecoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Usuario_dbo_Especialidade_EspecialidadeId">
+          <End Role="Especialidade" Type="Model.Store.Especialidade" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidade">
+              <PropertyRef Name="EspecialidadeId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="EspecialidadeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoleId">
+          <End Role="webpages_Roles" Type="Model.Store.webpages_Roles" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="Model.Store.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserId">
+          <End Role="UserProfile" Type="Model.Store.UserProfile" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="Model.Store.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EntitiesCM" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Model.C__MigrationHistory" />
+          <EntitySet Name="Agendamento" EntityType="Model.Agendamento" />
+          <EntitySet Name="Clinica" EntityType="Model.Clinica" />
+          <EntitySet Name="Convenio" EntityType="Model.Convenio" />
+          <EntitySet Name="Endereco" EntityType="Model.Endereco" />
+          <EntitySet Name="Especialidade" EntityType="Model.Especialidade" />
+          <EntitySet Name="Exame" EntityType="Model.Exame" />
+          <EntitySet Name="Horario" EntityType="Model.Horario" />
+          <EntitySet Name="HorarioTemp" EntityType="Model.HorarioTemp" />
+          <EntitySet Name="Prontuario" EntityType="Model.Prontuario" />
+          <EntitySet Name="UserProfile" EntityType="Model.UserProfile" />
+          <EntitySet Name="Usuario" EntityType="Model.Usuario" />
+          <EntitySet Name="webpages_Membership" EntityType="Model.webpages_Membership" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="Model.webpages_OAuthMembership" />
+          <EntitySet Name="webpages_Roles" EntityType="Model.webpages_Roles" />
+          <AssociationSet Name="FK_dbo_Agendamento_dbo_Usuario_MedicoUserId" Association="Model.FK_dbo_Agendamento_dbo_Usuario_MedicoUserId">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Agendamento" EntitySet="Agendamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Agendamento_dbo_Usuario_PacienteUserId" Association="Model.FK_dbo_Agendamento_dbo_Usuario_PacienteUserId">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Agendamento" EntitySet="Agendamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Usuario_dbo_Clinica_ClinicaId" Association="Model.FK_dbo_Usuario_dbo_Clinica_ClinicaId">
+            <End Role="Clinica" EntitySet="Clinica" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Usuario_dbo_Convenio_ConvenioId" Association="Model.FK_dbo_Usuario_dbo_Convenio_ConvenioId">
+            <End Role="Convenio" EntitySet="Convenio" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Usuario_dbo_Endereco_EnderecoId" Association="Model.FK_dbo_Usuario_dbo_Endereco_EnderecoId">
+            <End Role="Endereco" EntitySet="Endereco" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Usuario_dbo_Especialidade_EspecialidadeId" Association="Model.FK_dbo_Usuario_dbo_Especialidade_EspecialidadeId">
+            <End Role="Especialidade" EntitySet="Especialidade" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Prontuario_dbo_Exame_ExameId" Association="Model.FK_dbo_Prontuario_dbo_Exame_ExameId">
+            <End Role="Exame" EntitySet="Exame" />
+            <End Role="Prontuario" EntitySet="Prontuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Horario_dbo_Usuario_UserId" Association="Model.FK_dbo_Horario_dbo_Usuario_UserId">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Horario" EntitySet="Horario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_HorarioTemp_dbo_Usuario_UserId" Association="Model.FK_dbo_HorarioTemp_dbo_Usuario_UserId">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="HorarioTemp" EntitySet="HorarioTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Prontuario_dbo_Usuario_UserId" Association="Model.FK_dbo_Prontuario_dbo_Usuario_UserId">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Prontuario" EntitySet="Prontuario" />
+          </AssociationSet>
+          <AssociationSet Name="ConvenioClinica" Association="Model.ConvenioClinica">
+            <End Role="Clinica" EntitySet="Clinica" />
+            <End Role="Convenio" EntitySet="Convenio" />
+          </AssociationSet>
+          <AssociationSet Name="webpages_UsersInRoles" Association="Model.webpages_UsersInRoles">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Clinica_dbo_Endereco_EnderecoId" Association="Model.FK_dbo_Clinica_dbo_Endereco_EnderecoId">
+            <End Role="Endereco" EntitySet="Endereco" />
+            <End Role="Clinica" EntitySet="Clinica" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Agendamento">
+          <Key>
+            <PropertyRef Name="AgendamentoId" />
+          </Key>
+          <Property Name="AgendamentoId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="MarcadorId" Type="Int32" Nullable="false" />
+          <Property Name="Horario" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PacienteUserId" Type="Int32" Nullable="false" />
+          <Property Name="MedicoUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Model.FK_dbo_Agendamento_dbo_Usuario_MedicoUserId" FromRole="Agendamento" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="Model.FK_dbo_Agendamento_dbo_Usuario_PacienteUserId" FromRole="Agendamento" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Clinica">
+          <Key>
+            <PropertyRef Name="ClinicaId" />
+          </Key>
+          <Property Name="ClinicaId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Site" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="HorarioAtendimento" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Usuario" Relationship="Model.FK_dbo_Usuario_dbo_Clinica_ClinicaId" FromRole="Clinica" ToRole="Usuario" />
+          <NavigationProperty Name="Convenio" Relationship="Model.ConvenioClinica" FromRole="Clinica" ToRole="Convenio" />
+          <Property Type="Int32" Name="EnderecoId" Nullable="false" />
+          <NavigationProperty Name="Endereco" Relationship="Model.FK_dbo_Clinica_dbo_Endereco_EnderecoId" FromRole="Clinica" ToRole="Endereco" />
+        </EntityType>
+        <EntityType Name="Convenio">
+          <Key>
+            <PropertyRef Name="ConvenioId" />
+          </Key>
+          <Property Name="ConvenioId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Model.FK_dbo_Usuario_dbo_Convenio_ConvenioId" FromRole="Convenio" ToRole="Usuario" />
+          <NavigationProperty Name="Clinica" Relationship="Model.ConvenioClinica" FromRole="Convenio" ToRole="Clinica" />
+        </EntityType>
+        <EntityType Name="Endereco">
+          <Key>
+            <PropertyRef Name="EnderecoId" />
+          </Key>
+          <Property Name="EnderecoId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Rua" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Cidade" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Bairro" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Complemento" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Cep" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Usuario" Relationship="Model.FK_dbo_Usuario_dbo_Endereco_EnderecoId" FromRole="Endereco" ToRole="Usuario" />
+          <NavigationProperty Name="Clinica" Relationship="Model.FK_dbo_Clinica_dbo_Endereco_EnderecoId" FromRole="Endereco" ToRole="Clinica" />
+        </EntityType>
+        <EntityType Name="Especialidade">
+          <Key>
+            <PropertyRef Name="EspecialidadeId" />
+          </Key>
+          <Property Name="EspecialidadeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Model.FK_dbo_Usuario_dbo_Especialidade_EspecialidadeId" FromRole="Especialidade" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Exame">
+          <Key>
+            <PropertyRef Name="ExameId" />
+          </Key>
+          <Property Name="ExameId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Prontuario" Relationship="Model.FK_dbo_Prontuario_dbo_Exame_ExameId" FromRole="Exame" ToRole="Prontuario" />
+        </EntityType>
+        <EntityType Name="Horario">
+          <Key>
+            <PropertyRef Name="HorarioId" />
+          </Key>
+          <Property Name="HorarioId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="HorarioIni" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HorarioFim" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TempoConsulta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Model.FK_dbo_Horario_dbo_Usuario_UserId" FromRole="Horario" ToRole="Usuario" />
+          <Property Type="DateTime" Name="PerInicio" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="PerFim" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="HorarioTemp">
+          <Key>
+            <PropertyRef Name="HorarioTempId" />
+          </Key>
+          <Property Name="HorarioTempId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="HorarioIni" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HorarioFim" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TempoConsulta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Model.FK_dbo_HorarioTemp_dbo_Usuario_UserId" FromRole="HorarioTemp" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Prontuario">
+          <Key>
+            <PropertyRef Name="ProntuarioId" />
+          </Key>
+          <Property Name="ProntuarioId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExameId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Exame" Relationship="Model.FK_dbo_Prontuario_dbo_Exame_ExameId" FromRole="Prontuario" ToRole="Exame" />
+          <NavigationProperty Name="Usuario" Relationship="Model.FK_dbo_Prontuario_dbo_Usuario_UserId" FromRole="Prontuario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="webpages_Roles" Relationship="Model.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Sobrenome" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Cpf" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Rg" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Telefone" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Celular" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DataNascimento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClinicaId" Type="Int32" Nullable="false" />
+          <Property Name="ConvenioId" Type="Int32" />
+          <Property Name="EnderecoId" Type="Int32" Nullable="false" />
+          <Property Name="Crm" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="EspecialidadeId" Type="Int32" />
+          <Property Name="NumeroConvenio" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Perfil" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Agendamento" Relationship="Model.FK_dbo_Agendamento_dbo_Usuario_MedicoUserId" FromRole="Usuario" ToRole="Agendamento" />
+          <NavigationProperty Name="Agendamento1" Relationship="Model.FK_dbo_Agendamento_dbo_Usuario_PacienteUserId" FromRole="Usuario" ToRole="Agendamento" />
+          <NavigationProperty Name="Clinica" Relationship="Model.FK_dbo_Usuario_dbo_Clinica_ClinicaId" FromRole="Usuario" ToRole="Clinica" />
+          <NavigationProperty Name="Convenio" Relationship="Model.FK_dbo_Usuario_dbo_Convenio_ConvenioId" FromRole="Usuario" ToRole="Convenio" />
+          <NavigationProperty Name="Endereco" Relationship="Model.FK_dbo_Usuario_dbo_Endereco_EnderecoId" FromRole="Usuario" ToRole="Endereco" />
+          <NavigationProperty Name="Especialidade" Relationship="Model.FK_dbo_Usuario_dbo_Especialidade_EspecialidadeId" FromRole="Usuario" ToRole="Especialidade" />
+          <NavigationProperty Name="Horario" Relationship="Model.FK_dbo_Horario_dbo_Usuario_UserId" FromRole="Usuario" ToRole="Horario" />
+          <NavigationProperty Name="HorarioTemp" Relationship="Model.FK_dbo_HorarioTemp_dbo_Usuario_UserId" FromRole="Usuario" ToRole="HorarioTemp" />
+          <NavigationProperty Name="Prontuario" Relationship="Model.FK_dbo_Prontuario_dbo_Usuario_UserId" FromRole="Usuario" ToRole="Prontuario" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ConfirmationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="IsConfirmed" Type="Boolean" />
+          <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="UserProfile" Relationship="Model.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_dbo_Agendamento_dbo_Usuario_MedicoUserId">
+          <End Role="Usuario" Type="Model.Usuario" Multiplicity="1" />
+          <End Role="Agendamento" Type="Model.Agendamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Agendamento">
+              <PropertyRef Name="MedicoUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Agendamento_dbo_Usuario_PacienteUserId">
+          <End Role="Usuario" Type="Model.Usuario" Multiplicity="1" />
+          <End Role="Agendamento" Type="Model.Agendamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Agendamento">
+              <PropertyRef Name="PacienteUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Usuario_dbo_Clinica_ClinicaId">
+          <End Role="Clinica" Type="Model.Clinica" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuario" Type="Model.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clinica">
+              <PropertyRef Name="ClinicaId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="ClinicaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Usuario_dbo_Convenio_ConvenioId">
+          <End Role="Convenio" Type="Model.Convenio" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuario" Type="Model.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Convenio">
+              <PropertyRef Name="ConvenioId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="ConvenioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Usuario_dbo_Endereco_EnderecoId">
+          <End Role="Endereco" Type="Model.Endereco" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuario" Type="Model.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Endereco">
+              <PropertyRef Name="EnderecoId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="EnderecoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Usuario_dbo_Especialidade_EspecialidadeId">
+          <End Role="Especialidade" Type="Model.Especialidade" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuario" Type="Model.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidade">
+              <PropertyRef Name="EspecialidadeId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="EspecialidadeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Prontuario_dbo_Exame_ExameId">
+          <End Role="Exame" Type="Model.Exame" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Prontuario" Type="Model.Prontuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exame">
+              <PropertyRef Name="ExameId" />
+            </Principal>
+            <Dependent Role="Prontuario">
+              <PropertyRef Name="ExameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Horario_dbo_Usuario_UserId">
+          <End Role="Usuario" Type="Model.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Horario" Type="Model.Horario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Horario">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_HorarioTemp_dbo_Usuario_UserId">
+          <End Role="Usuario" Type="Model.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HorarioTemp" Type="Model.HorarioTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="HorarioTemp">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Prontuario_dbo_Usuario_UserId">
+          <End Role="Usuario" Type="Model.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Prontuario" Type="Model.Prontuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Prontuario">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ConvenioClinica">
+          <End Role="Clinica" Type="Model.Clinica" Multiplicity="*" />
+          <End Role="Convenio" Type="Model.Convenio" Multiplicity="*" />
+        </Association>
+        <Association Name="webpages_UsersInRoles">
+          <End Role="webpages_Roles" Type="Model.webpages_Roles" Multiplicity="*" />
+          <End Role="UserProfile" Type="Model.UserProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_dbo_Clinica_dbo_Endereco_EnderecoId">
+          <End Type="Model.Endereco" Role="Endereco" Multiplicity="1" />
+          <End Type="Model.Clinica" Role="Clinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Endereco">
+              <PropertyRef Name="EnderecoId" />
+            </Principal>
+            <Dependent Role="Clinica">
+              <PropertyRef Name="EnderecoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="EntitiesCM">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Agendamento">
+            <EntityTypeMapping TypeName="Model.Agendamento">
+              <MappingFragment StoreEntitySet="Agendamento">
+                <ScalarProperty Name="AgendamentoId" ColumnName="AgendamentoId" />
+                <ScalarProperty Name="MarcadorId" ColumnName="MarcadorId" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="PacienteUserId" ColumnName="PacienteUserId" />
+                <ScalarProperty Name="MedicoUserId" ColumnName="MedicoUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clinica">
+            <EntityTypeMapping TypeName="Model.Clinica">
+              <MappingFragment StoreEntitySet="Clinica">
+                <ScalarProperty Name="EnderecoId" ColumnName="EnderecoId" />
+                <ScalarProperty Name="ClinicaId" ColumnName="ClinicaId" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="HorarioAtendimento" ColumnName="HorarioAtendimento" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Convenio">
+            <EntityTypeMapping TypeName="Model.Convenio">
+              <MappingFragment StoreEntitySet="Convenio">
+                <ScalarProperty Name="ConvenioId" ColumnName="ConvenioId" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Endereco">
+            <EntityTypeMapping TypeName="Model.Endereco">
+              <MappingFragment StoreEntitySet="Endereco">
+                <ScalarProperty Name="EnderecoId" ColumnName="EnderecoId" />
+                <ScalarProperty Name="Rua" ColumnName="Rua" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+                <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+                <ScalarProperty Name="Cep" ColumnName="Cep" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Especialidade">
+            <EntityTypeMapping TypeName="Model.Especialidade">
+              <MappingFragment StoreEntitySet="Especialidade">
+                <ScalarProperty Name="EspecialidadeId" ColumnName="EspecialidadeId" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exame">
+            <EntityTypeMapping TypeName="Model.Exame">
+              <MappingFragment StoreEntitySet="Exame">
+                <ScalarProperty Name="ExameId" ColumnName="ExameId" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Horario">
+            <EntityTypeMapping TypeName="Model.Horario">
+              <MappingFragment StoreEntitySet="Horario">
+                <ScalarProperty Name="PerFim" ColumnName="PerFim" />
+                <ScalarProperty Name="PerInicio" ColumnName="PerInicio" />
+                <ScalarProperty Name="HorarioId" ColumnName="HorarioId" />
+                <ScalarProperty Name="HorarioIni" ColumnName="HorarioIni" />
+                <ScalarProperty Name="HorarioFim" ColumnName="HorarioFim" />
+                <ScalarProperty Name="TempoConsulta" ColumnName="TempoConsulta" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HorarioTemp">
+            <EntityTypeMapping TypeName="Model.HorarioTemp">
+              <MappingFragment StoreEntitySet="HorarioTemp">
+                <ScalarProperty Name="HorarioTempId" ColumnName="HorarioTempId" />
+                <ScalarProperty Name="HorarioIni" ColumnName="HorarioIni" />
+                <ScalarProperty Name="HorarioFim" ColumnName="HorarioFim" />
+                <ScalarProperty Name="TempoConsulta" ColumnName="TempoConsulta" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prontuario">
+            <EntityTypeMapping TypeName="Model.Prontuario">
+              <MappingFragment StoreEntitySet="Prontuario">
+                <ScalarProperty Name="ProntuarioId" ColumnName="ProntuarioId" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="ExameId" ColumnName="ExameId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfile">
+            <EntityTypeMapping TypeName="Model.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="Model.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Sobrenome" ColumnName="Sobrenome" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Cpf" ColumnName="Cpf" />
+                <ScalarProperty Name="Rg" ColumnName="Rg" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+                <ScalarProperty Name="ClinicaId" ColumnName="ClinicaId" />
+                <ScalarProperty Name="ConvenioId" ColumnName="ConvenioId" />
+                <ScalarProperty Name="EnderecoId" ColumnName="EnderecoId" />
+                <ScalarProperty Name="Crm" ColumnName="Crm" />
+                <ScalarProperty Name="EspecialidadeId" ColumnName="EspecialidadeId" />
+                <ScalarProperty Name="NumeroConvenio" ColumnName="NumeroConvenio" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="Perfil" ColumnName="Perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Membership">
+            <EntityTypeMapping TypeName="Model.webpages_Membership">
+              <MappingFragment StoreEntitySet="webpages_Membership">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+                <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_OAuthMembership">
+            <EntityTypeMapping TypeName="Model.webpages_OAuthMembership">
+              <MappingFragment StoreEntitySet="webpages_OAuthMembership">
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+                <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Roles">
+            <EntityTypeMapping TypeName="Model.webpages_Roles">
+              <MappingFragment StoreEntitySet="webpages_Roles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ConvenioClinica" TypeName="Model.ConvenioClinica" StoreEntitySet="ConvenioClinica">
+            <EndProperty Name="Clinica">
+              <ScalarProperty Name="ClinicaId" ColumnName="Clinica_ClinicaId" />
+            </EndProperty>
+            <EndProperty Name="Convenio">
+              <ScalarProperty Name="ConvenioId" ColumnName="Convenio_ConvenioId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="webpages_UsersInRoles" TypeName="Model.webpages_UsersInRoles" StoreEntitySet="webpages_UsersInRoles">
+            <EndProperty Name="webpages_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="UserProfile">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

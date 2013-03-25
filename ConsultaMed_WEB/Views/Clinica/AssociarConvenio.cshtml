@@ -1,0 +1,100 @@
+﻿@using System.Collections
+@using ConsultaMed_WEB.Models
+
+@{
+    ViewBag.Title = "Associação do Convênio";
+}
+
+
+<hgroup class="page-header">
+    <h2>@ViewBag.Title</h2>
+</hgroup>
+@using (Html.BeginForm("AssociarConvenio", "Clinica"))
+{
+    @Html.AntiForgeryToken()
+    if (TempData["Erro"] != null)
+    {
+    <div id="mensagemErr" class="row">
+        <div class="span12">
+            <div class="alert alert-error">
+                <a id="fecharErr" class="close">x
+                </a>
+                <strong>Erro</strong>
+                @TempData["Erro"].ToString()
+            </div>
+        </div>
+    </div>
+    }
+    if (TempData["Mensagem"] != null)
+    {
+    <div id="mensagemSuc" class="row">
+        <div class="span12">
+            <div class="alert alert-success">
+                <a id="fecharSuc" class="close">x
+                </a>
+                <strong>Sucesso</strong><br />
+                <ul>
+                    <li>@TempData["Mensagem"]</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    }
+
+    <div class="form-horizontal well">
+        <fieldset>
+            <legend>Associar Convênios ás Clínicas</legend>
+            @using (var ctx = new CmContext())
+            {
+                var list2 = ctx.Clinicas.OrderBy(c => c.Descricao).ToList();
+                <div class="control-group">
+                    @Html.Label("Clínicas", new { @class = "control-label" })
+                    <div class="controls">
+                        <select multiple="multiple" id="clinicasEncontradas" data-cli="">
+                            @foreach (var clinica in list2)
+                            {
+                                <option value="@clinica.ClinicaId">@clinica.Nome</option>
+                            }
+                        </select>
+                        <a id="addClinica" class="btn btn-mini btn-primary" onclick=" adicionaClinica() "><i class="icon-check icon-white"></i>Adcionar</a>
+                        <select multiple="multiple" id="clinicasSelecionadas">
+                        </select>
+                        <a id="delClinica" class="btn btn-mini btn-danger" onclick=" removeClinica() "><i class="icon-remove icon-white"></i>Remover</a>
+                    </div>
+                </div>
+
+                            var list = ctx.Convenios.OrderBy(c => c.Descricao).ToList();
+                <div class="control-group">
+                    @Html.Label("Convênios", new { @class = "control-label" })
+                    <div class="controls">
+                        <select multiple="multiple" id="conveniosEncontrados" data-conv="">
+                            @foreach (var convenio in list)
+                            {
+                                <option value="@convenio.ConvenioId">@convenio.Descricao</option>
+                            }
+                        </select>
+                        <a id="addConvenio" class="btn btn-mini btn-primary" onclick=" adicionaConvenio() "><i class="icon-check icon-white"></i>Adcionar</a>
+                        <select multiple="multiple" id="conveniosSelecionados">
+                        </select>
+                        <a id="delConvenio" class="btn btn-mini btn-danger" onclick=" removeConvenio() "><i class="icon-remove icon-white"></i>Remover</a>
+                    </div>
+                </div>
+                            ctx.Dispose();
+            }
+            <div class="form-actions">
+                <input type="submit" role="button" id="btnAssCliConv" class="btn btn-primary" data-toggle="modal" onclick=" carregaListas() " value="Confirmar" />
+                <input type="reset" value="Limpar" class="btn btn-info" />
+                @Html.ActionLink("Cancelar", "Index", "Home", null, new { @class = "btn btn-danger", })
+            </div>
+        </fieldset>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("/bundles/jquerymask")
+    @Scripts.Render("~/bundles/formulario")
+
+}
+
+

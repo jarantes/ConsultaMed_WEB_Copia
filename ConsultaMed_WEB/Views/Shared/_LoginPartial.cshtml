@@ -1,0 +1,20 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <ul class="nav pull-right">
+        <li>@Html.ActionLink("Bem-Vindo " + User.Identity.Name.ToUpper() + "!", "Manage", "Account", null, new { @class = "navbar-link linkN", title = "Gerenciar" })<li>
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "frmLogout" }))
+        {
+            @Html.AntiForgeryToken()
+            <li><a class="logout navbar-link" href="javascript:document.getElementById('logoutForm').submit()">Logoff</a></li>
+        }
+    </ul> 
+}
+else
+{
+    <ul class="nav pull-right">
+        <li>@Html.ActionLink("Registre-se", "Register", "Account", null, new { @class = "navbar-link" })</li>
+        <li>@Html.ActionLink("Logon", "Login", "Account", null, new { @class = "navbar-link" })</li>
+    </ul>
+}
+
+

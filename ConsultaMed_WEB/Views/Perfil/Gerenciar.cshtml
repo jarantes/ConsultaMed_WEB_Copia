@@ -1,0 +1,85 @@
+﻿@model ConsultaMed_WEB.Models.Role
+
+@{
+    ViewBag.Title = "Gerenciar Perfil";
+}
+
+<hgroup class="page-header">
+    <h2>@ViewBag.Title</h2>
+</hgroup>
+
+<section id="RoleForm">
+    @using (Html.BeginForm("Gerenciar", "Perfil"))
+    {
+        @Html.AntiForgeryToken()
+
+
+        if (Html.ValidationSummary(true) != null)
+        {
+        <div id="mensagemErr" class="row">
+            <div class="span12">
+                <div class="alert alert-error">
+                    <a id="fecharErr" class="close">x
+                    </a>
+                    <strong>Erro</strong>
+                    @Html.ValidationSummary(true)
+                </div>
+            </div>
+        </div>
+        }
+
+        if (TempData["Mensagem"] != null)
+        {
+        <div id="mensagemSuc" class="row">
+            <div class="span12">
+                <div class="alert alert-success">
+                    <a id="fecharSuc" class="close">x
+                    </a>
+                    <strong>Sucesso</strong><br/>
+                    <ul>
+                        <li> @TempData["Mensagem"]</li>
+                    </ul>    
+                </div>
+            </div>
+        </div>
+        }
+
+        <div class="form-horizontal well">
+            <fieldset>
+                <legend>Formulário de Perfil</legend>
+                <div class="control-group">
+                    @Html.LabelFor(m => m.RoleName, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.RoleName)
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <input type="submit" value="Inserir" class="btn btn-primary" />
+                </div>
+            </fieldset>
+        </div>
+        <div class="form-horizontal well">
+            <fieldset>
+                <legend>Lista de Perfis Adcionados</legend>
+                <div class="control-group">
+                    <label class="control-label">Perfis:</label>
+                    <div class="controls">
+                        <select multiple="multiple">
+                            @for (var i = 0; i < Roles.GetAllRoles().Count(); i++)
+                            {
+    
+                                <option>@Roles.GetAllRoles()[i]</option>
+   
+                            }
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    }
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

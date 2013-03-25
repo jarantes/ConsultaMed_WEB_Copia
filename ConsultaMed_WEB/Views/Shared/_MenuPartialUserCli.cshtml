@@ -1,0 +1,47 @@
+﻿<div class="container">
+    @Html.ActionLink(Roles.GetRolesForUser()[0].ToUpper(), "Index", "Home", null, new { @class = "brand" })
+    <div class="nav-collapse">
+        <ul class="nav">
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Paciente<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Listar Pacientes", "#")</li>
+                </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Listar Consultas", "#")</li>
+                    <li>@Html.ActionLink("Agendar Consultas", "#")</li>
+                </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Agenda<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Gerenciar Agenda Fixa", "#")</li>
+                    <li>@Html.ActionLink("Gerenciar Agenda Reserva", "#")</li>
+                </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Convênios<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Listar Convênios Associados", "#")</li>
+                </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatórios<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Relatório de Consultas", "#")</li>
+                    <li>@Html.ActionLink("Relatório de Exames", "#")</li>
+                    <li>@Html.ActionLink("Balanço Mensal", "#")</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="navbar-search pull-right">
+            <form class="fbuscar form-search">
+                <div class="input-append">
+                    <input class="search-query span3" id="appendedInputButton" type="text" placeholder="Buscar">
+                    <button class="btn btn-inverse" type="submit"><i class="icon-white icon-search"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
