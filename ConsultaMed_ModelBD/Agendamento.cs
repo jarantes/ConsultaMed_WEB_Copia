@@ -17,9 +17,10 @@ namespace ConsultaMed_ModelBD
         public int AgendamentoId { get; set; }
         public int MarcadorId { get; set; }
         public System.DateTime Horario { get; set; }
-        public System.DateTime Data { get; set; }
         public int PacienteUserId { get; set; }
         public int MedicoUserId { get; set; }
+        public System.DateTime DataAgendamento { get; set; }
+        public System.DateTime DataCriacao { get; set; }
     
         public virtual Usuario Usuario { get; set; }
         public virtual Usuario Usuario1 { get; set; }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05ce7ccfcf2b440cbd6af00c29036537" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Agendamento" Width="1.5" PointX="9.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Clinica" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Convenio" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Endereco" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Especialidade" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Exame" Width="1.5" PointX="10.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Horario" Width="1.5" PointX="9.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HorarioTemp" Width="1.5" PointX="9.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Prontuario" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.UserProfile" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Usuario" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.webpages_Membership" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.webpages_OAuthMembership" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.webpages_Roles" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_dbo_Agendamento_dbo_Usuario_MedicoUserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Agendamento_dbo_Usuario_PacienteUserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Clinica_dbo_Endereco_EnderecoId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Usuario_dbo_Clinica_ClinicaId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Usuario_dbo_Convenio_ConvenioId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Usuario_dbo_Endereco_EnderecoId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Usuario_dbo_Especialidade_EspecialidadeId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Prontuario_dbo_Exame_ExameId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Horario_dbo_Usuario_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_HorarioTemp_dbo_Usuario_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Prontuario_dbo_Usuario_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ConvenioClinica" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.webpages_UsersInRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

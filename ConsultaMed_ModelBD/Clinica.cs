@@ -24,11 +24,13 @@ namespace ConsultaMed_ModelBD
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public string Site { get; set; }
-        public string HorarioAtendimento { get; set; }
         public int EnderecoId { get; set; }
+        public string HorarioInicial { get; set; }
+        public string HorarioFinal { get; set; }
+        public string Email { get; set; }
     
+        public virtual Endereco Endereco { get; set; }
         public virtual ICollection<Usuario> Usuario { get; set; }
         public virtual ICollection<Convenio> Convenio { get; set; }
-        public virtual Endereco Endereco { get; set; }
     }
 }

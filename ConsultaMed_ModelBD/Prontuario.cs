@@ -16,9 +16,9 @@ namespace ConsultaMed_ModelBD
     {
         public int ProntuarioId { get; set; }
         public string Descricao { get; set; }
-        public System.DateTime DataCriacao { get; set; }
         public int ExameId { get; set; }
         public int UserId { get; set; }
+        public System.DateTime DataCriacao { get; set; }
     
         public virtual Exame Exame { get; set; }
         public virtual Usuario Usuario { get; set; }
