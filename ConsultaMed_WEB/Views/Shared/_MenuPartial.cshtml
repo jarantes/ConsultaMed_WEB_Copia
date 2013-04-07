@@ -26,10 +26,11 @@
                 }
                 else
                 {
-            <ul class="nav">
+            @Html.ActionLink("Convidado", "Login", "Account", null, new { @class = "brand" })
+            <ul class="nav nav-pills">
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastro<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Registre-se", "#", new { title = "Registre e faça parte de nossa história" })</li>
+                        <li>@Html.ActionLink("Registre-se", "Register", "Account", null, new { title = "Registre e faça parte de nossa história" })</li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Parceiros<b class="caret"></b></a>
@@ -58,7 +59,7 @@
             </div>
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new RequestFailedException("Erro ao renderizar os menus");
             }

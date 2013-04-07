@@ -58,20 +58,42 @@ function carregaListas() {
     $.post('../Clinica/SalvarConvenio', { 'clinicaId': clinicaId, 'convenioId': convenioId });
 
     window.location.reload();
-    //$.ajax({
-    //    url: "../Administrador/SaveCliConv",
-    //    type: "POST",
-    //    traditional: true,
-    //    data: {
-    //        "clinicaId": $.param({ clinicaId: clinicaId }),
-    //        "convenioId": $.param({ convenioId: convenioId })
-    //    },
-
 }
 
 
+//TODO mais parâmetros depois...        
+function carregaAgenda() {
+    jQuery.ajax({
+        url: '../Consulta/CarregaAgenda',
+        data: 'agendaData=' + jQuery(".textData").val(),
+        dataType: "json",
+        beforeSend: function () {
+            $("#loading").fadeIn();
+        },
+        complete: function () {
+            $("#loading").hide();
+        },
 
+        success: function (response) {
+            var options = '';
+            jQuery("#AgendaEncontrada").empty();
+            if (response.data[0] == null) {
+                $('#dialog').modal({
+                    keyboard: false
+                });
+                return;
+            }
 
+            for (var i = 0; i < response.data.length; i++) {
+                if (response.data[i] != null) {
+                    options += '<option value="' + response.data[i].toString() + '">' + response.data[i].toString() + '</option>';
+                }
+            }
+            jQuery("#AgendaEncontrada").html(options);
+        }
+    });
+}
 
-
-
+function LimparComboHorario() {
+    jQuery("#AgendaEncontrada").empty();
+}

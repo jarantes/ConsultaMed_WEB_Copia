@@ -11,7 +11,6 @@ namespace ConsultaMed_WEB.Controllers
     public class ConvenioController : Controller
     {
         //OBJETOS:
-        public string Sucesso;
         private readonly UnitOfWork _unitOfWork = new UnitOfWork();
 
         //
@@ -89,7 +88,24 @@ namespace ConsultaMed_WEB.Controllers
             return View(model);
         }
 
-       
-
+        //
+        // GET: /Convenio/Listar
+        [Authorize(Roles = "Medico")]
+        public ActionResult Listar()
+        {
+            try
+            {
+                var model = _unitOfWork.ConvenioRepositorio.Get();
+                _unitOfWork.Dispose();
+                return View(model);
+            }
+            catch (Exception)
+            {
+                Session.Add("Erro", "Não foi possível realizar a pesquisa");
+                TempData["Erro"] = Session["Erro"];
+                Session.Remove("Erro");
+                return View();
+            }
+        }
     }
 }

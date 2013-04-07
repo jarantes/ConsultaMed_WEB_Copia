@@ -49,7 +49,7 @@ namespace ConsultaMed_WEB.Models
         [Required]
         [Display(Name = "Data de Nascimento")]
         [DataType(DataType.Date, ErrorMessage = "A data informada é inválida.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd//MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataNascimento { get; set; }
 
         public string Perfil { get; set; }

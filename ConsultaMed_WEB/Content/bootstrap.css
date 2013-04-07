@@ -266,7 +266,7 @@ body {
     font-size: 15px;
     line-height: 21px;
     color: #666666;
-    /*background-image: url('../Resources/fundo.png');*/
+    /*background-image: url('../Resources/fundoCM.png');*/
     background-repeat: repeat;
 }
 
@@ -328,11 +328,11 @@ a {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-    width: 940px;
+    width: 1000px;
 }
 
 .span12 {
-    width: 940px;
+    width: 1000px;
 }
 
 .span11 {
@@ -4510,7 +4510,7 @@ input[type="submit"].btn {
     .navbar-static-top .container,
     .navbar-fixed-top .container,
     .navbar-fixed-bottom .container {
-        width: 940px;
+        width: 1000px;
     }
 
 .navbar-fixed-top {

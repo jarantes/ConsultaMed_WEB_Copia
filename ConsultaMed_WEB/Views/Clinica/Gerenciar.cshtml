@@ -36,7 +36,7 @@
     </div>
     }
 }
-@Html.ActionLink("Inserir Nova", "Adicionar", null, new {id="teste",  @class = "inline btn btn-primary" })<br>
+@Html.ActionLink("Inserir Nova", "Adicionar", null, new { id = "teste", @class = "inline btn btn-primary" })<br>
 <br>
 @if (Model.Any())
 {
@@ -46,7 +46,8 @@
                 <th>Clínica</th>
                 <th>Descrição</th>
                 <th>Horario Atendimento</th>
-                <th>Remover</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -56,10 +57,8 @@
                     <td>@item.Nome</td>
                     <td>@item.Descricao</td>
                     <td>Das @item.HorarioInicial h ás @item.HorarioFinal h</td>
-
-                    <!-- Button to trigger modal -->
-                    <td><a href="#myModal" role="button" class="btnRemove btn btn-warning centro" data-toggle="modal" data-id="@item.ClinicaId" data-name="@item.Nome" data-url="Deletar/"><i class="icon-trash"></i></a>
-                    </td>
+                    <td><a href="#myModal" role="button" class="btnRemove btn btn-warning centro" data-toggle="modal" data-id="@item.ClinicaId" data-name="@item.Nome" data-url="Deletar/" title="Remover @item.Nome"><i class="icon-trash"></i></a></td>
+                    <td><a href="/Clinica/Atualizar?clinicaId=@item.ClinicaId" role="button" class="btn btn-primary" data-toggle="modal"><i class="icon-edit" title="Editar @item.Nome"></i></a></td>
                 </tr>
                 <!-- Modal -->
                 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -68,7 +67,7 @@
                         <h3 id="myModalLabel">Atenção</h3>
                     </div>
                     <div class="modal-body">
-                        <p>Deseja realmente excluir a Clínica <em id="user"></em> ?</p>
+                        <p>Deseja realmente excluir a Clínica <em id="user"></em>?</p>
                     </div>
                     <div class="modal-footer">
                         <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>

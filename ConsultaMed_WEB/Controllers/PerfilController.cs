@@ -32,10 +32,10 @@ namespace ConsultaMed_WEB.Controllers
             }
             catch (Exception)
             {
-                ModelState.AddModelError("", "Não foi possível adcionar o novo perfil!");
+                ModelState.AddModelError("", "Não foi possível adicionar o novo perfil!");
                 return View(model);
             }
-            TempData["Mensagem"] = "Perfil adciondado com sucesso";
+            TempData["Mensagem"] = "Perfil adiciondado com sucesso";
             return RedirectToAction("Gerenciar");
         }
 

@@ -27,7 +27,9 @@ namespace ConsultaMed_WEB.App_Start
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*",
-                        "~/Scripts/jquery.ambiance*"));
+                        "~/Scripts/jquery.ambiance*",
+                        "~/Scripts/jquery.blockUI*"))
+            ;
 
             // Use a versão em desenvolvimento do Modernizr para desenvolver e aprender com ela. Após isso, quando você estiver
             // pronto para produção, use a ferramenta de compilação em http://modernizr.com para selecionar somente os testes que você precisa.
@@ -39,9 +41,9 @@ namespace ConsultaMed_WEB.App_Start
                 "~/Content/jquery.ambiance.css*"));
 
             bundles.Add(new StyleBundle("~/Content/themes/overcast/css").Include(
-                        "~/Content/themes/overcast/jquery-ui.css",
-                        "~/Content/themes/overcast/jquery.ui.dialog.css",
-                        "~/Content/themes/overcast/jquery.ui.datepicker.css"));
+                        "~/Content/themes/redmond/jquery-ui.css",
+                        "~/Content/themes/redmond/jquery.ui.dialog.css",
+                        "~/Content/themes/redmond/jquery.ui.datepicker.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquerymask").Include(
                         "~/Scripts/jquery.maskedinput.js*"));

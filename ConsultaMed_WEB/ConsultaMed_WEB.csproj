@@ -235,6 +235,22 @@
     <Compile Include="Migrations\201303200004255_EmailClinica2.Designer.cs">
       <DependentUpon>201303200004255_EmailClinica2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201304022241446_AtualizadaDataConsulta.cs" />
+    <Compile Include="Migrations\201304022241446_AtualizadaDataConsulta.Designer.cs">
+      <DependentUpon>201304022241446_AtualizadaDataConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201304042326016_TimeSpan.cs" />
+    <Compile Include="Migrations\201304042326016_TimeSpan.Designer.cs">
+      <DependentUpon>201304042326016_TimeSpan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201304050009421_TimeSpan2.cs" />
+    <Compile Include="Migrations\201304050009421_TimeSpan2.Designer.cs">
+      <DependentUpon>201304050009421_TimeSpan2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201304052257207_AtualizacaohorariosTimeSpan.cs" />
+    <Compile Include="Migrations\201304052257207_AtualizacaohorariosTimeSpan.Designer.cs">
+      <DependentUpon>201304052257207_AtualizacaohorariosTimeSpan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Agendamento.cs" />
@@ -390,13 +406,83 @@
     <Content Include="Content\themes\overcast\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\overcast\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\overcast\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\themes\redmond\images\animated-overlay.gif" />
+    <Content Include="Content\themes\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="Content\themes\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Content\themes\redmond\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Content\themes\redmond\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\redmond\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Content\themes\redmond\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Content\themes\redmond\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Content\themes\redmond\jquery-ui.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.all.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.base.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.button.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.core.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.menu.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.slider.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.theme.css" />
+    <Content Include="Content\themes\redmond\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\redmond\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\redmond\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Content\themes\redmond\minified\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Content\themes\redmond\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\redmond\minified\jquery.ui.tooltip.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\busy.gif" />
     <Content Include="Resources\ajax-loader.gif" />
     <Content Include="Resources\fundo.png" />
+    <Content Include="Resources\fundoAzul.png" />
+    <Content Include="Resources\fundoAzul_orig_l.png" />
+    <Content Include="Resources\fundoCM.png" />
     <Content Include="Resources\logo_cm.png" />
     <Content Include="Resources\Logo_CM_maior.fw.png" />
+    <Content Include="Resources\Logo_CM_maior.png" />
     <Content Include="Resources\slide1.jpg" />
     <Content Include="Resources\slide2.jpg" />
     <Content Include="Resources\slide3.jpg" />
@@ -416,12 +502,16 @@
     <Content Include="Fontes\cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff" />
     <Content Include="Fontes\xjAJXh38I15wypJXxuGMBobN6UDyHWBl620a-IRfuBk.woff" />
     <Content Include="Fontes\PRmiXeptR36kaC0GEAetxjqR_3kx9_hJXbbyU8S6IN0.woff" />
+    <Content Include="..\..\..\..\..\Desktop\CodeMapCM.dgml">
+      <Link>CodeMapCM.dgml</Link>
+    </Content>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.1.js" />
     <Content Include="Scripts\jquery-ui-1.10.1.min.js" />
     <Content Include="Scripts\jquery.ambiance.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\jquery.cycle.all.js" />
     <Content Include="Scripts\jquery.maskedinput.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
@@ -470,7 +560,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Account\AdcionarUsuário.cshtml" />
     <Content Include="Views\Shared\_MenuPartialAdmin.cshtml" />
     <Content Include="Views\Shared\_MenuPartialPacien.cshtml" />
     <Content Include="Views\Shared\_MenuPartialUserCli.cshtml" />
@@ -486,6 +575,13 @@
     <Content Include="Views\Clinica\AssociarConvenio.cshtml" />
     <Content Include="Views\Convenio\Adicionar.cshtml" />
     <Content Include="Views\Convenio\Gerenciar.cshtml" />
+    <Content Include="Views\Clinica\Atualizar.cshtml" />
+    <Content Include="Views\Consulta\NovaAgenda.cshtml" />
+    <Content Include="Views\Consulta\NovaAgendaTemp.cshtml" />
+    <Content Include="Views\Convenio\Listar.cshtml" />
+    <Content Include="Views\Usuario\Listar.cshtml" />
+    <Content Include="Views\Consulta\Listar.cshtml" />
+    <Content Include="Views\Consulta\Agendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -538,6 +634,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201303200004255_EmailClinica2.resx">
       <DependentUpon>201303200004255_EmailClinica2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304022241446_AtualizadaDataConsulta.resx">
+      <DependentUpon>201304022241446_AtualizadaDataConsulta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304042326016_TimeSpan.resx">
+      <DependentUpon>201304042326016_TimeSpan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304050009421_TimeSpan2.resx">
+      <DependentUpon>201304050009421_TimeSpan2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304052257207_AtualizacaohorariosTimeSpan.resx">
+      <DependentUpon>201304052257207_AtualizacaohorariosTimeSpan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

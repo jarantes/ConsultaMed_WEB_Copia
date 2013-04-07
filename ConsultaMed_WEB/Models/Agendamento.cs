@@ -13,11 +13,11 @@ namespace ConsultaMed_WEB.Models
 
         [Required]
         [Display(Name = "Selecione o Horário")]
-        public DateTime Horario { get; set; }
+        public TimeSpan Horario { get; set; }
 
         [Required]
         [Display(Name = "Selecione a data")]
-        public DateTime DataAgendamento { get; set; }
+        public DateTime DataConsulta { get; set; }
 
         public DateTime DataCriacao { get; set; }
 

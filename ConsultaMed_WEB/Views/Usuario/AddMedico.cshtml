@@ -190,8 +190,7 @@
                         @Html.DropDownListFor(c => c.EspecialidadeId, selectList, "[Selecione]")
                     </div>
                 </div>
-                
-                
+               
     var list2 = ctx.Clinicas.OrderBy(c => c.Descricao).ToList();
     var selectList2 = new SelectList(list2, "ClinicaId", "Nome", Model);
                 

@@ -1,0 +1,103 @@
+﻿@using ConsultaMed_WEB.Models
+@model ConsultaMed_WEB.Models.Agendamento
+
+@{
+    ViewBag.Title = "Agendamento de Consultas";
+
+    var profile = Roles.GetRolesForUser(User.Identity.Name);
+}
+
+<hgroup class="page-header">
+    <h2>@ViewBag.Title</h2>
+</hgroup>
+@using (Html.BeginForm("Agendar", "Consulta"))
+{
+
+    @Html.AntiForgeryToken()
+    if (TempData["Erro"] != null)
+    {
+    <div id="mensagemErr" class="row">
+        <div class="span12">
+            <div class="alert alert-error">
+                <a id="fecharErr" class="close">x
+                </a>
+                <strong>Erro</strong>
+                @Html.ValidationSummary(true)
+                @TempData["Erro"]
+            </div>
+        </div>
+    </div>
+    }
+    if (TempData["Mensagem"] != null)
+    {
+    <div id="mensagemSuc" class="row">
+        <div class="span12">
+            <div class="alert alert-success">
+                <a id="fecharSuc" class="close">x
+                </a>
+                <strong>Sucesso</strong><br />
+                <ul>
+                    <li>@TempData["Mensagem"]</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    }    
+    <div class="form-horizontal well">
+        <fieldset>
+            <legend>Formulário de Agendamento de Consulta</legend>
+
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.DataConsulta, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.DataConsulta, new { @id = "datepicker", @class = "textData", onchange = "carregaAgenda()" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.Label("Agenda Encontrada", new { @class = "control-label" })
+                <div class="controls">
+                    <select id="AgendaEncontrada" name="Horario">
+                    </select>
+                    <img src="~/Resources/ajax-loader.gif" style="display: none" alt="carregando.." id="loading" />
+                    <span id="valHorario" class="field-validation-error" data-valmsg-for="UserName" data-valmsg-replace="true" style="display: none">Nenhuma agenda disponível para data informada.</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.Label("Paciente(s)", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(m => m.PacienteUserId, (SelectList)ViewData["pacienteList"], "[Selecione]")
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" value="Agendar" class="btn btn-primary" />
+                <input type="reset" value="Limpar" class="btn btn-info" onclick="LimparComboHorario()" />
+                @Html.ActionLink("Cancelar", "Index", "Home", null, new { @class = "btn btn-danger" })
+            </div>
+        </fieldset>
+    </div>
+    
+    <!-- Modal -->
+    <div id="dialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Agenda não encontrada</h3>
+        </div>
+        <div class="modal-body">
+            <p>Nenhuma agenda encontrada para data informada!</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Ok</button>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("/bundles/jquerymask")
+    @Scripts.Render("~/bundles/formulario")
+
+}

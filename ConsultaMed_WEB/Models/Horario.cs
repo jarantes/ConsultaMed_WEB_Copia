@@ -11,15 +11,15 @@ namespace ConsultaMed_WEB.Models
 
         [Required]
         [Display(Name="Horário Inicial")]
-        public DateTime HorarioIni { get; set; }
+        public TimeSpan HorarioIni { get; set; }
 
         [Required]
         [Display(Name = "Horário Final")]
-        public DateTime HorarioFim { get; set; }
+        public TimeSpan HorarioFim { get; set; }
 
         [Required]
         [Display(Name = "Tempo médio da Consulta")]
-        public DateTime TempoConsulta { get; set; }
+        public TimeSpan TempoConsulta { get; set; }
 
         [Required]
         [Display(Name = "Período")]

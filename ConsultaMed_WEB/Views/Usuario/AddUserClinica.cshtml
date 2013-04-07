@@ -94,7 +94,7 @@
             <div class="control-group">
                 @Html.LabelFor(m => m.Endereco.Bairro, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(m => m.Endereco.Bairro, new { @class = "span5" })
+                    @Html.TextBoxFor(m => m.Endereco.Bairro, new { @id = "bairro", @class = "span5" })
                     @Html.ValidationMessageFor(m => m.Endereco.Bairro)
                 </div>
             </div>
@@ -102,7 +102,7 @@
             <div class="control-group">
                 @Html.LabelFor(m => m.Endereco.Rua, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(m => m.Endereco.Rua, new { @class = "span5" })
+                    @Html.TextBoxFor(m => m.Endereco.Rua, new { @id = "rua", @class = "span5" })
                     @Html.ValidationMessageFor(m => m.Endereco.Rua)
                 </div>
             </div>
@@ -110,7 +110,7 @@
             <div class="control-group">
                 @Html.LabelFor(m => m.Endereco.Numero, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(m => m.Endereco.Numero, new { @class = "span1" })
+                    @Html.TextBoxFor(m => m.Endereco.Numero, new { @id = "numero", @class = "span1" })
                     @Html.ValidationMessageFor(m => m.Endereco.Numero)
                 </div>
             </div>
@@ -118,7 +118,7 @@
             <div class="control-group">
                 @Html.LabelFor(m => m.Endereco.Cidade, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(m => m.Endereco.Cidade, new { @class = "span3" })
+                    @Html.TextBoxFor(m => m.Endereco.Cidade, new { @id = "cidade", @class = "span3" })
                     @Html.ValidationMessageFor(m => m.Endereco.Cidade)
                 </div>
             </div>
@@ -156,7 +156,7 @@
                             new SelectListItem {Text = "SP", Value = "SP"},
                             new SelectListItem {Text = "SE", Value = "SE"},
                             new SelectListItem {Text = "TO", Value = "TO"},
-                        }, new { @class = "txtEstado" })
+                        }, new { @id = "estado", @class = "txtEstado" })
                     @Html.ValidationMessageFor(m => m.Endereco.Estado)
                 </div>
             </div>

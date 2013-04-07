@@ -78,6 +78,8 @@ namespace ConsultaMed_WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterModel model)
         {
+            model.Perfil = "Paciente";
+
             if (ModelState.IsValid)
             {
                 // Tente registrar o usuário
@@ -332,18 +334,6 @@ namespace ConsultaMed_WEB.Controllers
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
         }
 
-        //todas actions abaixo faz parte de uma nova implementação
-        
-        public ActionResult AdcionarUsuário()
-        {
-            return View();
-        }
-
-        //[HttpPost]
-        //public ActionResult AdcionarUsuário(Usuario model)
-        //{
-        //    return View();
-        //}
         #region Auxiliares
         private ActionResult RedirectToLocal(string returnUrl)
         {

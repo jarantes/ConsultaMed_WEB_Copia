@@ -4,36 +4,27 @@
         <ul class="nav">
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Paciente<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("Listar Pacientes", "#")</li>
+                    <li>@Html.ActionLink("Listar Pacientes", "Listar", "Usuario")</li>
                 </ul>
             </li>
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("Listar Consultas", "#")</li>
-                    <li>@Html.ActionLink("Agendar Consultas", "#")</li>
+                    <li>@Html.ActionLink("Listar Consultas", "Listar", "Consulta")</li>
+                    <li>@Html.ActionLink("Agendar Consultas", "Agendar", "Consulta")</li>
+                    <li>@Html.ActionLink("Gerenciar Consultas", "#")</li>
                 </ul>
             </li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Agenda<b class="caret"></b></a>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Agenda<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("Gerenciar Agenda Fixa", "#")</li>
-                    <li>@Html.ActionLink("Gerenciar Agenda Reserva", "#")</li>
-                </ul>
-            </li>
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Convênios<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("Listar Convênios Associados", "#")</li>
-                </ul>
-            </li>
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Clinicas<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("Listar Clínicas Associados", "#")</li>
+                    <li>@Html.ActionLink("Criar Agenda Fixa", "NovaAgenda", "Consulta")</li>
+                    <li>@Html.ActionLink("Criar Agenda Temporária", "NovaAgendaTemp", "Consulta")</li>
+                    <li>@Html.ActionLink("Gerenciar Agendas", "#", "Consulta")</li>
                 </ul>
             </li>
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatórios<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>@Html.ActionLink("Relatório de Consultas", "#")</li>
                     <li>@Html.ActionLink("Relatório de Exames", "#")</li>
-                    <li>@Html.ActionLink("Balanço Mensal", "#")</li>
                 </ul>
             </li>
         </ul>

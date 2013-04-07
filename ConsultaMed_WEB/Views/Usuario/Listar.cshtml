@@ -1,0 +1,51 @@
+﻿@model List<ConsultaMed_WEB.Models.Usuario>
+@{
+    ViewBag.Title = "Lista de Pacientes da Semana";
+}
+
+<hgroup class="page-header">
+    <h2>@ViewBag.Title</h2>
+</hgroup>
+@{
+    if (TempData["Erro"] != null)
+    {
+    <div id="mensagemErr" class="row">
+        <div class="span12">
+            <div class="alert alert-error">
+                <a id="fecharErr" class="close">x
+                </a>
+                <strong>Erro</strong>
+                @TempData["Erro"].ToString()
+            </div>
+        </div>
+    </div>
+    }
+}
+@if (Model.Any())
+{
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>CPF</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nome</td>
+                    <td>@item.Email</td>
+                    <td>@item.Cpf</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="lead"><em>Nenhum Usuário foi encontrado...</em></p>
+}
+

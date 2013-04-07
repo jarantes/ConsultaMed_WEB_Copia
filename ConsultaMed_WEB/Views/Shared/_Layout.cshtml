@@ -10,7 +10,7 @@
 </head>
 <body>
     <!-- barra-topo com login ----------------------------->
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top navbar-inverse">
         <div class="navbar-inner">
             <div class="container">
                 <section>
@@ -20,21 +20,23 @@
         </div>
     </div>
     <!-- cabeçalho com logo ------------------------------->
-    <div class="container">
+    <div class=" fundoAzul">
         <header id="" class="subnav">
             <div class="pagination-centered">
                 <a href="@Url.Action("Index", "Home")">
                     <img src="~/Resources/Logo_CM_maior.fw.png" alt="ConsultaMed" /></a>
             </div>
         </header>
+    </div>
+    <div class="container">
         <section id="box-menu">
             @Html.Partial("_MenuPartial")
         </section>
-        <div>
+        <div class="conteudo">
             @RenderBody()
         </div>
     </div>
-
+    @Html.Partial("_Rodape")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/funcoes")

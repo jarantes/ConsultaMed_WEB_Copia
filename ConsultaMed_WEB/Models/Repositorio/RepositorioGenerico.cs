@@ -14,8 +14,8 @@ namespace ConsultaMed_WEB.Models.Repositorio
 
         public RepositorioGenerico(CmContext context)
         {
-            this.Context = context;
-            this.DbSet = context.Set<TEntity>();
+            Context = context;
+            DbSet = context.Set<TEntity>();
         }
 
         public virtual IEnumerable<TEntity> Get(
@@ -30,16 +30,9 @@ namespace ConsultaMed_WEB.Models.Repositorio
                 query = query.Where(filter);
             }
 
-            query = includeProperties.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries).Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+            query = includeProperties.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
 
-            if (orderBy != null)
-            {
-                return orderBy(query).ToList();
-            }
-            else
-            {
-                return query.ToList();
-            }
+            return orderBy != null ? orderBy(query).ToList() : query.ToList();
         }
 
         public virtual TEntity GetById(object id)
@@ -87,6 +80,41 @@ namespace ConsultaMed_WEB.Models.Repositorio
 
                 return userId;
             }
+        }
+
+        public int GetClincaByUserName(string username)
+        {
+                var selClinicaId = (from b in Context.Usuarios
+                                    where b.UserName == username
+                                    select new { b.ClinicaId }).First();
+                var clinicaId = Convert.ToInt32(selClinicaId.ClinicaId);
+                return clinicaId;
+
+        }
+
+        public List<Usuario> GetUsersforDoctor(int medicoId, DateTime hoje, DateTime semana)
+        {
+            var query = (from agend in Context.Agendamentos
+                         join usuario in Context.Usuarios on agend.PacienteUserId equals usuario.UserId
+                         where
+                             agend.MedicoUserId == medicoId 
+                             && agend.DataConsulta >= hoje
+                             && agend.DataConsulta <= semana
+                         select usuario);
+
+            return query.ToList();
+        }
+
+        public List<Agendamento> GetAgendforDoctor(int medicoId, DateTime hoje, DateTime semana)
+        {
+            var query = (from agend in Context.Agendamentos
+                         where
+                             agend.MedicoUserId == medicoId
+                             && agend.DataConsulta >= hoje
+                             && agend.DataConsulta <= semana
+                         select agend);
+
+            return query.ToList();
         }
 
     }

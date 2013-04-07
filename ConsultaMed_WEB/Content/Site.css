@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 40px;
     padding-bottom: 20px;
 }
 
@@ -26,6 +26,7 @@ div.ui-datepicker {
 .textHora {
     width: 70px;
 }
+
 .txtEstado {
     width: 70px;
 }
@@ -91,4 +92,51 @@ a.logout {
 .centro {
     margin-left: auto;
     margin-right: auto;
+}
+
+input[type="text"].yellow, select.yellow, .yellow {
+    background-color: #FFFFE6;
+}
+
+.fundoAzul {
+    /*background-image: url('../Resources/fundoAzul.png');*/
+    margin-bottom: 0px;
+    position: relative;
+    background-repeat: repeat;
+    padding: 13px;
+}
+
+.rodape {
+    padding: 2px;
+    font-size: 16px;
+    font-weight: 200;
+    color: #EEEEEE;
+    background-image: url('../Resources/fundoAzul.png');
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    height: 40px;
+    border: 1px solid #dcdcdc;
+    margin-bottom: 0;
+    position: fixed;
+    bottom: 0px;
+    width: 2600px;
+}
+
+    .rodape h1 {
+        margin-bottom: 0;
+        font-size: 30px;
+        line-height: 1;
+        color: #EEEEEE;
+        letter-spacing: -1px;
+    }
+
+
+    .rodape li {
+        line-height: 31.5px;
+    }
+
+.conteudo {
+    height: auto;
+    padding-bottom: 40px;
 }

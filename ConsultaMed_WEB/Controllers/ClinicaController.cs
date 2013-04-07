@@ -54,10 +54,10 @@ namespace ConsultaMed_WEB.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Gerenciar()
         {
-            TempData["Mensagem"] = Session["DeleteClinica"];
+            TempData["Mensagem"] = Session["Clinica"];
             TempData["Erro"] = Session["Erro"];
             //limpar sessão
-            Session.Remove("DeleteClinica");
+            Session.Remove("Clinica");
             Session.Remove("Erro");
 
             var model = _unitOfWork.ClinicaRepositorio.Get();
@@ -77,7 +77,7 @@ namespace ConsultaMed_WEB.Controllers
                 _unitOfWork.Save();
                 _unitOfWork.Dispose();
 
-                Session.Add("DeleteClinica", "Clínica removida com sucesso");
+                Session.Add("Clinica", "Clínica removida com sucesso");
                 return RedirectToAction("Gerenciar");
             }
             catch (Exception)
@@ -86,6 +86,54 @@ namespace ConsultaMed_WEB.Controllers
             }
             return RedirectToAction("Gerenciar");
         }
+
+        //
+        // GET: /Clinica/Atualizar
+        public ActionResult Atualizar(int clinicaId)
+        {
+            TempData["Mensagem"] = Session["AtualizaClinica"];
+            TempData["Erro"] = Session["Erro"];
+            //limpar sessão
+            Session.Remove("AtualizaClinica");
+            Session.Remove("Erro");
+            try
+            {
+                var model = _unitOfWork.ClinicaRepositorio.GetById(clinicaId);
+                Session.Add("clinicaId", model.ClinicaId);
+                Session.Add("enderecoId", model.EnderecoId);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                Session.Add("Erro", "Não foi possível carregar a clínica");
+            }
+            return RedirectToAction("Gerenciar");
+        }
+
+        //
+        // GET: /Clinica/SalvarAtualizacao
+        [HttpPost]
+        public ActionResult SalvarAtualizacao(Clinica model)
+        {
+            try
+            {
+                model.ClinicaId = Convert.ToInt32(Session["clinicaId"]);
+                model.EnderecoId = Convert.ToInt32(Session["enderecoId"]);
+                model.Endereco.EnderecoId = model.EnderecoId;
+                _unitOfWork.ClinicaRepositorio.Update(model);
+                _unitOfWork.Save();
+                _unitOfWork.Dispose();
+
+                Session.Add("Clinica", "Clínica atualizada com sucesso");
+                return RedirectToAction("Gerenciar", model.ClinicaId);
+            }
+            catch (Exception)
+            {
+                Session.Add("Erro", "Não foi possível atualizar a clínica");
+            }
+            return RedirectToAction("Gerenciar", model.ClinicaId);
+        }
+
 
         //
         // GET: /Clinica/AssociarConvenio
@@ -125,8 +173,8 @@ namespace ConsultaMed_WEB.Controllers
             catch (Exception)
             {
                 Session.Add("Erro", "Não foi possível realizar a associação!");
-                return RedirectToAction("AssociarConvenio");
             }
+            return RedirectToAction("AssociarConvenio");
         }
     }
 }

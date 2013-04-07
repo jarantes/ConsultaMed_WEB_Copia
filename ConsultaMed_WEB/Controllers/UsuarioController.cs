@@ -12,9 +12,9 @@ namespace ConsultaMed_WEB.Controllers
     {
 
         //OBJETOS:
-        public string Sucesso;
         private readonly UnitOfWork _unitOfWork = new UnitOfWork();
 
+        //-------------------------------------INÍCIO DAS ACTIONS DO ADMINISTRADOR--------------------------------
         //
         // GET: /Usuario/Registrar
         [Authorize(Roles = "Administrador")]
@@ -33,6 +33,11 @@ namespace ConsultaMed_WEB.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Registrar(RegisterModel model)
         {
+            if (model.Perfil == null)
+            {
+                ModelState.AddModelError("", "O perfil do usuário é obrigatório");
+                return View(model);
+            }
             if (ModelState.IsValid)
             {
                 // Tente registrar o usuário
@@ -71,14 +76,14 @@ namespace ConsultaMed_WEB.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    medico.UserName = (string) Session["UserNameCadastrado"];
+                    medico.UserName = (string)Session["UserNameCadastrado"];
                     medico.UserId =
-                        _unitOfWork.UsuarioRepositorio.GetIdByUserName((string) Session["UserNameCadastrado"]);
+                        _unitOfWork.UsuarioRepositorio.GetIdByUserName((string)Session["UserNameCadastrado"]);
                     medico.Perfil = "Medico";
                     _unitOfWork.MedicoRepositorio.Insert(medico);
                     _unitOfWork.Save();
                     _unitOfWork.Dispose();
-                    Session.Add("Mensagem", "Médico adciondado com sucesso");
+                    Session.Add("Mensagem", "Médico adiciondado com sucesso");
                     return RedirectToAction("Registrar");
                 }
             }
@@ -109,9 +114,9 @@ namespace ConsultaMed_WEB.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    userClinica.UserName = (string) Session["UserNameCadastrado"];
+                    userClinica.UserName = (string)Session["UserNameCadastrado"];
                     userClinica.UserId =
-                        _unitOfWork.UsuarioRepositorio.GetIdByUserName((string) Session["UserNameCadastrado"]);
+                        _unitOfWork.UsuarioRepositorio.GetIdByUserName((string)Session["UserNameCadastrado"]);
                     userClinica.Perfil = "RespClinica";
                     _unitOfWork.UsuarioRepositorio.Insert(userClinica);
                     _unitOfWork.Save();
@@ -174,6 +179,54 @@ namespace ConsultaMed_WEB.Controllers
             }
             return RedirectToAction("Gerenciar");
         }
+
+        //
+        // GET: /Usuario/Listar
+        public ActionResult Listar()
+        {
+            try
+            {
+                var medicoId = _unitOfWork.UsuarioRepositorio.GetIdByUserName(User.Identity.Name);
+                var model = _unitOfWork.UsuarioRepositorio.GetUsersforDoctor(medicoId, DateTime.Now, DateTime.Now.AddDays(7));
+                _unitOfWork.Dispose();
+                return View(model);
+            }
+            catch (Exception)
+            {
+                Session.Add("Erro", "Não foi possível retornar a pesquisa");
+                TempData["Erro"] = Session["Erro"];
+                Session.Remove("Erro");
+                return View();
+            }
+        }       
+
+        //--------------------------------FIM DAS ACTIONS DO ADMINISTRADOR----------------------------------------
+
+
+
+        //----------------------------------INICIO DAS ACTIONS DO MÉDICO------------------------------------------
+
+        //TODO => não implemtendo
+
+        //-------------------------------------FIM DAS ACTIONS DO MÉDICO------------------------------------------
+
+
+
+        //-----------------------------------INICIO DAS ACTIONS DO USUÁRIO----------------------------------------
+
+        //TODO => não implemtendo
+
+        //-------------------------------------FIM DAS ACTIONS DO USUÁRIO-----------------------------------------
+
+
+        //----------------------------------INICIO DAS ACTIONS DO USERCLINICA-------------------------------------
+
+        //TODO => não implemtendo
+
+        //-----------------------------------FIM DAS ACTIONS DO USERCLINICA---------------------------------------
+        //
+        //POST: Usuario
+
 
 
 

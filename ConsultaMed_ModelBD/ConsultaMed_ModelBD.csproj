@@ -48,28 +48,87 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agendamento.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clinica.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CMModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CMModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CMModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Convenio.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Endereco.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Especialidade.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Exame.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Horario.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HorarioTemp.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Prontuario.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserProfile.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_Membership.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_OAuthMembership.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_Roles.cs">
+      <DependentUpon>CMModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="..\..\..\..\..\Desktop\ConsultaMedModelo.edmx">
+    <EntityDeploy Include="CMModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <Link>ConsultaMedModelo.edmx</Link>
+      <LastGenOutput>CMModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="..\..\..\..\..\Desktop\ConsultaMedModelo.Context.tt">
+    <None Include="CMModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ConsultaMedModelo.edmx</DependentUpon>
-      <Link>ConsultaMedModelo.Context.tt</Link>
+      <DependentUpon>CMModel.edmx</DependentUpon>
+      <LastGenOutput>CMModel.Context.cs</LastGenOutput>
     </None>
-    <None Include="..\..\..\..\..\Desktop\ConsultaMedModelo.edmx.diagram">
-      <DependentUpon>ConsultaMedModelo.edmx</DependentUpon>
-      <Link>ConsultaMedModelo.edmx.diagram</Link>
+    <None Include="CMModel.edmx.diagram">
+      <DependentUpon>CMModel.edmx</DependentUpon>
     </None>
-    <None Include="..\..\..\..\..\Desktop\ConsultaMedModelo.tt">
+    <None Include="CMModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ConsultaMedModelo.edmx</DependentUpon>
-      <Link>ConsultaMedModelo.tt</Link>
+      <DependentUpon>CMModel.edmx</DependentUpon>
+      <LastGenOutput>CMModel.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

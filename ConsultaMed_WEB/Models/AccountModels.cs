@@ -89,7 +89,6 @@ namespace ConsultaMed_WEB.Models
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Perfil do Usuário")]
-        [Required]
         public string Perfil { get; set; }
     }
     
@@ -104,7 +103,7 @@ namespace ConsultaMed_WEB.Models
     public class Role
     {
         [Required]
-        [Display(Name = "Adcione o Perfil")]
+        [Display(Name = "Adicione o Perfil")]
         public string RoleName { get; set; }
     }
 }
