@@ -1,0 +1,10 @@
+﻿
+<div class="form-horizontal well">
+        <div class="control-group">
+            @Html.Label("Médicos(s)", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("UserId", (SelectList)ViewData["medicoList"],"[Selecione]", new { onchange = "carregaConsultas()", @id = "listaMedicos" })
+                @*<input type="submit" value="Filtrar" class="btn btn-primary" />*@
+            </div>
+        </div>
+</div>

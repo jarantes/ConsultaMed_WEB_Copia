@@ -23,11 +23,21 @@ namespace ConsultaMed_WEB.Models
 
         [Required]
         [Display(Name = "Data")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Data { get; set; }
-        
-        public int UserId { get; set; }
 
-        [ForeignKey("UserId")]
+        [Required]
+        [Display(Name = "Horário de Descanso Início")]
+        public TimeSpan TempoDescansoInicial { get; set; }
+
+        [Required]
+        [Display(Name = "Horário de Descanso Fim")]
+        public TimeSpan TempoDescansoFinal { get; set; }
+
+        
+        public int MedicoUserId { get; set; }
+
+        [ForeignKey("MedicoUserId")]
         public virtual UsuarioMedico UsuarioMedico { get; set; }
     }
 }

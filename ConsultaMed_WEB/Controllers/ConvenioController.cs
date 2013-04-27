@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ConsultaMed_WEB.Models;
 using ConsultaMed_WEB.Models.Repositorio;
@@ -26,7 +23,6 @@ namespace ConsultaMed_WEB.Controllers
         //
         // POST: /Convenio/Adicionar
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]
         public ActionResult Adicionar(Convenio model)
@@ -37,7 +33,6 @@ namespace ConsultaMed_WEB.Controllers
                 {
                     _unitOfWork.ConvenioRepositorio.Insert(model);
                     _unitOfWork.Save();
-                    _unitOfWork.Dispose();
 
                     Session.Add("Mensagem", "Convenio adicionado com sucesso");
                     return RedirectToAction("Adicionar");
@@ -46,6 +41,10 @@ namespace ConsultaMed_WEB.Controllers
             catch (Exception)
             {
                 ModelState.AddModelError("", "Não foi possível adicionar o convênio");
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
             }
             return View(model);
         }
@@ -60,7 +59,6 @@ namespace ConsultaMed_WEB.Controllers
                 //deletando Convênio
                 _unitOfWork.ConvenioRepositorio.Delete(id);
                 _unitOfWork.Save();
-                _unitOfWork.Dispose();
 
                 Session.Add("DeleteConvenio", "Convênio removido com sucesso");
                 return RedirectToAction("Gerenciar");
@@ -68,6 +66,10 @@ namespace ConsultaMed_WEB.Controllers
             catch (Exception)
             {
                 Session.Add("Erro", "Não foi possível remover o convênio");
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
             }
             return RedirectToAction("Gerenciar");
         }
@@ -96,7 +98,6 @@ namespace ConsultaMed_WEB.Controllers
             try
             {
                 var model = _unitOfWork.ConvenioRepositorio.Get();
-                _unitOfWork.Dispose();
                 return View(model);
             }
             catch (Exception)
@@ -105,6 +106,10 @@ namespace ConsultaMed_WEB.Controllers
                 TempData["Erro"] = Session["Erro"];
                 Session.Remove("Erro");
                 return View();
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
             }
         }
     }

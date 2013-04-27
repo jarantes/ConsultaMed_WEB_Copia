@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace ConsultaMed_WEB.Models
 {    
@@ -13,17 +15,20 @@ namespace ConsultaMed_WEB.Models
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
+        public IEnumerable<String> ListaExame { get; set; }
+
+        public String Exame { get; set; }
 
         public DateTime DataCriacao { get; set; }
 
-        public int ExameId { get; set; }
-
         public int UserId { get; set; }
 
-        [ForeignKey("ExameId")]
-        public virtual Exame Exame { get; set; }
+        public int? AgendamentoId { get; set; }
 
         [ForeignKey("UserId")]
         public virtual UsuarioPaciente UsuarioPaciente { get; set; }
+
+        [ForeignKey("AgendamentoId")]
+        public virtual Agendamento Agendamento { get; set; }
     }
 }

@@ -1,5 +1,117 @@
-﻿@{
-    ViewBag.Title = "NovaAgenda";
+﻿@model ConsultaMed_WEB.Models.Horario
+
+@{
+    ViewBag.Title = "Criar Agenda Fixa";
 }
 
-<h2>NovaAgenda</h2>
+<hgroup class="page-header">
+    <h2>@ViewBag.Title</h2>
+</hgroup>
+@using (Html.BeginForm("NovaAgenda", "Consulta"))
+{
+
+    @Html.AntiForgeryToken()
+    if (@Html.ValidationSummary(true) != null)
+    {
+    <div id="mensagemErr" class="row">
+        <div class="span12">
+            <div class="alert alert-error">
+                <a id="fecharErr" class="close">x
+                </a>
+                <strong>Erro</strong>
+                @Html.ValidationSummary(true)
+            </div>
+        </div>
+    </div>
+    }
+    if (TempData["Mensagem"] != null)
+    {
+    <div id="mensagemSuc" class="row">
+        <div class="span12">
+            <div class="alert alert-success">
+                <a id="fecharSuc" class="close">x
+                </a>
+                <strong>Sucesso</strong><br />
+                <ul>
+                    <li>@TempData["Mensagem"]</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    }    
+    <div class="form-horizontal well">
+        <fieldset>
+            <legend>Formulário de criação de Agenda</legend>
+
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.PerInicio, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.PerInicio, new { @id = "datepicker" , @class = "textData" })
+                    @Html.ValidationMessageFor(m => m.PerInicio)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.PerFim, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.PerFim, new { @id = "datepicker2" , @class = "textData" })
+                    @Html.ValidationMessageFor(m => m.PerFim)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.HorarioIni, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.HorarioIni, new { @class = "textHora" })
+                    @Html.ValidationMessageFor(m => m.HorarioIni)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.HorarioFim, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.HorarioFim, new { @class = "textHora" })
+                    @Html.ValidationMessageFor(m => m.HorarioFim)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.TempoDescansoInicial, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.TempoDescansoInicial, new { @class = "textHora" })
+                    @Html.ValidationMessageFor(m => m.TempoDescansoInicial)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.TempoDescansoFinal, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.TempoDescansoFinal, new { @class = "textHora" })
+                    @Html.ValidationMessageFor(m => m.TempoDescansoFinal)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.TempoConsulta, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.TempoConsulta, new { @class = "textHora" })
+                    @Html.ValidationMessageFor(m => m.TempoConsulta)
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" value="Confirmar" class="btn btn-primary" />
+                <input type="reset" value="Limpar" class="btn btn-info" onclick="LimparComboHorario()" />
+                @Html.ActionLink("Cancelar", "Index", "Home", null, new { @class = "btn btn-danger" })
+            </div>
+        </fieldset>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("/bundles/jquerymask")
+    @Scripts.Render("~/bundles/formulario")
+
+}

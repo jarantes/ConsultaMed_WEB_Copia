@@ -12,6 +12,7 @@ namespace ConsultaMed_WEB.Models
         public string Crm { get; set; }
         public int EspecialidadeId { get; set; }
 
+
         [ForeignKey("EspecialidadeId")]
         public virtual Especialidade Especialidade { get; set; }
 

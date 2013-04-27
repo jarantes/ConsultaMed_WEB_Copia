@@ -35,8 +35,8 @@ namespace ConsultaMed_WEB.Models
         [Display(Name = "Estado")]
         public string Estado { get; set; }
      
-        public virtual ICollection<Usuario> Usuario { get; set; }
+        //public virtual ICollection<Usuario> Usuario { get; set; }
 
-        public virtual ICollection<Clinica> Clinica { get; set; } 
+        //public virtual ICollection<Clinica> Clinica { get; set; } 
     }
 }

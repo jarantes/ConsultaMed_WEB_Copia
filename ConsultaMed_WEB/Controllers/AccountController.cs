@@ -37,10 +37,6 @@ namespace ConsultaMed_WEB.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                //if (Roles.GetRolesForUser()[0] == "Administrador")
-                //{
-                //    return RedirectToAction("Index", "Administrador");
-                //}
                 return RedirectToLocal(returnUrl);
             }
 

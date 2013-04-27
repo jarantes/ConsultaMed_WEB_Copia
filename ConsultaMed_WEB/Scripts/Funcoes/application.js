@@ -25,6 +25,12 @@ function adicionaClinica() {
     });
 }
 
+function adicionaExame() {
+    jQuery("#examesEncontrados :selected").each(function (i, selected) {
+        jQuery("#examesSelecionados").append(selected);
+    });
+}
+
 function adicionaConvenio() {
     jQuery("#conveniosEncontrados :selected").each(function (i, selected) {
         jQuery("#conveniosSelecionados").append(selected);
@@ -34,6 +40,12 @@ function adicionaConvenio() {
 function removeClinica() {
     jQuery("#clinicasSelecionadas :selected").each(function (i, selected) {
         jQuery("#clinicasEncontradas").append(selected);
+    });
+}
+
+function removeExame() {
+    jQuery("#examesSelecionados :selected").each(function (i, selected) {
+        jQuery("#examesEncontrados").append(selected);
     });
 }
 
@@ -63,9 +75,9 @@ function carregaListas() {
 
 //TODO mais parâmetros depois...        
 function carregaAgenda() {
-    jQuery.ajax({
+    $.ajax({
         url: '../Consulta/CarregaAgenda',
-        data: 'agendaData=' + jQuery(".textData").val(),
+        data:{agendaData: jQuery(".textData").val(), medicoUserId: jQuery("#MedicosEncontrados :selected").val()},
         dataType: "json",
         beforeSend: function () {
             $("#loading").fadeIn();
@@ -75,7 +87,6 @@ function carregaAgenda() {
         },
 
         success: function (response) {
-            var options = '';
             jQuery("#AgendaEncontrada").empty();
             if (response.data[0] == null) {
                 $('#dialog').modal({
@@ -83,15 +94,55 @@ function carregaAgenda() {
                 });
                 return;
             }
-
-            for (var i = 0; i < response.data.length; i++) {
-                if (response.data[i] != null) {
-                    options += '<option value="' + response.data[i].toString() + '">' + response.data[i].toString() + '</option>';
-                }
-            }
-            jQuery("#AgendaEncontrada").html(options);
+            $('#AgendaEncontrada').append("<option value=''>" + '[Selecione]' + "</option>");
+            $.each(response.data, function (index, agenda) {
+                if (agenda != null)
+                    $('#AgendaEncontrada').append("<option value='" + agenda + "'>" + agenda + "</option>");
+            });
         }
     });
+}
+
+function carregaConsultas() {
+    $.ajax({
+        url: '../Consulta/Gerenciar',
+        data: { id: jQuery("#listaMedicos :selected").val() },
+    });
+    $('#tabela').load();
+}
+
+function carregaMédico() {
+    jQuery.ajax({
+        url: '../Consulta/CarregaMedico',
+        data: 'Id=' + jQuery("#Especialidade").val(),
+        dataType: "json",
+        beforeSend: function () {
+            $("#loadingMedico").fadeIn();
+        },
+        complete: function () {
+            $("#loadingMedico").hide();
+        },
+
+        success: function (data) {
+            jQuery("#MedicosEncontrados").empty();
+            if (data.Result[0] == null) {
+                $('#dialogMedico').modal({
+                    keyboard: false
+                });
+                return;
+            }
+
+            $('#MedicosEncontrados').append("<option value=''>" + '[Selecione]' + "</option>");
+            $.each(data.Result, function (index, medico) {
+
+                $('#MedicosEncontrados').append("<option value='" + medico.UserId + "'>" + medico.Nome + " " + medico.Sobrenome + "</option>");
+            });
+        }
+    });
+}
+
+function SessionaMedicoId() {
+    $("#escondido").slideDown();
 }
 
 function LimparComboHorario() {

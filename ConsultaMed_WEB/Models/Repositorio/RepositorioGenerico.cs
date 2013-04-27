@@ -84,7 +84,7 @@ namespace ConsultaMed_WEB.Models.Repositorio
 
         public int GetClincaByUserName(string username)
         {
-                var selClinicaId = (from b in Context.Usuarios
+            var selClinicaId = (from b in Context.Usuarios
                                     where b.UserName == username
                                     select new { b.ClinicaId }).First();
                 var clinicaId = Convert.ToInt32(selClinicaId.ClinicaId);
@@ -100,16 +100,33 @@ namespace ConsultaMed_WEB.Models.Repositorio
                              agend.MedicoUserId == medicoId 
                              && agend.DataConsulta >= hoje
                              && agend.DataConsulta <= semana
-                         select usuario);
+                             && usuario.Perfil == "Paciente"
+                         select usuario).Distinct();
 
             return query.ToList();
         }
 
-        public List<Agendamento> GetAgendforDoctor(int medicoId, DateTime hoje, DateTime semana)
+        public List<Agendamento> GetAgendforDoctor(int? medicoId, DateTime hoje, DateTime semana)
         {
             var query = (from agend in Context.Agendamentos
+                         join user in Context.Usuarios on agend.PacienteUserId equals user.UserId
                          where
-                             agend.MedicoUserId == medicoId
+                            agend.MedicoUserId == medicoId
+                             && agend.DataConsulta >= hoje
+                             && agend.DataConsulta <= semana
+                             && user.Perfil == "Paciente"
+                         select agend);
+
+            return query.ToList();
+        }
+
+        public List<Agendamento> GetAgendForClinica(int? clinicaId, DateTime hoje, DateTime semana)
+        {
+            var query = (from agend in Context.Agendamentos
+                         join user in Context.Usuarios on agend.MedicoUserId equals user.UserId
+                         join clin in Context.Clinicas on user.ClinicaId equals clin.ClinicaId
+                         where 
+                            clin.ClinicaId == clinicaId
                              && agend.DataConsulta >= hoje
                              && agend.DataConsulta <= semana
                          select agend);

@@ -15,154 +15,81 @@ namespace ConsultaMed_WEB.Models.Repositorio
         private RepositorioGenerico<HorarioTemp> _horariotempRepositorio;
         private RepositorioGenerico<Prontuario> _prontuarioRepositorio;
         private RepositorioGenerico<Usuario> _usuarioRepositorio;
+        private RepositorioGenerico<Endereco> _enderecoRepositorio;
+
+        public RepositorioGenerico<Endereco> EnderecoRepositorio
+        {
+            get { return _enderecoRepositorio ?? (_enderecoRepositorio = new RepositorioGenerico<Endereco>(_context)); }
+        }
 
         public RepositorioGenerico<Usuario> UsuarioRepositorio
         {
-            get
-            {
-
-                if (this._usuarioRepositorio == null)
-                {
-                    this._usuarioRepositorio = new RepositorioGenerico<Usuario>(_context);
-                }
-                return _usuarioRepositorio;
-            }
+            get { return _usuarioRepositorio ?? (_usuarioRepositorio = new RepositorioGenerico<Usuario>(_context)); }
         }
 
         public RepositorioGenerico<UsuarioMedico> MedicoRepositorio
         {
-            get
-            {
-
-                if (this._medicoRepositorio == null)
-                {
-                    this._medicoRepositorio = new RepositorioGenerico<UsuarioMedico>(_context);
-                }
-                return _medicoRepositorio;
-            }
+            get { return _medicoRepositorio ?? (_medicoRepositorio = new RepositorioGenerico<UsuarioMedico>(_context)); }
         }
 
         public RepositorioGenerico<UsuarioPaciente> PacienteRepositorio
         {
-            get
-            {
-
-                if (this._pacienteRepositorio == null)
-                {
-                    this._pacienteRepositorio = new RepositorioGenerico<UsuarioPaciente>(_context);
-                }
-                return _pacienteRepositorio;
-            }
+            get { return _pacienteRepositorio ?? (_pacienteRepositorio = new RepositorioGenerico<UsuarioPaciente>(_context)); }
         }
 
         public RepositorioGenerico<Agendamento> AgendamentoRepositorio
         {
-            get
-            {
-
-                if (this._agendamentoRepositorio == null)
-                {
-                    this._agendamentoRepositorio = new RepositorioGenerico<Agendamento>(_context);
-                }
-                return _agendamentoRepositorio;
-            }
+            get { return _agendamentoRepositorio ?? (_agendamentoRepositorio = new RepositorioGenerico<Agendamento>(_context)); }
         }
 
         public RepositorioGenerico<Clinica> ClinicaRepositorio
         {
-            get
-            {
-
-                if (this._clinicaRepositorio == null)
-                {
-                    this._clinicaRepositorio = new RepositorioGenerico<Clinica>(_context);
-                }
-                return _clinicaRepositorio;
-            }
+            get { return _clinicaRepositorio ?? (_clinicaRepositorio = new RepositorioGenerico<Clinica>(_context)); }
         }
 
         public RepositorioGenerico<Convenio> ConvenioRepositorio
         {
-            get
-            {
-
-                if (this._convenioRepositorio == null)
-                {
-                    this._convenioRepositorio = new RepositorioGenerico<Convenio>(_context);
-                }
-                return _convenioRepositorio;
-            }
+            get { return _convenioRepositorio ?? (_convenioRepositorio = new RepositorioGenerico<Convenio>(_context)); }
         }
 
         public RepositorioGenerico<Exame> ExameRepositorio
         {
-            get
-            {
-
-                if (this._exameRepositorio == null)
-                {
-                    this._exameRepositorio = new RepositorioGenerico<Exame>(_context);
-                }
-                return _exameRepositorio;
-            }
+            get { return _exameRepositorio ?? (_exameRepositorio = new RepositorioGenerico<Exame>(_context)); }
         }
 
         public RepositorioGenerico<Horario> HorarioRepositorio
         {
-            get
-            {
-
-                if (this._horarioRepositorio == null)
-                {
-                    this._horarioRepositorio = new RepositorioGenerico<Horario>(_context);
-                }
-                return _horarioRepositorio;
-            }
+            get { return _horarioRepositorio ?? (_horarioRepositorio = new RepositorioGenerico<Horario>(_context)); }
         }
 
         public RepositorioGenerico<HorarioTemp> HorarioTempRepositorio
         {
             get
-            {
-
-                if (this._horariotempRepositorio == null)
-                {
-                    this._horariotempRepositorio = new RepositorioGenerico<HorarioTemp>(_context);
-                }
-                return _horariotempRepositorio;
-            }
+            { return _horariotempRepositorio ?? (_horariotempRepositorio = new RepositorioGenerico<HorarioTemp>(_context)); }
         }
 
         public RepositorioGenerico<Prontuario> ProntuarioRepositorio
         {
-            get
-            {
-
-                if (this._prontuarioRepositorio == null)
-                {
-                    this._prontuarioRepositorio = new RepositorioGenerico<Prontuario>(_context);
-                }
-                return _prontuarioRepositorio;
-            }
+            get { return _prontuarioRepositorio ?? (_prontuarioRepositorio = new RepositorioGenerico<Prontuario>(_context)); }
         }
-      
+
         public void Save()
         {
             _context.SaveChanges();
         }
 
-        private bool _disposed = false;
+        private bool _disposed;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this._disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
                     _context.Dispose();
                 }
             }
-            this._disposed = true;
+            _disposed = true;
         }
 
         public void Dispose()

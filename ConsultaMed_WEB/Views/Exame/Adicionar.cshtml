@@ -1,0 +1,77 @@
+﻿@model ConsultaMed_WEB.Models.Exame
+
+@{
+    ViewBag.Title = "Adicionar Novo Exame";
+}
+
+<hgroup class="page-header">
+    <h2>@ViewBag.Title</h2>
+</hgroup>
+@using (Html.BeginForm("Adicionar", "Exame"))
+{
+
+    @Html.AntiForgeryToken()
+    if (@Html.ValidationSummary(true) != null)
+    {
+    <div id="mensagemErr" class="row">
+        <div class="span12">
+            <div class="alert alert-error">
+                <a id="fecharErr" class="close">x
+                </a>
+                <strong>Erro</strong>
+                @Html.ValidationSummary(true)
+            </div>
+        </div>
+    </div>
+    }
+    if (TempData["Mensagem"] != null)
+    {
+    <div id="mensagemSuc" class="row">
+        <div class="span12">
+            <div class="alert alert-success">
+                <a id="fecharSuc" class="close">x
+                </a>
+                <strong>Sucesso</strong><br />
+                <ul>
+                    <li>@TempData["Mensagem"]</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    }    
+    <div class="form-horizontal well">
+        <fieldset>
+            <legend>Formulário para Adicionar Novo Exame</legend>
+            
+            <div class="control-group">
+                @Html.LabelFor(m => m.Nome, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Nome, new { @class = "span5" })
+                    @Html.ValidationMessageFor(m => m.Nome)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Descricao, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(m => m.Descricao, new { @class = "span5" })
+                    @Html.ValidationMessageFor(m => m.Descricao)
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" value="Confirmar" class="btn btn-primary" />
+                <input type="reset" value="Limpar" class="btn btn-info"/>
+                @Html.ActionLink("Cancelar", "Index", "Home", null, new { @class = "btn btn-danger" })
+            </div>
+        </fieldset>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("/bundles/jquerymask")
+    @Scripts.Render("~/bundles/formulario")
+
+}
+

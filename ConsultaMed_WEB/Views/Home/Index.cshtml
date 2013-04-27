@@ -4,13 +4,49 @@
 }
 
 <div class="page-header">
+    <h2>Bem-Vindo ao ConsultaMed</h2>
+</div>
+
+
+<div id="myCarousel" class="carousel">
+    <!-- Itens de carousel -->
+    <div class="carousel-inner">
+        <div class="active item">
+            <img src="~/Resources/slide1.jpg" alt=""/>
+            <div class="carousel-caption">
+                <h4>Para os Médicos</h4>
+                <p>Venha fazer parte do ConsultaMed, e organize sua agenda de forma rápida e segura</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/Resources/slide2.jpg" alt=""/>
+            <div class="carousel-caption">
+                <h4>Convênios</h4>
+                <p>Suportamos os melhores convênios da atualidade</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/Resources/slide3.jpg" alt=""/>
+            <div class="carousel-caption">
+                <h4>Saúde e Qualidade de Vida</h4>
+                <p>Proporcionamos muito mais conforto aos pacientes com atendimento 24 horas</p>
+            </div>
+        </div>
+    </div>
+    <!-- Navegador do carousel -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+
+@*
+<div class="page-header">
     <h2>Tema da Página</h2>
 </div>
 <div>
     <em>Este trecho demostra um texto em itálico</em>
     <p class="lead">Este paragrafo se sobressai sobre os outros</p>
 </div>
-@* Exemplo de Forms********************************************************** *@
+@* Exemplo de Forms********************************************************** 
 <form class="form-inline">
     @Html.TextBox("Data", null, new { @id = "datepicker", @class = "textData" })
     <button class="btn btn-danger">Enviar</button>
@@ -53,7 +89,7 @@
 
     </fieldset>
 </div>
-@* Exemplo de mensagem de erro************************************************* *@
+@* Exemplo de mensagem de erro************************************************* 
 <div class="row">
     <div class="span4">
         <div class="alert alert-error">
@@ -65,7 +101,7 @@
     </div>
 </div>
 
-@* Exemplo de tabela************************************************************ *@
+@* Exemplo de tabela************************************************************ 
 <div class="page-header">
     <h2>Tabelas
     </h2>
@@ -119,3 +155,4 @@
     </div>
 </div>
 
+*@

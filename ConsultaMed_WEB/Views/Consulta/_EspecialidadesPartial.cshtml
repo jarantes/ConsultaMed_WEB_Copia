@@ -1,0 +1,19 @@
+﻿@using ConsultaMed_WEB.Models
+@model Especialidade
+
+@{
+    var ctx = new CmContext();
+
+    var list = ctx.Especialidades.OrderBy(c => c.Descricao).ToList();
+    var selectList = new SelectList(list, "EspecialidadeId", "Descricao", Model);
+
+    <div class="control-group">
+        @Html.Label("Especialidade", new { @class = "control-label" })
+        <div class="controls">
+            @Html.DropDownListFor(c => c.EspecialidadeId, selectList, "[Selecione]", new {id="Especialidade", onchange="carregaMédico()"})
+        </div>
+    </div>
+
+    ctx.Dispose();
+
+}

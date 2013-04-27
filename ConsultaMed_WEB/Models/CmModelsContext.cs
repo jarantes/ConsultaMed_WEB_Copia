@@ -13,6 +13,7 @@ namespace ConsultaMed_WEB.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
         }
         public DbSet<Agendamento> Agendamentos { get; set; }
         public DbSet<Convenio> Convenios { get; set; }

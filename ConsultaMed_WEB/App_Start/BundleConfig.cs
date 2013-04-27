@@ -28,7 +28,7 @@ namespace ConsultaMed_WEB.App_Start
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*",
                         "~/Scripts/jquery.ambiance*",
-                        "~/Scripts/jquery.blockUI*"))
+                        "~/Scripts/methods_pt*"))
             ;
 
             // Use a versão em desenvolvimento do Modernizr para desenvolver e aprender com ela. Após isso, quando você estiver

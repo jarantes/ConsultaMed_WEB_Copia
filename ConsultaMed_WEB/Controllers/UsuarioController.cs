@@ -14,7 +14,6 @@ namespace ConsultaMed_WEB.Controllers
         //OBJETOS:
         private readonly UnitOfWork _unitOfWork = new UnitOfWork();
 
-        //-------------------------------------INÍCIO DAS ACTIONS DO ADMINISTRADOR--------------------------------
         //
         // GET: /Usuario/Registrar
         [Authorize(Roles = "Administrador")]
@@ -28,7 +27,6 @@ namespace ConsultaMed_WEB.Controllers
         //
         // POST: /Usuario/Registrar
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]
         public ActionResult Registrar(RegisterModel model)
@@ -46,7 +44,22 @@ namespace ConsultaMed_WEB.Controllers
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     Session.Add("UserNameCadastrado", model.UserName);
                     Roles.AddUserToRole(model.UserName, model.Perfil);
-                    return RedirectToAction(model.Perfil == "Medico" ? "AddMedico" : "AddUserClinica");
+                    Session.Add("Mensagem", "Para conluir o cadastro preencha as informações abaixo!");
+                    switch (model.Perfil)
+                    {
+                        case "Medico":
+                            return RedirectToAction("AddMedico");
+
+                        case "Paciente":
+                            return RedirectToAction("AddUserPaciente");
+
+                        case "RespClinica":
+                            return RedirectToAction("AddUserClinica");
+
+                        case "Administrador":
+                            Session.Add("Mensagem", "Novo administrador incluído com sucesso!");
+                            return RedirectToAction("Registrar");
+                    }
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -62,12 +75,16 @@ namespace ConsultaMed_WEB.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult AddMedico()
         {
+            TempData["Mensagem"] = Session["Mensagem"];
+            //limpar sessão
+            Session.Remove("Mensagem");
             return View();
         }
 
         //
         // POST: /Usuario/AddMedico
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]
         public ActionResult AddMedico(UsuarioMedico medico)
         {
@@ -82,7 +99,7 @@ namespace ConsultaMed_WEB.Controllers
                     medico.Perfil = "Medico";
                     _unitOfWork.MedicoRepositorio.Insert(medico);
                     _unitOfWork.Save();
-                    _unitOfWork.Dispose();
+
                     Session.Add("Mensagem", "Médico adiciondado com sucesso");
                     return RedirectToAction("Registrar");
                 }
@@ -90,6 +107,10 @@ namespace ConsultaMed_WEB.Controllers
             catch (Exception)
             {
                 ModelState.AddModelError("", "Não foi possível adicionar o novo Médico");
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
             }
             return View(medico);
         }
@@ -99,13 +120,15 @@ namespace ConsultaMed_WEB.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult AddUserClinica()
         {
+            TempData["Mensagem"] = Session["Mensagem"];
+            //limpar sessão
+            Session.Remove("Mensagem");
             return View();
         }
 
         //
         // POST: /Usuario/AddUserClinica
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]
         public ActionResult AddUserClinica(UsuarioRespClinica userClinica)
@@ -120,7 +143,7 @@ namespace ConsultaMed_WEB.Controllers
                     userClinica.Perfil = "RespClinica";
                     _unitOfWork.UsuarioRepositorio.Insert(userClinica);
                     _unitOfWork.Save();
-                    _unitOfWork.Dispose();
+
                     Session.Add("Mensagem", "Usuário adiciondado com sucesso");
                     return RedirectToAction("Registrar");
                 }
@@ -129,7 +152,54 @@ namespace ConsultaMed_WEB.Controllers
             {
                 ModelState.AddModelError("", "Não foi possível adicionar o Usuário");
             }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
             return View(userClinica);
+        }
+
+        //
+        // GET: /Usuario/AddUserPaciente
+        [Authorize(Roles = "Administrador, Paciente")]
+        public ActionResult AddUserPaciente()
+        {
+            TempData["Mensagem"] = Session["Mensagem"];
+            //limpar sessão
+            Session.Remove("Mensagem");
+            return View();
+        }
+
+        //
+        // POST: /Usuario/AddUserPaciente
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador, Paciente")]
+        public ActionResult AddUserPaciente(UsuarioPaciente userPaciente)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    userPaciente.UserName = (string)Session["UserNameCadastrado"];
+                    userPaciente.UserId = _unitOfWork.UsuarioRepositorio.GetIdByUserName((string)Session["UserNameCadastrado"]);
+                    userPaciente.Perfil = "Paciente";
+                    _unitOfWork.UsuarioRepositorio.Insert(userPaciente);
+                    _unitOfWork.Save();
+
+                    Session.Add("Mensagem", "Usuário adiciondado com sucesso");
+                    return RedirectToAction("Registrar");
+                }
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Não foi possível adicionar o Usuário");
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+            return View(userPaciente);
         }
 
         //
@@ -166,9 +236,10 @@ namespace ConsultaMed_WEB.Controllers
                     ctuser.Dispose();
                 }
                 //deletando Usuário
+                var model = _unitOfWork.UsuarioRepositorio.GetById(id);
                 _unitOfWork.UsuarioRepositorio.Delete(id);
+                _unitOfWork.EnderecoRepositorio.Delete(model.EnderecoId);
                 _unitOfWork.Save();
-                _unitOfWork.Dispose();
 
                 Session.Add("DeleteUser", "Usuário removido com sucesso");
                 return RedirectToAction("Gerenciar");
@@ -177,18 +248,23 @@ namespace ConsultaMed_WEB.Controllers
             {
                 Session.Add("Erro", "Não foi possível excluir o usuário");
             }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
             return RedirectToAction("Gerenciar");
         }
 
         //
         // GET: /Usuario/Listar
+        [Authorize(Roles = "Medico")]
         public ActionResult Listar()
         {
             try
             {
                 var medicoId = _unitOfWork.UsuarioRepositorio.GetIdByUserName(User.Identity.Name);
-                var model = _unitOfWork.UsuarioRepositorio.GetUsersforDoctor(medicoId, DateTime.Now, DateTime.Now.AddDays(7));
-                _unitOfWork.Dispose();
+                var model = _unitOfWork.PacienteRepositorio.GetUsersforDoctor(medicoId, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(7));
+
                 return View(model);
             }
             catch (Exception)
@@ -198,34 +274,11 @@ namespace ConsultaMed_WEB.Controllers
                 Session.Remove("Erro");
                 return View();
             }
-        }       
-
-        //--------------------------------FIM DAS ACTIONS DO ADMINISTRADOR----------------------------------------
-
-
-
-        //----------------------------------INICIO DAS ACTIONS DO MÉDICO------------------------------------------
-
-        //TODO => não implemtendo
-
-        //-------------------------------------FIM DAS ACTIONS DO MÉDICO------------------------------------------
-
-
-
-        //-----------------------------------INICIO DAS ACTIONS DO USUÁRIO----------------------------------------
-
-        //TODO => não implemtendo
-
-        //-------------------------------------FIM DAS ACTIONS DO USUÁRIO-----------------------------------------
-
-
-        //----------------------------------INICIO DAS ACTIONS DO USERCLINICA-------------------------------------
-
-        //TODO => não implemtendo
-
-        //-----------------------------------FIM DAS ACTIONS DO USERCLINICA---------------------------------------
-        //
-        //POST: Usuario
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+        }
 
 
 

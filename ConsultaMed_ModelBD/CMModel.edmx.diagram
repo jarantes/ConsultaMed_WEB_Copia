@@ -33,6 +33,12 @@
         <AssociationConnector Association="Model.FK_dbo_Prontuario_dbo_Usuario_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.ConvenioClinica" ManuallyRouted="false" />
         <AssociationConnector Association="Model.webpages_UsersInRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Agendamento_dbo_Horario_HorarioId" />
+        <AssociationConnector Association="Model.FK_dbo_Agendamento_dbo_HorarioTemp_HorarioTempId" />
+        <AssociationConnector Association="Model.FK_dbo_Horario_dbo_Horario_Horario_HorarioId" />
+        <AssociationConnector Association="Model.FK_dbo_Horario_dbo_Usuario_MedicoUserId" />
+        <AssociationConnector Association="Model.FK_dbo_HorarioTemp_dbo_Horario_Horario_HorarioId" />
+        <AssociationConnector Association="Model.FK_dbo_HorarioTemp_dbo_Usuario_MedicoUserId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

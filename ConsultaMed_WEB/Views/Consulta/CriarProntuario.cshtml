@@ -1,0 +1,76 @@
+﻿@using System.Collections
+@using ConsultaMed_WEB.Models
+@model Prontuario
+
+@{
+    ViewBag.Title = "Informações do Prontuário";
+    string paciente = @ViewData["NomePaciente"].ToString();
+    paciente = paciente.Substring(13, paciente.Length - 15);
+}
+
+<hgroup class="page-header">
+    <h2>@ViewBag.Title</h2>
+</hgroup>
+@using (Html.BeginForm("CriarProntuario", "Consulta"))
+{
+
+    @Html.AntiForgeryToken()
+    if (@Html.ValidationSummary(true) != null)
+    {
+    <div id="mensagemErr" class="row">
+        <div class="span12">
+            <div class="alert alert-error">
+                <a id="fecharErr" class="close">x
+                </a>
+                <strong>Erro</strong>
+                @Html.ValidationSummary(true)
+            </div>
+        </div>
+    </div>
+    }
+
+    <div class="form-horizontal well">
+        <fieldset>
+            <legend>Formulário de informações de Prontuário</legend>
+            <div class="control-group">
+                <label class="control-label">Paciente: </label>
+                <div class="controls"><em class="control-label">@paciente</em></div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Descricao, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(m => m.Descricao, new { @class = "span5" })
+                    @Html.ValidationMessageFor(m => m.Descricao)
+                </div>
+            </div>
+
+            @using (var ctx = new CmContext())
+            {
+                var especialidadeId = Convert.ToInt32(Session["EspecialidadeId"]);
+                var listExame = new MultiSelectList((from ex in ctx.Exames
+                                                     from es in ex.Especialidades.Where(x => x.EspecialidadeId == especialidadeId)
+                                                     select new { Nome = ex.Nome }), "Nome", "Nome", null);
+                <div class="control-group">
+                    @Html.Label("Lista de Exames", new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.ListBoxFor(c => c.ListaExame, (MultiSelectList)listExame, new { multiple = "multiple" })
+                    </div>
+                </div>
+                ctx.Dispose();
+            }
+            <div class="form-actions">
+                <input type="submit" value="Confirmar" class="btn btn-primary" />
+                <input type="reset" value="Limpar" class="btn btn-info" />
+                @Html.ActionLink("Cancelar", "Index", "Home", null, new { @class = "btn btn-danger" })
+            </div>
+        </fieldset>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("/bundles/jquerymask")
+    @Scripts.Render("~/bundles/formulario")
+
+}

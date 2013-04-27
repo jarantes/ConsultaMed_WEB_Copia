@@ -2,15 +2,10 @@
     @Html.ActionLink(Roles.GetRolesForUser()[0].ToUpper(), "Index", "Home", null, new { @class = "brand" })
     <div class="nav-collapse">
         <ul class="nav">
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Paciente<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("Listar Pacientes", "#")</li>
-                </ul>
-            </li>
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("Listar Consultas", "#")</li>
-                    <li>@Html.ActionLink("Agendar Consultas", "#")</li>
+                    <li>@Html.ActionLink("Agendar Consultas", "Agendar2", "Consulta")</li>
+                    <li>@Html.ActionLink("Listar Consultas", "Gerenciar", "Consulta")</li>
                 </ul>
             </li>
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Agenda<b class="caret"></b></a>

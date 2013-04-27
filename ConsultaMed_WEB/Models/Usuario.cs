@@ -38,23 +38,20 @@ namespace ConsultaMed_WEB.Models
         [Required]
         [Display(Name = "Telefone")]
         //TODO verificar melhores regex
-        //[RegularExpression(@"^([0-9]{2}) [0-9]{4}-[0-9]{4}$", ErrorMessage = "O telefone informado não é válido")]
         public string Telefone { get; set; }
 
         [Display(Name = "Celular")]
         //TODO verificar melhores regex
-        //[RegularExpression(@"^(\(11\) [9][0-9]{4}-[0-9]{4})|(\(1[2-9]\) [5-9][0-9]{3}-[0-9]{4})|(\([2-9][1-9]\) [5-9][0-9]{3}-[0-9]{4})$", ErrorMessage = "O celular informado não é válido")]
         public string Celular { get; set; }
 
         [Required]
         [Display(Name = "Data de Nascimento")]
-        [DataType(DataType.Date, ErrorMessage = "A data informada é inválida.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date, ErrorMessage = "A data informada é inválida."), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataNascimento { get; set; }
 
-        public string Perfil { get; set; }
+        public int? ClinicaId { get; set; }
 
-        public int ClinicaId { get; set; }
+        public string Perfil { get; set; }
 
         public int EnderecoId { get; set; }
 
@@ -63,6 +60,8 @@ namespace ConsultaMed_WEB.Models
 
         [ForeignKey("ClinicaId")]
         public virtual Clinica Clinica { get; set; }
+
+
 
     }
 }

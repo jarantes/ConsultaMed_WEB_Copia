@@ -1,0 +1,1031 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+  dslVersion="1.0.0.0"
+  Id="c1f6fba4-8e45-4832-9792-e57fb07598fd"
+  name="ModelingProjectCM" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="82872a09-ff4d-4a5f-8928-30eb6ff49bc2">
+      <body>get() - www.consultamed.com.br/consulta/agendar</body>
+      <annotatedElements>
+        <componentMoniker
+          Id="a20f8ce3-456c-4514-8bed-d52950dbc355"
+          LastKnownName="Navegador"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="1761e9eb-9263-4701-a834-7bdac45d53c3">
+      <body>Banco de Dados Físico do ConsultaMed
+</body>
+      <annotatedElements>
+        <componentMoniker
+          Id="d6199226-13a7-471f-9ac1-bc43713c8a66"
+          LastKnownName="ConsultaMedBD1"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="b4eec9c3-c2b0-4dfb-a33e-901f0fc12b79">
+      <body>Repositório responsável pela persistência no BD
+</body>
+      <annotatedElements>
+        <partMoniker
+          Id="d4ba2f7a-c44e-4505-931b-ff007993af01"
+          LastKnownName="Repositórios de PersitênciaBD"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="3dc4e13e-eae9-4fda-935e-0442a051a9d7">
+      <body>Classes de Modelo baseadas em atributos reais das tabelas a serem geradas
+</body>
+      <annotatedElements>
+        <partMoniker
+          Id="684e5539-2af3-4a37-84cb-fec51e1854e8"
+          LastKnownName="Models"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="a8da9f2a-51f8-4f1d-b7a5-7fdccf124dfb">
+      <body>Controlador Responsável pelas regras de Negócio e Validações antes da Persistência no BD
+</body>
+      <annotatedElements>
+        <partMoniker
+          Id="857d0367-2b7f-49d4-a553-1931adc5ed3e"
+          LastKnownName="Controllers"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="5920b0c2-b5cb-41f8-8555-3303621137f8">
+      <body>Pacote de Classes responsável pela interface de dados entre WEB_SITE e BD</body>
+      <annotatedElements>
+        <componentMoniker
+          Id="c75e4a56-9653-4356-9802-689843a36acf"
+          LastKnownName="System.Data.Entity.dll1"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="e80948b7-c736-4531-aee3-b17a50c960f9">
+      <body>Parte visual da Informação, Interface do sistema com o usuário</body>
+      <annotatedElements>
+        <partMoniker
+          Id="16a6ccf8-8828-4eb3-aac8-0bc23bde2d2b"
+          LastKnownName="Views"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="f42a35d0-fa60-462b-a103-1c80dd383ab9">
+      <body>Aplicativo utilizado pelo usuário para acesso ao sistema</body>
+      <annotatedElements>
+        <componentMoniker
+          Id="1fbd0304-5f08-4bcb-a6f9-2d3696ec8bc5"
+          LastKnownName="Navegador1"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="ff2541f1-57d2-49e2-b295-02e86993d6b5">
+      <body>Componente onde ficarão armazenados os dados dos usuários</body>
+      <annotatedElements>
+        <partMoniker
+          Id="c90915f8-7cf7-4c1c-8b17-5aa7cc9720aa"
+          LastKnownName="Tabelas"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="83c17a01-c1e7-4434-a29c-e94fa26c0c96">
+      <body>Post()-www.consultamed.com.br/consulta/agendar</body>
+      <annotatedElements>
+        <componentMoniker
+          Id="a20f8ce3-456c-4514-8bed-d52950dbc355"
+          LastKnownName="Navegador"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="1ae3600a-d8b3-40bd-8be0-7a66f4160913">
+      <body>POST: O usuário preenche o formulário baseado em um modelo de classe e envia ao servidor</body>
+      <annotatedElements>
+        <providedInterfaceMoniker
+          Id="0215cfab-8044-4261-87a7-524e6d512e4a"
+          LastKnownName="Port1"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="c957f632-31f2-4766-b9a2-3e6fc84b9909">
+      <body>POST:O modelo ficará setado no Models e poderá ser acessado por views, controllers e repositórios</body>
+      <annotatedElements>
+        <partMoniker
+          Id="67c64034-d515-4f2b-ac9f-ea78d1262326"
+          LastKnownName="Models"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="779fd9da-11eb-4598-9b4c-5f6c5e85571f">
+      <body>POST:Os controllers tratarão o modelo enviado pelo o usuário antes de chamar os métodos de persitênci dos repositórios</body>
+      <annotatedElements>
+        <providedInterfaceMoniker
+          Id="ca0d2834-e86b-4c83-9640-74cec5dc1794"
+          LastKnownName="Port1"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="d4325442-8b33-4f9e-b112-915f8d55298a">
+      <body>POST:Após chamdos os métodos dos repositórios o entity se encarrega de gravá-los no banco de dados</body>
+      <annotatedElements>
+        <providedInterfaceMoniker
+          Id="5ad2ec14-e6a5-4732-9d16-95b2ccd1c266"
+          LastKnownName="Port2"
+          LastKnownLocation="ModelingProjectCM.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="e77e7f22-001e-458b-b41e-f6e70b68be97"
+        LastKnownName="ConsultaMedPkg"
+        LastKnownLocation="Package_1015.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="a20f8ce3-456c-4514-8bed-d52950dbc355"
+        name="Navegador"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="0215cfab-8044-4261-87a7-524e6d512e4a"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="4b3965ef-5bf9-43c5-aaab-ddd6e195139f"
+                LastKnownName="GET: Resquest do usuário enviado"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="83178934-4372-481f-8f0f-fccb7b25199b"
+        name="ConsultaMed_WEB.dll"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="7881d3cb-134c-4640-8cdb-9495619afef1">
+            <componentMoniker
+              Id="cece7872-9006-463c-b9ec-8ef9dc0b460b"
+              LastKnownName="System.Data.Entity.dll"
+              LastKnownLocation="ModelingProjectCM.uml" />
+          </dependency>
+          <dependency
+            Id="874b6340-4836-49dc-99bb-3a24b7951ab8">
+            <providedInterfaceMoniker
+              Id="0215cfab-8044-4261-87a7-524e6d512e4a"
+              LastKnownName="Port1"
+              LastKnownLocation="ModelingProjectCM.uml" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <part
+            Id="8cb2e439-8a2d-4b02-8403-0c03cc089e42"
+            name="Views"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="35d0a1fc-1885-472d-95aa-5b8271c515a0"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="4ce1e4f5-418b-41d6-8527-5ab1a1fba448"
+            name="Controllers"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="f7831e8d-e650-4095-ab7b-75f6cea03b9f"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="67c64034-d515-4f2b-ac9f-ea78d1262326"
+            name="Models"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <targetNamedElementsInternal>
+              <connector
+                Id="c14f9e68-8052-491b-a851-7dfba91d23c3"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="8cb2e439-8a2d-4b02-8403-0c03cc089e42"
+                  LastKnownName="Views"
+                  LastKnownLocation="ModelingProjectCM.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="43a8cecb-fdea-4813-824d-39135cea71cf" />
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="158cba3e-ce3c-4bdc-9e78-fb717e0ebfbc" />
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+              <connector
+                Id="2330f6fd-5a84-4b03-9bb0-5abc94757ed1"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="4ce1e4f5-418b-41d6-8527-5ab1a1fba448"
+                  LastKnownName="Controllers"
+                  LastKnownLocation="ModelingProjectCM.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="c3a9c91c-2411-42c3-8c02-72aecd7bcef7" />
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="c02a665c-27c0-4efd-adb4-438343df1e8a" />
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+              <connector
+                Id="dc5642bf-194d-4f6d-ad4c-f7fa385b0947"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="990496ea-66a4-401b-883a-9b3024883c02"
+                  LastKnownName="Repositórios de PersitênciaBD"
+                  LastKnownLocation="ModelingProjectCM.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="49f45f7c-f669-42aa-9c7b-d9bba489eabb" />
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="8f22bc19-7a6f-4fea-b2af-a65f064f2f4e" />
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+            </targetNamedElementsInternal>
+            <type_NamedElement>
+              <componentMoniker
+                Id="a35eae4a-c535-423e-90cc-afc3b6b53f79"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="990496ea-66a4-401b-883a-9b3024883c02"
+            name="Repositórios de PersitênciaBD"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="9e4b2d8d-e0bc-4ca8-ad20-6b9f3ca66c84"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </part>
+          <requiredInterface
+            Id="530a0a3d-19e8-42da-ae78-e24999bed663"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="42c5c436-9908-46c1-a539-5f8a0ce9f021"
+                LastKnownName="GET:Servidor detecta request do usuário"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface
+            Id="5ad2ec14-e6a5-4732-9d16-95b2ccd1c266"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="4ae33d00-86b1-405a-a1d3-8ea8c52f856f"
+                LastKnownName="Dados Persistidos ao Entity"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="35d0a1fc-1885-472d-95aa-5b8271c515a0"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="97be57b7-71a3-4aa9-a2b2-6279582b6b66"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="38ee51a5-6bf4-467f-ae35-ba5077e49f92"
+                LastKnownName="GET:Controler envia reponse ao View e exibirá no navegador"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="f7831e8d-e650-4095-ab7b-75f6cea03b9f"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="ca0d2834-e86b-4c83-9640-74cec5dc1794"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="af7a6bff-42dc-460a-8e24-334c03bc31a0"
+                LastKnownName="Chamar Métodos de Persistência"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface
+            Id="f95007fe-24e9-4c50-beba-9064bdeb7974"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="cd10512b-8792-44f5-b3ba-ff0cc3eefc00"
+                LastKnownName="GET:Controler trata request"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="a35eae4a-c535-423e-90cc-afc3b6b53f79"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="a510876c-9573-4b5b-b82d-03ce19a19770"
+        name="ConsultaMedBD"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="9d5d15d2-9eae-4ba1-b9a4-ff8ea8af3b4d">
+            <componentMoniker
+              Id="cece7872-9006-463c-b9ec-8ef9dc0b460b"
+              LastKnownName="System.Data.Entity.dll"
+              LastKnownLocation="ModelingProjectCM.uml" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="d9e252a4-686b-4ba8-b55c-0037c6f98b12"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="9438f70b-a789-4728-87f9-1b89f5d9cfbc"
+                LastKnownName="Dados Salvo em BD"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <part
+            Id="be13c1cf-86c9-48a7-90de-82856866f9c2"
+            name="Tabelas"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="6fb5a147-e2c6-460f-9f15-1013ad1825a3"
+                LastKnownName="Component1"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </part>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="9e4b2d8d-e0bc-4ca8-ad20-6b9f3ca66c84"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="0a749e5e-8c8b-4427-8f44-50bdcb1d0195"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="7e49137b-e3d1-4b64-b50a-600e4b73a736"
+                LastKnownName="Receber Parâmetros para Persistência"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="cece7872-9006-463c-b9ec-8ef9dc0b460b"
+        name="System.Data.Entity.dll"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="d9279953-dc75-4e4a-8de1-76182dc1a721"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="423569bb-7ac8-4769-bdde-9c1e0f0fa90b"
+                LastKnownName="interface de Dados"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface
+            Id="f8861c8c-2cf3-4105-bfd2-e5071da604d6"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="087bd043-766d-4147-90bb-b82b61c7ed30"
+                LastKnownName="Dados Persistidos ao BD"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="7e49137b-e3d1-4b64-b50a-600e4b73a736"
+        name="Receber Parâmetros para Persistência"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="af7a6bff-42dc-460a-8e24-334c03bc31a0"
+        name="Chamar Métodos de Persistência"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="38ee51a5-6bf4-467f-ae35-ba5077e49f92"
+        name="GET:Controler envia reponse ao View e exibirá no navegador"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="cd10512b-8792-44f5-b3ba-ff0cc3eefc00"
+        name="GET:Controler trata request"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="42c5c436-9908-46c1-a539-5f8a0ce9f021"
+        name="GET:Servidor detecta request do usuário"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="4b3965ef-5bf9-43c5-aaab-ddd6e195139f"
+        name="GET: Resquest do usuário enviado"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="000ead0c-9912-48b0-898e-df77158c3151"
+        name="Interface3"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="4ae33d00-86b1-405a-a1d3-8ea8c52f856f"
+        name="Dados Persistidos ao Entity"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="423569bb-7ac8-4769-bdde-9c1e0f0fa90b"
+        name="interface de Dados"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="087bd043-766d-4147-90bb-b82b61c7ed30"
+        name="Dados Persistidos ao BD"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="9438f70b-a789-4728-87f9-1b89f5d9cfbc"
+        name="Dados Salvo em BD"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="6fb5a147-e2c6-460f-9f15-1013ad1825a3"
+        name="Component1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="1fbd0304-5f08-4bcb-a6f9-2d3696ec8bc5"
+        name="Navegador1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="8e54d257-9a31-4e3a-81de-6cf3115a2326"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="4b3965ef-5bf9-43c5-aaab-ddd6e195139f"
+                LastKnownName="GET: Resquest do usuário enviado"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="de05fc5a-0b2e-490e-a87e-782d7c57943e"
+        name="ConsultaMed_WEB.dll1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="7406f0dd-f6e8-45f9-a8f1-f8d3a77b3c89">
+            <componentMoniker
+              Id="c75e4a56-9653-4356-9802-689843a36acf"
+              LastKnownName="System.Data.Entity.dll1"
+              LastKnownLocation="ModelingProjectCM.uml" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <part
+            Id="16a6ccf8-8828-4eb3-aac8-0bc23bde2d2b"
+            name="Views"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="35d0a1fc-1885-472d-95aa-5b8271c515a0"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="857d0367-2b7f-49d4-a553-1931adc5ed3e"
+            name="Controllers"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="f7831e8d-e650-4095-ab7b-75f6cea03b9f"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="684e5539-2af3-4a37-84cb-fec51e1854e8"
+            name="Models"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <targetNamedElementsInternal>
+              <connector
+                Id="d16195e2-e25a-4fad-a3bc-a290ced4bc43"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="16a6ccf8-8828-4eb3-aac8-0bc23bde2d2b"
+                  LastKnownName="Views"
+                  LastKnownLocation="ModelingProjectCM.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="2907b313-e05d-455f-ad09-225a36a49717" />
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="c71dfcc1-10a5-4a11-8d87-11ed4485fc4f" />
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+              <connector
+                Id="93bbb54e-0ea1-4b2a-a3d6-a055b94ccaf2"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="857d0367-2b7f-49d4-a553-1931adc5ed3e"
+                  LastKnownName="Controllers"
+                  LastKnownLocation="ModelingProjectCM.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="beb4b993-58e2-4233-a40e-be0599769b10" />
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="2208d556-c367-4c35-8af5-163101b8a412" />
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+              <connector
+                Id="6bccbb3c-66d6-4ad3-aadb-0d0df72a0c28"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="d4ba2f7a-c44e-4505-931b-ff007993af01"
+                  LastKnownName="Repositórios de PersitênciaBD"
+                  LastKnownLocation="ModelingProjectCM.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="a4c93879-e9fc-4849-a0b1-99234a594787" />
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="4586f079-5eca-416a-8f18-a157421e10f1" />
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+            </targetNamedElementsInternal>
+            <type_NamedElement>
+              <componentMoniker
+                Id="a35eae4a-c535-423e-90cc-afc3b6b53f79"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="d4ba2f7a-c44e-4505-931b-ff007993af01"
+            name="Repositórios de PersitênciaBD"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="9e4b2d8d-e0bc-4ca8-ad20-6b9f3ca66c84"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </part>
+          <requiredInterface
+            Id="dee6761a-53e3-4eec-a3e6-2dcd7249fd5b"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="42c5c436-9908-46c1-a539-5f8a0ce9f021"
+                LastKnownName="GET:Servidor detecta request do usuário"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface
+            Id="b0d9f93b-72fc-44b4-806e-670e0f0d9f17"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="4ae33d00-86b1-405a-a1d3-8ea8c52f856f"
+                LastKnownName="Dados Persistidos ao Entity"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="d6199226-13a7-471f-9ac1-bc43713c8a66"
+        name="ConsultaMedBD1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="fa6f5983-dd53-41ce-b9b4-63e69465a0ae">
+            <componentMoniker
+              Id="c75e4a56-9653-4356-9802-689843a36acf"
+              LastKnownName="System.Data.Entity.dll1"
+              LastKnownLocation="ModelingProjectCM.uml" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="c79ec9fe-3f8d-4a0c-acad-ce6509d1801b"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="9438f70b-a789-4728-87f9-1b89f5d9cfbc"
+                LastKnownName="Dados Salvo em BD"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <part
+            Id="c90915f8-7cf7-4c1c-8b17-5aa7cc9720aa"
+            name="Tabelas"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="6fb5a147-e2c6-460f-9f15-1013ad1825a3"
+                LastKnownName="Component1"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </part>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="c75e4a56-9653-4356-9802-689843a36acf"
+        name="System.Data.Entity.dll1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="6dfaa624-a140-463f-9d0a-064d37decae8"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="423569bb-7ac8-4769-bdde-9c1e0f0fa90b"
+                LastKnownName="interface de Dados"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface
+            Id="eca7655a-d899-4092-ade0-18304076a04b"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="087bd043-766d-4147-90bb-b82b61c7ed30"
+                LastKnownName="Dados Persistidos ao BD"
+                LastKnownLocation="ModelingProjectCM.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

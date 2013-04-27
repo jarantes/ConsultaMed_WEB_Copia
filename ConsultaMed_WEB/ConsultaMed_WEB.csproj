@@ -168,10 +168,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ClinicaController.cs" />
     <Compile Include="Controllers\ConsultaController.cs" />
     <Compile Include="Controllers\ConvenioController.cs" />
+    <Compile Include="Controllers\ExameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -179,77 +179,77 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303072314460_TratarFk.cs" />
-    <Compile Include="Migrations\201303072314460_TratarFk.Designer.cs">
-      <DependentUpon>201303072314460_TratarFk.cs</DependentUpon>
+    <Compile Include="Migrations\201304160124051_Inicial.cs" />
+    <Compile Include="Migrations\201304160124051_Inicial.Designer.cs">
+      <DependentUpon>201304160124051_Inicial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303082334367_AjusteRelacaoConvenio.cs" />
-    <Compile Include="Migrations\201303082334367_AjusteRelacaoConvenio.Designer.cs">
-      <DependentUpon>201303082334367_AjusteRelacaoConvenio.cs</DependentUpon>
+    <Compile Include="Migrations\201304161513215_AcertoCascata.cs" />
+    <Compile Include="Migrations\201304161513215_AcertoCascata.Designer.cs">
+      <DependentUpon>201304161513215_AcertoCascata.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303102025444_updateNecessario.cs" />
-    <Compile Include="Migrations\201303102025444_updateNecessario.Designer.cs">
-      <DependentUpon>201303102025444_updateNecessario.cs</DependentUpon>
+    <Compile Include="Migrations\201304161521267_AcertoHorarios.cs" />
+    <Compile Include="Migrations\201304161521267_AcertoHorarios.Designer.cs">
+      <DependentUpon>201304161521267_AcertoHorarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303111542403_AddPerfilemUsuario.cs" />
-    <Compile Include="Migrations\201303111542403_AddPerfilemUsuario.Designer.cs">
-      <DependentUpon>201303111542403_AddPerfilemUsuario.cs</DependentUpon>
+    <Compile Include="Migrations\201304161554404_OpcionalClinicaUser.cs" />
+    <Compile Include="Migrations\201304161554404_OpcionalClinicaUser.Designer.cs">
+      <DependentUpon>201304161554404_OpcionalClinicaUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303121535082_AdcionadoEstado.cs" />
-    <Compile Include="Migrations\201303121535082_AdcionadoEstado.Designer.cs">
-      <DependentUpon>201303121535082_AdcionadoEstado.cs</DependentUpon>
+    <Compile Include="Migrations\201304162110336_teste.cs" />
+    <Compile Include="Migrations\201304162110336_teste.Designer.cs">
+      <DependentUpon>201304162110336_teste.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303122120408_reverterEstado.cs" />
-    <Compile Include="Migrations\201303122120408_reverterEstado.Designer.cs">
-      <DependentUpon>201303122120408_reverterEstado.cs</DependentUpon>
+    <Compile Include="Migrations\201304162119116_TratamentoCascade.cs" />
+    <Compile Include="Migrations\201304162119116_TratamentoCascade.Designer.cs">
+      <DependentUpon>201304162119116_TratamentoCascade.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303122122360_voltarColunaEstado.cs" />
-    <Compile Include="Migrations\201303122122360_voltarColunaEstado.Designer.cs">
-      <DependentUpon>201303122122360_voltarColunaEstado.cs</DependentUpon>
+    <Compile Include="Migrations\201304170041553_CampoNomeExame.cs" />
+    <Compile Include="Migrations\201304170041553_CampoNomeExame.Designer.cs">
+      <DependentUpon>201304170041553_CampoNomeExame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303122200404_ModificarUserNameRequerido.cs" />
-    <Compile Include="Migrations\201303122200404_ModificarUserNameRequerido.Designer.cs">
-      <DependentUpon>201303122200404_ModificarUserNameRequerido.cs</DependentUpon>
+    <Compile Include="Migrations\201304170059400_CampoMedicoIdExame.cs" />
+    <Compile Include="Migrations\201304170059400_CampoMedicoIdExame.Designer.cs">
+      <DependentUpon>201304170059400_CampoMedicoIdExame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303152216048_ReformulacaoDataAnotations.cs" />
-    <Compile Include="Migrations\201303152216048_ReformulacaoDataAnotations.Designer.cs">
-      <DependentUpon>201303152216048_ReformulacaoDataAnotations.cs</DependentUpon>
+    <Compile Include="Migrations\201304172351105_Atualizacao.cs" />
+    <Compile Include="Migrations\201304172351105_Atualizacao.Designer.cs">
+      <DependentUpon>201304172351105_Atualizacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303152227102_DataCriacaoAgenPront.cs" />
-    <Compile Include="Migrations\201303152227102_DataCriacaoAgenPront.Designer.cs">
-      <DependentUpon>201303152227102_DataCriacaoAgenPront.cs</DependentUpon>
+    <Compile Include="Migrations\201304180221024_ChaveConsultaPront.cs" />
+    <Compile Include="Migrations\201304180221024_ChaveConsultaPront.Designer.cs">
+      <DependentUpon>201304180221024_ChaveConsultaPront.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303160234120_MudancaUserId.cs" />
-    <Compile Include="Migrations\201303160234120_MudancaUserId.Designer.cs">
-      <DependentUpon>201303160234120_MudancaUserId.cs</DependentUpon>
+    <Compile Include="Migrations\201304181531079_TratamentoExameProntuario.cs" />
+    <Compile Include="Migrations\201304181531079_TratamentoExameProntuario.Designer.cs">
+      <DependentUpon>201304181531079_TratamentoExameProntuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303192258223_ClinicaAlterada.cs" />
-    <Compile Include="Migrations\201303192258223_ClinicaAlterada.Designer.cs">
-      <DependentUpon>201303192258223_ClinicaAlterada.cs</DependentUpon>
+    <Compile Include="Migrations\201304181544251_TratamentoExameProntuario2.cs" />
+    <Compile Include="Migrations\201304181544251_TratamentoExameProntuario2.Designer.cs">
+      <DependentUpon>201304181544251_TratamentoExameProntuario2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303192352496_EmailClinica.cs" />
-    <Compile Include="Migrations\201303192352496_EmailClinica.Designer.cs">
-      <DependentUpon>201303192352496_EmailClinica.cs</DependentUpon>
+    <Compile Include="Migrations\201304182314033_ArrumandoProntuario.cs" />
+    <Compile Include="Migrations\201304182314033_ArrumandoProntuario.Designer.cs">
+      <DependentUpon>201304182314033_ArrumandoProntuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201303200004255_EmailClinica2.cs" />
-    <Compile Include="Migrations\201303200004255_EmailClinica2.Designer.cs">
-      <DependentUpon>201303200004255_EmailClinica2.cs</DependentUpon>
+    <Compile Include="Migrations\201304182323126_RelacaoEspecExame.cs" />
+    <Compile Include="Migrations\201304182323126_RelacaoEspecExame.Designer.cs">
+      <DependentUpon>201304182323126_RelacaoEspecExame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201304022241446_AtualizadaDataConsulta.cs" />
-    <Compile Include="Migrations\201304022241446_AtualizadaDataConsulta.Designer.cs">
-      <DependentUpon>201304022241446_AtualizadaDataConsulta.cs</DependentUpon>
+    <Compile Include="Migrations\201304201508352_RemanejoExame.cs" />
+    <Compile Include="Migrations\201304201508352_RemanejoExame.Designer.cs">
+      <DependentUpon>201304201508352_RemanejoExame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201304042326016_TimeSpan.cs" />
-    <Compile Include="Migrations\201304042326016_TimeSpan.Designer.cs">
-      <DependentUpon>201304042326016_TimeSpan.cs</DependentUpon>
+    <Compile Include="Migrations\201304201512161_RemanejoExame2.cs" />
+    <Compile Include="Migrations\201304201512161_RemanejoExame2.Designer.cs">
+      <DependentUpon>201304201512161_RemanejoExame2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201304050009421_TimeSpan2.cs" />
-    <Compile Include="Migrations\201304050009421_TimeSpan2.Designer.cs">
-      <DependentUpon>201304050009421_TimeSpan2.cs</DependentUpon>
+    <Compile Include="Migrations\201304252224296_DeletoMesmo.cs" />
+    <Compile Include="Migrations\201304252224296_DeletoMesmo.Designer.cs">
+      <DependentUpon>201304252224296_DeletoMesmo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201304052257207_AtualizacaohorariosTimeSpan.cs" />
-    <Compile Include="Migrations\201304052257207_AtualizacaohorariosTimeSpan.Designer.cs">
-      <DependentUpon>201304052257207_AtualizacaohorariosTimeSpan.cs</DependentUpon>
+    <Compile Include="Migrations\201304252225550_IncluindoExame.cs" />
+    <Compile Include="Migrations\201304252225550_IncluindoExame.Designer.cs">
+      <DependentUpon>201304252225550_IncluindoExame.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -270,6 +270,9 @@
     <Compile Include="Models\UsuarioPaciente.cs" />
     <Compile Include="Models\UsuarioRespClinica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="favicon.png" />
+    <Content Include="Scripts\Funcoes\endereco.js" />
+    <Content Include="Scripts\methods_pt.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />
@@ -472,7 +475,6 @@
     <Content Include="Content\themes\redmond\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\redmond\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\redmond\minified\jquery.ui.tooltip.min.css" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\busy.gif" />
     <Content Include="Resources\ajax-loader.gif" />
@@ -491,7 +493,6 @@
     <Content Include="Scripts\Funcoes\botao.js" />
     <Content Include="Scripts\Funcoes\calendario.js" />
     <Content Include="Scripts\Funcoes\dialog.js" />
-    <Content Include="Scripts\Funcoes\endereco.js" />
     <Content Include="Scripts\Funcoes\login.js" />
     <Content Include="Scripts\Funcoes\mascaras.js" />
     <Content Include="Scripts\Funcoes\menu.js" />
@@ -505,6 +506,7 @@
     <Content Include="..\..\..\..\..\Desktop\CodeMapCM.dgml">
       <Link>CodeMapCM.dgml</Link>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -555,7 +557,9 @@
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -580,8 +584,15 @@
     <Content Include="Views\Consulta\NovaAgendaTemp.cshtml" />
     <Content Include="Views\Convenio\Listar.cshtml" />
     <Content Include="Views\Usuario\Listar.cshtml" />
-    <Content Include="Views\Consulta\Listar.cshtml" />
+    <Content Include="Views\Consulta\Gerenciar.cshtml" />
     <Content Include="Views\Consulta\Agendar.cshtml" />
+    <Content Include="Views\Usuario\AddUserPaciente.cshtml" />
+    <Content Include="Views\Consulta\CriarProntuario.cshtml" />
+    <Content Include="Views\Exame\Adicionar.cshtml" />
+    <Content Include="Views\Consulta\Agendar2.cshtml" />
+    <Content Include="Views\Consulta\_EspecialidadesPartial.cshtml" />
+    <Content Include="Views\Consulta\_MedicoPartial.cshtml" />
+    <Content Include="Views\Consulta\_FiltroAgendamentosPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -593,59 +604,59 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201303072314460_TratarFk.resx">
-      <DependentUpon>201303072314460_TratarFk.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304160124051_Inicial.resx">
+      <DependentUpon>201304160124051_Inicial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303082334367_AjusteRelacaoConvenio.resx">
-      <DependentUpon>201303082334367_AjusteRelacaoConvenio.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304161513215_AcertoCascata.resx">
+      <DependentUpon>201304161513215_AcertoCascata.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303102025444_updateNecessario.resx">
-      <DependentUpon>201303102025444_updateNecessario.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304161521267_AcertoHorarios.resx">
+      <DependentUpon>201304161521267_AcertoHorarios.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303111542403_AddPerfilemUsuario.resx">
-      <DependentUpon>201303111542403_AddPerfilemUsuario.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304161554404_OpcionalClinicaUser.resx">
+      <DependentUpon>201304161554404_OpcionalClinicaUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303121535082_AdcionadoEstado.resx">
-      <DependentUpon>201303121535082_AdcionadoEstado.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304162110336_teste.resx">
+      <DependentUpon>201304162110336_teste.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303122120408_reverterEstado.resx">
-      <DependentUpon>201303122120408_reverterEstado.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304162119116_TratamentoCascade.resx">
+      <DependentUpon>201304162119116_TratamentoCascade.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303122122360_voltarColunaEstado.resx">
-      <DependentUpon>201303122122360_voltarColunaEstado.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304170041553_CampoNomeExame.resx">
+      <DependentUpon>201304170041553_CampoNomeExame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303122200404_ModificarUserNameRequerido.resx">
-      <DependentUpon>201303122200404_ModificarUserNameRequerido.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304170059400_CampoMedicoIdExame.resx">
+      <DependentUpon>201304170059400_CampoMedicoIdExame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303152216048_ReformulacaoDataAnotations.resx">
-      <DependentUpon>201303152216048_ReformulacaoDataAnotations.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304172351105_Atualizacao.resx">
+      <DependentUpon>201304172351105_Atualizacao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303152227102_DataCriacaoAgenPront.resx">
-      <DependentUpon>201303152227102_DataCriacaoAgenPront.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304180221024_ChaveConsultaPront.resx">
+      <DependentUpon>201304180221024_ChaveConsultaPront.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303160234120_MudancaUserId.resx">
-      <DependentUpon>201303160234120_MudancaUserId.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304181531079_TratamentoExameProntuario.resx">
+      <DependentUpon>201304181531079_TratamentoExameProntuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303192258223_ClinicaAlterada.resx">
-      <DependentUpon>201303192258223_ClinicaAlterada.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304181544251_TratamentoExameProntuario2.resx">
+      <DependentUpon>201304181544251_TratamentoExameProntuario2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303192352496_EmailClinica.resx">
-      <DependentUpon>201303192352496_EmailClinica.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304182314033_ArrumandoProntuario.resx">
+      <DependentUpon>201304182314033_ArrumandoProntuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303200004255_EmailClinica2.resx">
-      <DependentUpon>201303200004255_EmailClinica2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304182323126_RelacaoEspecExame.resx">
+      <DependentUpon>201304182323126_RelacaoEspecExame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201304022241446_AtualizadaDataConsulta.resx">
-      <DependentUpon>201304022241446_AtualizadaDataConsulta.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304201508352_RemanejoExame.resx">
+      <DependentUpon>201304201508352_RemanejoExame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201304042326016_TimeSpan.resx">
-      <DependentUpon>201304042326016_TimeSpan.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304201512161_RemanejoExame2.resx">
+      <DependentUpon>201304201512161_RemanejoExame2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201304050009421_TimeSpan2.resx">
-      <DependentUpon>201304050009421_TimeSpan2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304252224296_DeletoMesmo.resx">
+      <DependentUpon>201304252224296_DeletoMesmo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201304052257207_AtualizacaohorariosTimeSpan.resx">
-      <DependentUpon>201304052257207_AtualizacaohorariosTimeSpan.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304252225550_IncluindoExame.resx">
+      <DependentUpon>201304252225550_IncluindoExame.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -664,7 +675,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>34078</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:4070/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -23,6 +23,10 @@ namespace ConsultaMed_WEB.Models
 
         public int PacienteUserId { get; set; }
 
+        public int? HorarioId { get; set; }
+
+        public int? HorarioTempId { get; set; }
+
         [Required]
         [Display(Name = "Selecione o Médico")]
         public int MedicoUserId { get; set; }
@@ -30,7 +34,15 @@ namespace ConsultaMed_WEB.Models
         [ForeignKey("MedicoUserId")]
         public virtual UsuarioMedico UsuarioMedico { get; set; }
 
-         [ForeignKey("PacienteUserId")]
+        [ForeignKey("PacienteUserId")]
         public virtual UsuarioPaciente UsuarioPaciente { get; set; }
+
+        [ForeignKey("HorarioId")]
+        public virtual Horario Horarios { get; set; }
+
+        [ForeignKey("HorarioTempId")]
+        public virtual HorarioTemp HorarioTemp { get; set; }
+
+
     }
 }

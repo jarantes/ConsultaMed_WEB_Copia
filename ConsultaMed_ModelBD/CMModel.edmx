@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Model.Store.__MigrationHistory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Agendamento" EntityType="Model.Store.Agendamento" store:Type="Tables" Schema="dbo" />
@@ -23,6 +23,14 @@
           <EntitySet Name="webpages_OAuthMembership" EntityType="Model.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="webpages_Roles" EntityType="Model.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="webpages_UsersInRoles" EntityType="Model.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_dbo_Agendamento_dbo_Horario_HorarioId" Association="Model.Store.FK_dbo_Agendamento_dbo_Horario_HorarioId">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="Agendamento" EntitySet="Agendamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Agendamento_dbo_HorarioTemp_HorarioTempId" Association="Model.Store.FK_dbo_Agendamento_dbo_HorarioTemp_HorarioTempId">
+            <End Role="HorarioTemp" EntitySet="HorarioTemp" />
+            <End Role="Agendamento" EntitySet="Agendamento" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_Agendamento_dbo_Usuario_MedicoUserId" Association="Model.Store.FK_dbo_Agendamento_dbo_Usuario_MedicoUserId">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Agendamento" EntitySet="Agendamento" />
@@ -43,11 +51,19 @@
             <End Role="Convenio" EntitySet="Convenio" />
             <End Role="ConvenioClinica" EntitySet="ConvenioClinica" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_Horario_dbo_Usuario_UserId" Association="Model.Store.FK_dbo_Horario_dbo_Usuario_UserId">
+          <AssociationSet Name="FK_dbo_Horario_dbo_Horario_Horario_HorarioId" Association="Model.Store.FK_dbo_Horario_dbo_Horario_Horario_HorarioId">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="Horario1" EntitySet="Horario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Horario_dbo_Usuario_MedicoUserId" Association="Model.Store.FK_dbo_Horario_dbo_Usuario_MedicoUserId">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Horario" EntitySet="Horario" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_HorarioTemp_dbo_Usuario_UserId" Association="Model.Store.FK_dbo_HorarioTemp_dbo_Usuario_UserId">
+          <AssociationSet Name="FK_dbo_HorarioTemp_dbo_Horario_Horario_HorarioId" Association="Model.Store.FK_dbo_HorarioTemp_dbo_Horario_Horario_HorarioId">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="HorarioTemp" EntitySet="HorarioTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_HorarioTemp_dbo_Usuario_MedicoUserId" Association="Model.Store.FK_dbo_HorarioTemp_dbo_Usuario_MedicoUserId">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="HorarioTemp" EntitySet="HorarioTemp" />
           </AssociationSet>
@@ -98,11 +114,13 @@
           </Key>
           <Property Name="AgendamentoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MarcadorId" Type="int" Nullable="false" />
-          <Property Name="Horario" Type="datetime" Nullable="false" />
+          <Property Name="Horario" Type="time" Nullable="false" />
+          <Property Name="DataConsulta" Type="datetime" Nullable="false" />
+          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
           <Property Name="PacienteUserId" Type="int" Nullable="false" />
           <Property Name="MedicoUserId" Type="int" Nullable="false" />
-          <Property Name="DataAgendamento" Type="datetime" Nullable="false" />
-          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+          <Property Name="HorarioId" Type="int" />
+          <Property Name="HorarioTempId" Type="int" />
         </EntityType>
         <EntityType Name="Clinica">
           <Key>
@@ -112,10 +130,10 @@
           <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Site" Type="nvarchar(max)" />
-          <Property Name="EnderecoId" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
           <Property Name="HorarioInicial" Type="nvarchar(max)" Nullable="false" />
           <Property Name="HorarioFinal" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EnderecoId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Convenio">
           <Key>
@@ -164,23 +182,29 @@
             <PropertyRef Name="HorarioId" />
           </Key>
           <Property Name="HorarioId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="HorarioIni" Type="datetime" Nullable="false" />
-          <Property Name="HorarioFim" Type="datetime" Nullable="false" />
-          <Property Name="TempoConsulta" Type="datetime" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="HorarioIni" Type="time" Nullable="false" />
+          <Property Name="HorarioFim" Type="time" Nullable="false" />
+          <Property Name="TempoConsulta" Type="time" Nullable="false" />
+          <Property Name="TempoDescansoInicial" Type="time" Nullable="false" />
+          <Property Name="TempoDescansoFinal" Type="time" Nullable="false" />
           <Property Name="PerInicio" Type="datetime" Nullable="false" />
           <Property Name="PerFim" Type="datetime" Nullable="false" />
+          <Property Name="MedicoUserId" Type="int" Nullable="false" />
+          <Property Name="Horario_HorarioId" Type="int" />
         </EntityType>
         <EntityType Name="HorarioTemp">
           <Key>
             <PropertyRef Name="HorarioTempId" />
           </Key>
           <Property Name="HorarioTempId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="HorarioIni" Type="datetime" Nullable="false" />
-          <Property Name="HorarioFim" Type="datetime" Nullable="false" />
-          <Property Name="TempoConsulta" Type="datetime" Nullable="false" />
+          <Property Name="HorarioIni" Type="time" Nullable="false" />
+          <Property Name="HorarioFim" Type="time" Nullable="false" />
+          <Property Name="TempoConsulta" Type="time" Nullable="false" />
           <Property Name="Data" Type="datetime" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="TempoDescansoInicial" Type="time" Nullable="false" />
+          <Property Name="TempoDescansoFinal" Type="time" Nullable="false" />
+          <Property Name="MedicoUserId" Type="int" Nullable="false" />
+          <Property Name="Horario_HorarioId" Type="int" />
         </EntityType>
         <EntityType Name="Prontuario">
           <Key>
@@ -188,9 +212,9 @@
           </Key>
           <Property Name="ProntuarioId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
           <Property Name="ExameId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -213,14 +237,14 @@
           <Property Name="Telefone" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Celular" Type="nvarchar(max)" />
           <Property Name="DataNascimento" Type="datetime" Nullable="false" />
-          <Property Name="ClinicaId" Type="int" Nullable="false" />
-          <Property Name="ConvenioId" Type="int" />
+          <Property Name="ClinicaId" Type="int" />
+          <Property Name="Perfil" Type="nvarchar(max)" />
           <Property Name="EnderecoId" Type="int" Nullable="false" />
+          <Property Name="NumeroConvenio" Type="nvarchar(max)" />
+          <Property Name="ConvenioId" Type="int" />
           <Property Name="Crm" Type="nvarchar(max)" />
           <Property Name="EspecialidadeId" Type="int" />
-          <Property Name="NumeroConvenio" Type="nvarchar(max)" />
           <Property Name="Discriminator" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="Perfil" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="webpages_Membership">
           <Key>
@@ -262,6 +286,30 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_dbo_Agendamento_dbo_Horario_HorarioId">
+          <End Role="Horario" Type="Model.Store.Horario" Multiplicity="0..1" />
+          <End Role="Agendamento" Type="Model.Store.Agendamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="HorarioId" />
+            </Principal>
+            <Dependent Role="Agendamento">
+              <PropertyRef Name="HorarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Agendamento_dbo_HorarioTemp_HorarioTempId">
+          <End Role="HorarioTemp" Type="Model.Store.HorarioTemp" Multiplicity="0..1" />
+          <End Role="Agendamento" Type="Model.Store.Agendamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HorarioTemp">
+              <PropertyRef Name="HorarioTempId" />
+            </Principal>
+            <Dependent Role="Agendamento">
+              <PropertyRef Name="HorarioTempId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_Agendamento_dbo_Usuario_MedicoUserId">
           <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="1" />
           <End Role="Agendamento" Type="Model.Store.Agendamento" Multiplicity="*" />
@@ -287,7 +335,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Clinica_dbo_Endereco_EnderecoId">
-          <End Role="Endereco" Type="Model.Store.Endereco" Multiplicity="1" />
+          <End Role="Endereco" Type="Model.Store.Endereco" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Clinica" Type="Model.Store.Clinica" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Endereco">
@@ -299,9 +349,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_ConvenioClinica_dbo_Clinica_Clinica_ClinicaId">
-          <End Role="Clinica" Type="Model.Store.Clinica" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Clinica" Type="Model.Store.Clinica" Multiplicity="1" />
           <End Role="ConvenioClinica" Type="Model.Store.ConvenioClinica" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clinica">
@@ -313,9 +361,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_ConvenioClinica_dbo_Convenio_Convenio_ConvenioId">
-          <End Role="Convenio" Type="Model.Store.Convenio" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Convenio" Type="Model.Store.Convenio" Multiplicity="1" />
           <End Role="ConvenioClinica" Type="Model.Store.ConvenioClinica" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Convenio">
@@ -326,31 +372,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_Horario_dbo_Usuario_UserId">
-          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK_dbo_Horario_dbo_Horario_Horario_HorarioId">
+          <End Role="Horario" Type="Model.Store.Horario" Multiplicity="0..1" />
+          <End Role="Horario1" Type="Model.Store.Horario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="HorarioId" />
+            </Principal>
+            <Dependent Role="Horario1">
+              <PropertyRef Name="Horario_HorarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Horario_dbo_Usuario_MedicoUserId">
+          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="1" />
           <End Role="Horario" Type="Model.Store.Horario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="Horario">
-              <PropertyRef Name="UserId" />
+              <PropertyRef Name="MedicoUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_HorarioTemp_dbo_Usuario_UserId">
-          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK_dbo_HorarioTemp_dbo_Horario_Horario_HorarioId">
+          <End Role="Horario" Type="Model.Store.Horario" Multiplicity="0..1" />
+          <End Role="HorarioTemp" Type="Model.Store.HorarioTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="HorarioId" />
+            </Principal>
+            <Dependent Role="HorarioTemp">
+              <PropertyRef Name="Horario_HorarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_HorarioTemp_dbo_Usuario_MedicoUserId">
+          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="1" />
           <End Role="HorarioTemp" Type="Model.Store.HorarioTemp" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="HorarioTemp">
-              <PropertyRef Name="UserId" />
+              <PropertyRef Name="MedicoUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -369,9 +435,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Prontuario_dbo_Usuario_UserId">
-          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="1" />
           <End Role="Prontuario" Type="Model.Store.Prontuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
@@ -383,9 +447,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Usuario_dbo_Clinica_ClinicaId">
-          <End Role="Clinica" Type="Model.Store.Clinica" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Clinica" Type="Model.Store.Clinica" Multiplicity="0..1" />
           <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clinica">
@@ -397,9 +459,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Usuario_dbo_Convenio_ConvenioId">
-          <End Role="Convenio" Type="Model.Store.Convenio" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Convenio" Type="Model.Store.Convenio" Multiplicity="0..1" />
           <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Convenio">
@@ -425,9 +485,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Usuario_dbo_Especialidade_EspecialidadeId">
-          <End Role="Especialidade" Type="Model.Store.Especialidade" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Especialidade" Type="Model.Store.Especialidade" Multiplicity="0..1" />
           <End Role="Usuario" Type="Model.Store.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Especialidade">
@@ -462,8 +520,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -535,6 +592,30 @@
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_Agendamento_dbo_Horario_HorarioId" Association="Model.FK_dbo_Agendamento_dbo_Horario_HorarioId">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="Agendamento" EntitySet="Agendamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Agendamento_dbo_HorarioTemp_HorarioTempId" Association="Model.FK_dbo_Agendamento_dbo_HorarioTemp_HorarioTempId">
+            <End Role="HorarioTemp" EntitySet="HorarioTemp" />
+            <End Role="Agendamento" EntitySet="Agendamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Horario_dbo_Horario_Horario_HorarioId" Association="Model.FK_dbo_Horario_dbo_Horario_Horario_HorarioId">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="Horario1" EntitySet="Horario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Horario_dbo_Usuario_MedicoUserId" Association="Model.FK_dbo_Horario_dbo_Usuario_MedicoUserId">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Horario" EntitySet="Horario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_HorarioTemp_dbo_Horario_Horario_HorarioId" Association="Model.FK_dbo_HorarioTemp_dbo_Horario_Horario_HorarioId">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="HorarioTemp" EntitySet="HorarioTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_HorarioTemp_dbo_Usuario_MedicoUserId" Association="Model.FK_dbo_HorarioTemp_dbo_Usuario_MedicoUserId">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="HorarioTemp" EntitySet="HorarioTemp" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -550,13 +631,18 @@
           </Key>
           <Property Name="AgendamentoId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="MarcadorId" Type="Int32" Nullable="false" />
-          <Property Name="Horario" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Horario" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="PacienteUserId" Type="Int32" Nullable="false" />
           <Property Name="MedicoUserId" Type="Int32" Nullable="false" />
           <Property Name="DataAgendamento" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Usuario" Relationship="Model.FK_dbo_Agendamento_dbo_Usuario_MedicoUserId" FromRole="Agendamento" ToRole="Usuario" />
           <NavigationProperty Name="Usuario1" Relationship="Model.FK_dbo_Agendamento_dbo_Usuario_PacienteUserId" FromRole="Agendamento" ToRole="Usuario" />
+          <Property Type="DateTime" Name="DataConsulta" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="HorarioId" />
+          <Property Type="Int32" Name="HorarioTempId" />
+          <NavigationProperty Name="Horario1" Relationship="Model.FK_dbo_Agendamento_dbo_Horario_HorarioId" FromRole="Agendamento" ToRole="Horario" />
+          <NavigationProperty Name="HorarioTemp" Relationship="Model.FK_dbo_Agendamento_dbo_HorarioTemp_HorarioTempId" FromRole="Agendamento" ToRole="HorarioTemp" />
         </EntityType>
         <EntityType Name="Clinica">
           <Key>
@@ -619,25 +705,41 @@
             <PropertyRef Name="HorarioId" />
           </Key>
           <Property Name="HorarioId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="HorarioIni" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="HorarioFim" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TempoConsulta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HorarioIni" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="HorarioFim" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="TempoConsulta" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="PerInicio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PerFim" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Usuario" Relationship="Model.FK_dbo_Horario_dbo_Usuario_UserId" FromRole="Horario" ToRole="Usuario" />
+          <Property Type="Time" Name="TempoDescansoInicial" Nullable="false" Precision="7" />
+          <Property Type="Time" Name="TempoDescansoFinal" Nullable="false" Precision="7" />
+          <Property Type="Int32" Name="MedicoUserId" Nullable="false" />
+          <Property Type="Int32" Name="Horario_HorarioId" />
+          <NavigationProperty Name="Agendamento" Relationship="Model.FK_dbo_Agendamento_dbo_Horario_HorarioId" FromRole="Horario" ToRole="Agendamento" />
+          <NavigationProperty Name="Horario1" Relationship="Model.FK_dbo_Horario_dbo_Horario_Horario_HorarioId" FromRole="Horario" ToRole="Horario1" />
+          <NavigationProperty Name="Horario2" Relationship="Model.FK_dbo_Horario_dbo_Horario_Horario_HorarioId" FromRole="Horario1" ToRole="Horario" />
+          <NavigationProperty Name="Usuario1" Relationship="Model.FK_dbo_Horario_dbo_Usuario_MedicoUserId" FromRole="Horario" ToRole="Usuario" />
+          <NavigationProperty Name="HorarioTemp" Relationship="Model.FK_dbo_HorarioTemp_dbo_Horario_Horario_HorarioId" FromRole="Horario" ToRole="HorarioTemp" />
         </EntityType>
         <EntityType Name="HorarioTemp">
           <Key>
             <PropertyRef Name="HorarioTempId" />
           </Key>
           <Property Name="HorarioTempId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="HorarioIni" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="HorarioFim" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TempoConsulta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HorarioIni" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="HorarioFim" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="TempoConsulta" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Usuario" Relationship="Model.FK_dbo_HorarioTemp_dbo_Usuario_UserId" FromRole="HorarioTemp" ToRole="Usuario" />
+          <Property Type="Time" Name="TempoDescansoInicial" Nullable="false" Precision="7" />
+          <Property Type="Time" Name="TempoDescansoFinal" Nullable="false" Precision="7" />
+          <Property Type="Int32" Name="MedicoUserId" Nullable="false" />
+          <Property Type="Int32" Name="Horario_HorarioId" />
+          <NavigationProperty Name="Agendamento" Relationship="Model.FK_dbo_Agendamento_dbo_HorarioTemp_HorarioTempId" FromRole="HorarioTemp" ToRole="Agendamento" />
+          <NavigationProperty Name="Horario" Relationship="Model.FK_dbo_HorarioTemp_dbo_Horario_Horario_HorarioId" FromRole="HorarioTemp" ToRole="Horario" />
+          <NavigationProperty Name="Usuario1" Relationship="Model.FK_dbo_HorarioTemp_dbo_Usuario_MedicoUserId" FromRole="HorarioTemp" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Prontuario">
           <Key>
@@ -673,7 +775,7 @@
           <Property Name="Telefone" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Celular" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="DataNascimento" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ClinicaId" Type="Int32" Nullable="false" />
+          <Property Name="ClinicaId" Type="Int32" />
           <Property Name="ConvenioId" Type="Int32" />
           <Property Name="EnderecoId" Type="Int32" Nullable="false" />
           <Property Name="Crm" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
@@ -690,6 +792,8 @@
           <NavigationProperty Name="Horario" Relationship="Model.FK_dbo_Horario_dbo_Usuario_UserId" FromRole="Usuario" ToRole="Horario" />
           <NavigationProperty Name="HorarioTemp" Relationship="Model.FK_dbo_HorarioTemp_dbo_Usuario_UserId" FromRole="Usuario" ToRole="HorarioTemp" />
           <NavigationProperty Name="Prontuario" Relationship="Model.FK_dbo_Prontuario_dbo_Usuario_UserId" FromRole="Usuario" ToRole="Prontuario" />
+          <NavigationProperty Name="Horario1" Relationship="Model.FK_dbo_Horario_dbo_Usuario_MedicoUserId" FromRole="Usuario" ToRole="Horario" />
+          <NavigationProperty Name="HorarioTemp1" Relationship="Model.FK_dbo_HorarioTemp_dbo_Usuario_MedicoUserId" FromRole="Usuario" ToRole="HorarioTemp" />
         </EntityType>
         <EntityType Name="webpages_Membership">
           <Key>
@@ -880,6 +984,78 @@
           <End Role="webpages_Roles" Type="Model.webpages_Roles" Multiplicity="*" />
           <End Role="UserProfile" Type="Model.UserProfile" Multiplicity="*" />
         </Association>
+        <Association Name="FK_dbo_Agendamento_dbo_Horario_HorarioId">
+          <End Type="Model.Horario" Role="Horario" Multiplicity="0..1" />
+          <End Type="Model.Agendamento" Role="Agendamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="HorarioId" />
+            </Principal>
+            <Dependent Role="Agendamento">
+              <PropertyRef Name="HorarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Agendamento_dbo_HorarioTemp_HorarioTempId">
+          <End Type="Model.HorarioTemp" Role="HorarioTemp" Multiplicity="0..1" />
+          <End Type="Model.Agendamento" Role="Agendamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HorarioTemp">
+              <PropertyRef Name="HorarioTempId" />
+            </Principal>
+            <Dependent Role="Agendamento">
+              <PropertyRef Name="HorarioTempId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Horario_dbo_Horario_Horario_HorarioId">
+          <End Type="Model.Horario" Role="Horario" Multiplicity="0..1" />
+          <End Type="Model.Horario" Role="Horario1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="HorarioId" />
+            </Principal>
+            <Dependent Role="Horario1">
+              <PropertyRef Name="Horario_HorarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Horario_dbo_Usuario_MedicoUserId">
+          <End Type="Model.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="Model.Horario" Role="Horario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Horario">
+              <PropertyRef Name="MedicoUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_HorarioTemp_dbo_Horario_Horario_HorarioId">
+          <End Type="Model.Horario" Role="Horario" Multiplicity="0..1" />
+          <End Type="Model.HorarioTemp" Role="HorarioTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="HorarioId" />
+            </Principal>
+            <Dependent Role="HorarioTemp">
+              <PropertyRef Name="Horario_HorarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_HorarioTemp_dbo_Usuario_MedicoUserId">
+          <End Type="Model.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="Model.HorarioTemp" Role="HorarioTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="HorarioTemp">
+              <PropertyRef Name="MedicoUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -898,12 +1074,14 @@
           <EntitySetMapping Name="Agendamento">
             <EntityTypeMapping TypeName="Model.Agendamento">
               <MappingFragment StoreEntitySet="Agendamento">
+                <ScalarProperty Name="HorarioTempId" ColumnName="HorarioTempId" />
+                <ScalarProperty Name="HorarioId" ColumnName="HorarioId" />
+                <ScalarProperty Name="DataConsulta" ColumnName="DataConsulta" />
                 <ScalarProperty Name="AgendamentoId" ColumnName="AgendamentoId" />
                 <ScalarProperty Name="MarcadorId" ColumnName="MarcadorId" />
                 <ScalarProperty Name="Horario" ColumnName="Horario" />
                 <ScalarProperty Name="PacienteUserId" ColumnName="PacienteUserId" />
                 <ScalarProperty Name="MedicoUserId" ColumnName="MedicoUserId" />
-                <ScalarProperty Name="DataAgendamento" ColumnName="DataAgendamento" />
                 <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -963,11 +1141,14 @@
           <EntitySetMapping Name="Horario">
             <EntityTypeMapping TypeName="Model.Horario">
               <MappingFragment StoreEntitySet="Horario">
+                <ScalarProperty Name="Horario_HorarioId" ColumnName="Horario_HorarioId" />
+                <ScalarProperty Name="MedicoUserId" ColumnName="MedicoUserId" />
+                <ScalarProperty Name="TempoDescansoFinal" ColumnName="TempoDescansoFinal" />
+                <ScalarProperty Name="TempoDescansoInicial" ColumnName="TempoDescansoInicial" />
                 <ScalarProperty Name="HorarioId" ColumnName="HorarioId" />
                 <ScalarProperty Name="HorarioIni" ColumnName="HorarioIni" />
                 <ScalarProperty Name="HorarioFim" ColumnName="HorarioFim" />
                 <ScalarProperty Name="TempoConsulta" ColumnName="TempoConsulta" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="PerInicio" ColumnName="PerInicio" />
                 <ScalarProperty Name="PerFim" ColumnName="PerFim" />
               </MappingFragment>
@@ -976,12 +1157,15 @@
           <EntitySetMapping Name="HorarioTemp">
             <EntityTypeMapping TypeName="Model.HorarioTemp">
               <MappingFragment StoreEntitySet="HorarioTemp">
+                <ScalarProperty Name="Horario_HorarioId" ColumnName="Horario_HorarioId" />
+                <ScalarProperty Name="MedicoUserId" ColumnName="MedicoUserId" />
+                <ScalarProperty Name="TempoDescansoFinal" ColumnName="TempoDescansoFinal" />
+                <ScalarProperty Name="TempoDescansoInicial" ColumnName="TempoDescansoInicial" />
                 <ScalarProperty Name="HorarioTempId" ColumnName="HorarioTempId" />
                 <ScalarProperty Name="HorarioIni" ColumnName="HorarioIni" />
                 <ScalarProperty Name="HorarioFim" ColumnName="HorarioFim" />
                 <ScalarProperty Name="TempoConsulta" ColumnName="TempoConsulta" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

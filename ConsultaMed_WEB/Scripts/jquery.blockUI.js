@@ -36,7 +36,7 @@
 		// convenience method for quick growl-like notifications  (http://www.google.com/search?q=growl)
 		$.growlUI = function(title, message, timeout, onClose) {
 			var $m = $('<div class="growlUI"></div>');
-			if (title) $m.append('<h1>'+title+'</h1>');
+			if (title) $m.append('<h2>'+title+'</h2>');
 			if (message) $m.append('<h2>'+message+'</h2>');
 			if (timeout === undefined) timeout = 3000;
 			$.blockUI({
@@ -79,7 +79,7 @@
 		// override these in your code to change the default behavior and style
 		$.blockUI.defaults = {
 			// message displayed when blocking (use null for no message)
-			message:  '<h1>Please wait...</h1>',
+			message:  '<h2>Please wait...</h2>',
 
 			title: null,		// title string; only used when theme == true
 			draggable: true,	// only used when theme == true (requires jquery-ui.js to be loaded)

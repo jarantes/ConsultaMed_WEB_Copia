@@ -36,7 +36,6 @@ namespace ConsultaMed_WEB.Controllers
                 {
                     _unitOfWork.ClinicaRepositorio.Insert(model);
                     _unitOfWork.Save();
-                    _unitOfWork.Dispose();
 
                     Session.Add("Mensagem", "Clínica adicionada com sucesso");
                     return RedirectToAction("Adicionar");
@@ -45,6 +44,10 @@ namespace ConsultaMed_WEB.Controllers
             catch (Exception)
             {
                 ModelState.AddModelError("", "Não foi possível adicionar a clínica");
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
             }
             return View(model);
         }
@@ -73,9 +76,10 @@ namespace ConsultaMed_WEB.Controllers
             try
             {
                 //deletando Clínica
+                var model = _unitOfWork.ClinicaRepositorio.GetById(id);
                 _unitOfWork.ClinicaRepositorio.Delete(id);
+                _unitOfWork.EnderecoRepositorio.Delete(model.EnderecoId);
                 _unitOfWork.Save();
-                _unitOfWork.Dispose();
 
                 Session.Add("Clinica", "Clínica removida com sucesso");
                 return RedirectToAction("Gerenciar");
@@ -83,6 +87,10 @@ namespace ConsultaMed_WEB.Controllers
             catch (Exception)
             {
                 Session.Add("Erro", "Não foi possível remover a clínica");
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
             }
             return RedirectToAction("Gerenciar");
         }
@@ -111,8 +119,10 @@ namespace ConsultaMed_WEB.Controllers
         }
 
         //
-        // GET: /Clinica/SalvarAtualizacao
+        // POST: /Clinica/SalvarAtualizacao
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public ActionResult SalvarAtualizacao(Clinica model)
         {
             try
@@ -121,8 +131,8 @@ namespace ConsultaMed_WEB.Controllers
                 model.EnderecoId = Convert.ToInt32(Session["enderecoId"]);
                 model.Endereco.EnderecoId = model.EnderecoId;
                 _unitOfWork.ClinicaRepositorio.Update(model);
+                _unitOfWork.EnderecoRepositorio.Update(model.Endereco);
                 _unitOfWork.Save();
-                _unitOfWork.Dispose();
 
                 Session.Add("Clinica", "Clínica atualizada com sucesso");
                 return RedirectToAction("Gerenciar", model.ClinicaId);
@@ -130,6 +140,10 @@ namespace ConsultaMed_WEB.Controllers
             catch (Exception)
             {
                 Session.Add("Erro", "Não foi possível atualizar a clínica");
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
             }
             return RedirectToAction("Gerenciar", model.ClinicaId);
         }
@@ -150,6 +164,7 @@ namespace ConsultaMed_WEB.Controllers
         //
         // POST: /Clinica/SalvarConvenio
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         public ActionResult SalvarConvenio(int[] clinicaId, int[] convenioId)
         {
             try
@@ -165,7 +180,6 @@ namespace ConsultaMed_WEB.Controllers
                         _unitOfWork.Save();
                     }
                 }
-                _unitOfWork.Dispose();
 
                 Session.Add("Mensagem", "Associação efetuada com sucesso!");
                 return RedirectToAction("AssociarConvenio");
@@ -173,6 +187,10 @@ namespace ConsultaMed_WEB.Controllers
             catch (Exception)
             {
                 Session.Add("Erro", "Não foi possível realizar a associação!");
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
             }
             return RedirectToAction("AssociarConvenio");
         }

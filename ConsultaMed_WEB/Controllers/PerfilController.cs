@@ -17,7 +17,6 @@ namespace ConsultaMed_WEB.Controllers
         //
         // POST: /Perfil/AddPerfil
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]
         public ActionResult Gerenciar(Role model)

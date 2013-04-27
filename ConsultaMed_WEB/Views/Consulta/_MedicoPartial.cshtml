@@ -1,0 +1,19 @@
+﻿@using ConsultaMed_WEB.Models
+@model IEnumerable<ConsultaMed_WEB.Models.UsuarioMedico>
+
+<div class="control-group">
+    @Html.Label("Médico", new { @class = "control-label" })
+    <div class="controls">
+        <select name="MedicoUserId" id="MedicosEncontrados" onchange="SessionaMedicoId()">
+            @{
+                if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                <option value="@item.UserId">@item.Nome @item.Sobrenome</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+</div>

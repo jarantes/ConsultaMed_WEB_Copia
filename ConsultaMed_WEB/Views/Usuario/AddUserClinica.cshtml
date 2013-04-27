@@ -9,6 +9,22 @@
     <h2>@ViewBag.Title</h2>
 </hgroup>
 
+@if (TempData["Mensagem"] != null)
+{
+    <div id="mensagemSuc" class="row">
+        <div class="span12">
+            <div class="alert alert-block">
+                <a id="fecharSuc" class="close">x
+                </a>
+                <strong>Aviso</strong><br />
+                <ul>
+                    <li>@TempData["Mensagem"]</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
 @using (Html.BeginForm("AddUserClinica", "Usuario"))
 {
     @Html.AntiForgeryToken()
