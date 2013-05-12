@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using ConsultaMed_WEB.Models;
 using ConsultaMed_WEB.Models.Repositorio;
@@ -92,12 +93,15 @@ namespace ConsultaMed_WEB.Controllers
 
         //
         // GET: /Convenio/Listar
-        [Authorize(Roles = "Medico")]
+        [Authorize(Roles = "Medico, RespClinica")]
         public ActionResult Listar()
         {
             try
             {
-                var model = _unitOfWork.ConvenioRepositorio.Get();
+                var usuario = _unitOfWork.UsuarioRepositorio.Get(m=>m.UserName == User.Identity.Name).First();
+
+                var clinicas = _unitOfWork.ClinicaRepositorio.Get(m=>m.ClinicaId == usuario.ClinicaId);
+                var model = clinicas.SelectMany(m => m.Convenios);
                 return View(model);
             }
             catch (Exception)
@@ -106,10 +110,6 @@ namespace ConsultaMed_WEB.Controllers
                 TempData["Erro"] = Session["Erro"];
                 Session.Remove("Erro");
                 return View();
-            }
-            finally
-            {
-                _unitOfWork.Dispose();
             }
         }
     }

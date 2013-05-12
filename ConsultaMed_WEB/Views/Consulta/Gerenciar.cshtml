@@ -39,11 +39,6 @@
     </div>
     }
 }
-
-@if (Roles.GetRolesForUser(User.Identity.Name)[0] == "RespClinica")
-{
-    @Html.Partial("_FiltroAgendamentosPartial")
-}
 <br>
 <div id="tabela">
     @if (Model.Any())
@@ -80,7 +75,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
-                            @Html.ActionLink("Remover", "Deletar", "Clinica", null, new { id = "btnConfirm", @class = "btn btn-warning" })
+                            @Html.ActionLink("Remover", "Deletar", "Consulta", null, new { id = "btnConfirm", @class = "btn btn-warning" })
                         </div>
                     </div>
                 }

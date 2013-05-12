@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using ConsultaMed_WEB.Models.Repositorio;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
@@ -13,10 +12,14 @@ using ConsultaMed_WEB.Models;
 
 namespace ConsultaMed_WEB.Controllers
 {
+
     [Authorize]
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+
+        //OBJETOS:
+        private readonly UnitOfWork _unitOfWork = new UnitOfWork();
         //
         // GET: /Account/Login
 
@@ -35,9 +38,15 @@ namespace ConsultaMed_WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, model.RememberMe))
             {
-                return RedirectToLocal(returnUrl);
+                if (_unitOfWork.PacienteRepositorio.Get(m => m.UserName == model.UserName).Any())
+                {
+                    return RedirectToLocal(returnUrl);
+                }
+                Session.Add("UserNameCadastrado", model.UserName);
+                Session.Add("Mensagem", "Para concluir o cadastro preencha as informações abaixo!");
+                return RedirectToAction("AddUserPaciente", "Usuario");
             }
 
             // Se chegarmos até aqui e houver alguma falha, exibir novamente o formulário
@@ -83,7 +92,10 @@ namespace ConsultaMed_WEB.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    Session.Add("UserNameCadastrado", model.UserName);
+                    Roles.AddUserToRole(model.UserName, model.Perfil);
+                    Session.Add("Mensagem", "Para concluir o cadastro preencha as informações abaixo!");
+                    return RedirectToAction("AddUserPaciente", "Usuario");
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -168,10 +180,7 @@ namespace ConsultaMed_WEB.Controllers
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
-                    else
-                    {
-                        ModelState.AddModelError("", "A senha atual está incorreta ou a nova senha é inválida.");
-                    }
+                    ModelState.AddModelError("", "A senha atual está incorreta ou a nova senha é inválida.");
                 }
             }
             else
@@ -236,14 +245,11 @@ namespace ConsultaMed_WEB.Controllers
                 OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
                 return RedirectToLocal(returnUrl);
             }
-            else
-            {
-                // O usuário é novo, pergunte-lhe o nome de associação desejado
-                string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
-                ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
-                ViewBag.ReturnUrl = returnUrl;
-                return View("ExternalLoginConfirmation", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
-            }
+            // O usuário é novo, pergunte-lhe o nome de associação desejado
+            string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
+            ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
+            ViewBag.ReturnUrl = returnUrl;
+            return View("ExternalLoginConfirmation", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
         }
 
         //
@@ -254,8 +260,8 @@ namespace ConsultaMed_WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLoginConfirmation(RegisterExternalLoginModel model, string returnUrl)
         {
-            string provider = null;
-            string providerUserId = null;
+            string provider;
+            string providerUserId;
 
             if (User.Identity.IsAuthenticated || !OAuthWebSecurity.TryDeserializeProviderUserId(model.ExternalLoginData, out provider, out providerUserId))
             {
@@ -265,7 +271,7 @@ namespace ConsultaMed_WEB.Controllers
             if (ModelState.IsValid)
             {
                 // Inserir um novo usuário no banco de dados
-                using (UsersContext db = new UsersContext())
+                using (var db = new UsersContext())
                 {
                     UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
                     // Verificar se o usuário já existe
@@ -280,10 +286,7 @@ namespace ConsultaMed_WEB.Controllers
 
                         return RedirectToLocal(returnUrl);
                     }
-                    else
-                    {
-                        ModelState.AddModelError("UserName", "O nome de usuário já existe. Insira um nome de usuário diferente.");
-                    }
+                    ModelState.AddModelError("UserName", "O nome de usuário já existe. Insira um nome de usuário diferente.");
                 }
             }
 
@@ -301,35 +304,6 @@ namespace ConsultaMed_WEB.Controllers
             return View();
         }
 
-        [AllowAnonymous]
-        [ChildActionOnly]
-        public ActionResult ExternalLoginsList(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            return PartialView("_ExternalLoginsListPartial", OAuthWebSecurity.RegisteredClientData);
-        }
-
-        [ChildActionOnly]
-        public ActionResult RemoveExternalLogins()
-        {
-            ICollection<OAuthAccount> accounts = OAuthWebSecurity.GetAccountsFromUserName(User.Identity.Name);
-            List<ExternalLogin> externalLogins = new List<ExternalLogin>();
-            foreach (OAuthAccount account in accounts)
-            {
-                AuthenticationClientData clientData = OAuthWebSecurity.GetOAuthClientData(account.Provider);
-
-                externalLogins.Add(new ExternalLogin
-                {
-                    Provider = account.Provider,
-                    ProviderDisplayName = clientData.DisplayName,
-                    ProviderUserId = account.ProviderUserId,
-                });
-            }
-
-            ViewBag.ShowRemoveButton = externalLogins.Count > 1 || OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            return PartialView("_RemoveExternalLoginsPartial", externalLogins);
-        }
-
         #region Auxiliares
         private ActionResult RedirectToLocal(string returnUrl)
         {
@@ -337,10 +311,7 @@ namespace ConsultaMed_WEB.Controllers
             {
                 return Redirect(returnUrl);
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            return RedirectToAction("Index", "Home");
         }
 
         public enum ManageMessageId

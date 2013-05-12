@@ -10,7 +10,6 @@ namespace ConsultaMed_WEB.Controllers
 {
     public class UsuarioController : Controller
     {
-
         //OBJETOS:
         private readonly UnitOfWork _unitOfWork = new UnitOfWork();
 
@@ -44,7 +43,7 @@ namespace ConsultaMed_WEB.Controllers
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     Session.Add("UserNameCadastrado", model.UserName);
                     Roles.AddUserToRole(model.UserName, model.Perfil);
-                    Session.Add("Mensagem", "Para conluir o cadastro preencha as informações abaixo!");
+                    Session.Add("Mensagem", "Para concluir o cadastro preencha as informações abaixo!");
                     switch (model.Perfil)
                     {
                         case "Medico":
@@ -90,9 +89,25 @@ namespace ConsultaMed_WEB.Controllers
         {
             try
             {
-
                 if (ModelState.IsValid)
                 {
+                    //validar Unique Constraint
+                    var validacao =  ValidacaoBruta(medico.Email, medico.Rg, medico.Cpf, null);
+                    if (validacao != null)
+                    {
+                        ModelState.AddModelError("", validacao);
+                        return View(medico);
+                    }
+
+                    //se passar pela validação grava...
+                    //Gravando relação de clinica e especialidade
+                    var clinica = _unitOfWork.ClinicaRepositorio.Get(m => m.ClinicaId == medico.ClinicaId).First();
+                    var espec =
+                        _unitOfWork.EspecialidadeRepositorio.Get(m => m.EspecialidadeId == medico.EspecialidadeId)
+                            .First();
+                    clinica.Especialidades.Add(espec);
+
+                    //Gravando Médico na tabela de usuário
                     medico.UserName = (string)Session["UserNameCadastrado"];
                     medico.UserId =
                         _unitOfWork.UsuarioRepositorio.GetIdByUserName((string)Session["UserNameCadastrado"]);
@@ -100,6 +115,7 @@ namespace ConsultaMed_WEB.Controllers
                     _unitOfWork.MedicoRepositorio.Insert(medico);
                     _unitOfWork.Save();
 
+                    //Adcionando Mensagem de Sucesso na sessão para mostrar na view
                     Session.Add("Mensagem", "Médico adiciondado com sucesso");
                     return RedirectToAction("Registrar");
                 }
@@ -137,6 +153,15 @@ namespace ConsultaMed_WEB.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    //validar Unique Constraint
+                    var validacao = ValidacaoBruta(userClinica.Email, userClinica.Rg, userClinica.Cpf, null);
+                    if (validacao != null)
+                    {
+                        ModelState.AddModelError("", validacao);
+                        return View(userClinica);
+                    }
+
+                    //se passar pela validação grava...
                     userClinica.UserName = (string)Session["UserNameCadastrado"];
                     userClinica.UserId =
                         _unitOfWork.UsuarioRepositorio.GetIdByUserName((string)Session["UserNameCadastrado"]);
@@ -181,14 +206,25 @@ namespace ConsultaMed_WEB.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    //validar Unique Constraint
+                    var validacao = ValidacaoBruta(userPaciente.Email, userPaciente.Rg, userPaciente.Cpf, userPaciente.NumeroConvenio);
+                    if (validacao != null)
+                    {
+                        ModelState.AddModelError("", validacao);
+                        return View(userPaciente);
+                    }
+                    //se passar pela validação grava...
                     userPaciente.UserName = (string)Session["UserNameCadastrado"];
-                    userPaciente.UserId = _unitOfWork.UsuarioRepositorio.GetIdByUserName((string)Session["UserNameCadastrado"]);
+                    userPaciente.UserId =
+                        _unitOfWork.UsuarioRepositorio.GetIdByUserName((string)Session["UserNameCadastrado"]);
                     userPaciente.Perfil = "Paciente";
                     _unitOfWork.UsuarioRepositorio.Insert(userPaciente);
                     _unitOfWork.Save();
 
                     Session.Add("Mensagem", "Usuário adiciondado com sucesso");
-                    return RedirectToAction("Registrar");
+                    return Roles.GetRolesForUser(User.Identity.Name)[0] == "Administrador"
+                        ? RedirectToAction("Registrar")
+                        : RedirectToAction("Index", "Home");
                 }
             }
             catch (Exception)
@@ -233,7 +269,6 @@ namespace ConsultaMed_WEB.Controllers
                     Roles.RemoveUserFromRole(user.UserName, role);
                     ctuser.UserProfiles.Remove(user);
                     ctuser.SaveChanges();
-                    ctuser.Dispose();
                 }
                 //deletando Usuário
                 var model = _unitOfWork.UsuarioRepositorio.GetById(id);
@@ -263,7 +298,8 @@ namespace ConsultaMed_WEB.Controllers
             try
             {
                 var medicoId = _unitOfWork.UsuarioRepositorio.GetIdByUserName(User.Identity.Name);
-                var model = _unitOfWork.PacienteRepositorio.GetUsersforDoctor(medicoId, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(7));
+                var model = _unitOfWork.PacienteRepositorio.GetUsersforDoctor(medicoId, DateTime.Now.AddDays(-1),
+                    DateTime.Now.AddDays(7));
 
                 return View(model);
             }
@@ -279,6 +315,56 @@ namespace ConsultaMed_WEB.Controllers
                 _unitOfWork.Dispose();
             }
         }
+
+        //
+        //GET: Consulta/CarregaMedico
+        [HttpGet]
+        [Authorize(Roles = "RespClinica, Paciente")]
+        public JsonResult CarregaMedico(int id)
+        {
+            try
+            {
+                var medicos = _unitOfWork.MedicoRepositorio.Get(m => m.EspecialidadeId == id);
+                var data = medicos.Select(m => new { m.UserId, m.Nome, m.Sobrenome }).ToList();
+                return Json(new { Result = data }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+        }
+
+        public string ValidacaoBruta(string email, string rg, string cpf, string numCarteira)
+        {
+            //validação do email
+            if (_unitOfWork.UsuarioRepositorio.Get(m => m.Email == email).Any())
+            {
+                return "Já existe um registro com esse e-mail";
+            }
+            //validação do RG
+            if (_unitOfWork.UsuarioRepositorio.Get(m => m.Rg == rg).Any())
+            {
+                return "Já existe um registro com esse RG";
+            }
+            //validação do CPF
+            if (_unitOfWork.UsuarioRepositorio.Get(m => m.Cpf == cpf).Any())
+            {
+                return "Já existe um registro com esse CPF";
+            }
+            //validação da Carteirinha
+            if (_unitOfWork.PacienteRepositorio.Get(m => m.NumeroConvenio == numCarteira).Any())
+            {
+                return "Já existe um registro com esse número da Carteirinha";
+            }
+
+            return null;
+        }
+
 
 
 

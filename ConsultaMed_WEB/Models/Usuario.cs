@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -37,11 +38,11 @@ namespace ConsultaMed_WEB.Models
 
         [Required]
         [Display(Name = "Telefone")]
-        //TODO verificar melhores regex
+        [RegularExpression(@"^\([0-9]{2}\) [0-9]{4}-[0-9]{4}$", ErrorMessage = "Número de telefone inválido")]
         public string Telefone { get; set; }
 
         [Display(Name = "Celular")]
-        //TODO verificar melhores regex
+        //[RegularExpression(@"^\([0-9]{3}\) [6-9]{1}[0-9]{1}-[0-9]{4}$", ErrorMessage = "Número de celular inválido")]
         public string Celular { get; set; }
 
         [Required]
@@ -61,7 +62,6 @@ namespace ConsultaMed_WEB.Models
         [ForeignKey("ClinicaId")]
         public virtual Clinica Clinica { get; set; }
 
-
-
+        public ICollection<CmLog> CmLogs { get; set; }
     }
 }

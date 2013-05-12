@@ -42,31 +42,32 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.AspNet, Version=4.2.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.2.2.13055\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.3.0.13117\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.Core, Version=4.2.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+    <Reference Include="DotNetOpenAuth.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DotNetOpenAuth.Core.4.2.2.13055\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.3.0.13117\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth, Version=4.2.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.2.2.13055\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.3.0.13117\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.2.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.2.2.13055\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.3.0.13117\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId, Version=4.2.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.2.2.13055\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.3.0.13117\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.2.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.2.2.13055\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.0.13117\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -151,10 +152,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
-    </Reference>
     <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
@@ -169,8 +166,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClinicaController.cs" />
+    <Compile Include="Controllers\ClsSendMail.cs" />
     <Compile Include="Controllers\ConsultaController.cs" />
     <Compile Include="Controllers\ConvenioController.cs" />
+    <Compile Include="Controllers\EspecialidadeController.cs" />
     <Compile Include="Controllers\ExameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
@@ -251,11 +250,46 @@
     <Compile Include="Migrations\201304252225550_IncluindoExame.Designer.cs">
       <DependentUpon>201304252225550_IncluindoExame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201304302318293_MuitosMuitosEspecClinica.cs" />
+    <Compile Include="Migrations\201304302318293_MuitosMuitosEspecClinica.Designer.cs">
+      <DependentUpon>201304302318293_MuitosMuitosEspecClinica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201305010025466_ClinicaFavorita.cs" />
+    <Compile Include="Migrations\201305010025466_ClinicaFavorita.Designer.cs">
+      <DependentUpon>201305010025466_ClinicaFavorita.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201305031600505_AtualizadoConvenio.cs" />
+    <Compile Include="Migrations\201305031600505_AtualizadoConvenio.Designer.cs">
+      <DependentUpon>201305031600505_AtualizadoConvenio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201305032218307_ConfiguracaoConvenio.cs" />
+    <Compile Include="Migrations\201305032218307_ConfiguracaoConvenio.Designer.cs">
+      <DependentUpon>201305032218307_ConfiguracaoConvenio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201305062253417_retiradaForgeinKey[.cs" />
+    <Compile Include="Migrations\201305062253417_retiradaForgeinKey[.Designer.cs">
+      <DependentUpon>201305062253417_retiradaForgeinKey[.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201305062254322_retiradaForgeinKey2.cs" />
+    <Compile Include="Migrations\201305062254322_retiradaForgeinKey2.Designer.cs">
+      <DependentUpon>201305062254322_retiradaForgeinKey2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201305070041283_AdcionadoLogEmail.cs" />
+    <Compile Include="Migrations\201305070041283_AdcionadoLogEmail.Designer.cs">
+      <DependentUpon>201305070041283_AdcionadoLogEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201305071540147_atualizacaoEmail.cs" />
+    <Compile Include="Migrations\201305071540147_atualizacaoEmail.Designer.cs">
+      <DependentUpon>201305071540147_atualizacaoEmail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Agendamento.cs" />
     <Compile Include="Models\Clinica.cs" />
+    <Compile Include="Models\ClinicasFavorita.cs" />
+    <Compile Include="Models\CmLog.cs" />
     <Compile Include="Models\Convenio.cs" />
+    <Compile Include="Models\EmailConfiguration.cs" />
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Especialidade.cs" />
     <Compile Include="Models\Exame.cs" />
@@ -503,10 +537,6 @@
     <Content Include="Fontes\cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff" />
     <Content Include="Fontes\xjAJXh38I15wypJXxuGMBobN6UDyHWBl620a-IRfuBk.woff" />
     <Content Include="Fontes\PRmiXeptR36kaC0GEAetxjqR_3kx9_hJXbbyU8S6IN0.woff" />
-    <Content Include="..\..\..\..\..\Desktop\CodeMapCM.dgml">
-      <Link>CodeMapCM.dgml</Link>
-    </Content>
-    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -593,6 +623,11 @@
     <Content Include="Views\Consulta\_EspecialidadesPartial.cshtml" />
     <Content Include="Views\Consulta\_MedicoPartial.cshtml" />
     <Content Include="Views\Consulta\_FiltroAgendamentosPartial.cshtml" />
+    <Content Include="Views\Especialidade\AssociarExame.cshtml" />
+    <Content Include="Views\Consulta\Gerenciar2.cshtml" />
+    <Content Include="Views\Consulta\Agendar3.cshtml" />
+    <Content Include="Views\Consulta\_ClinicasPartial.cshtml" />
+    <Content Include="Views\Consulta\Gerenciar3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -658,6 +693,30 @@
     <EmbeddedResource Include="Migrations\201304252225550_IncluindoExame.resx">
       <DependentUpon>201304252225550_IncluindoExame.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304302318293_MuitosMuitosEspecClinica.resx">
+      <DependentUpon>201304302318293_MuitosMuitosEspecClinica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201305010025466_ClinicaFavorita.resx">
+      <DependentUpon>201305010025466_ClinicaFavorita.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201305031600505_AtualizadoConvenio.resx">
+      <DependentUpon>201305031600505_AtualizadoConvenio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201305032218307_ConfiguracaoConvenio.resx">
+      <DependentUpon>201305032218307_ConfiguracaoConvenio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201305062253417_retiradaForgeinKey[.resx">
+      <DependentUpon>201305062253417_retiradaForgeinKey[.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201305062254322_retiradaForgeinKey2.resx">
+      <DependentUpon>201305062254322_retiradaForgeinKey2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201305070041283_AdcionadoLogEmail.resx">
+      <DependentUpon>201305070041283_AdcionadoLogEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201305071540147_atualizacaoEmail.resx">
+      <DependentUpon>201305071540147_atualizacaoEmail.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -678,10 +737,11 @@
           <DevelopmentServerPort>34078</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:4070/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:4070/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl>http://www.consultamed.com</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

@@ -1,24 +1,6 @@
 ﻿@model ConsultaMed_WEB.Models.LocalPasswordModel
-@{
-    ViewBag.Title = "Gerenciar conta";
-}
 
-<hgroup class="title">
-    <h2>@ViewBag.Title.</h2>
-</hgroup>
-
-<p class="message-success">@ViewBag.StatusMessage</p>
-
-<p>Você fez logon como <strong>@User.Identity.Name</strong>.</p>
-
-@if (ViewBag.HasLocalPassword)
-{
     @Html.Partial("_ChangePasswordPartial")
-}
-else
-{ 
-    @Html.Partial("_SetPasswordPartial")
-}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

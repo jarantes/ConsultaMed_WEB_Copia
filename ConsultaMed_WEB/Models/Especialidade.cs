@@ -14,7 +14,7 @@ namespace ConsultaMed_WEB.Models
         public string Descricao { get; set; }
 
         public virtual ICollection<UsuarioMedico> UsuarioMedico { get; set; }
-
-        public ICollection<Exame> Exames { get; set; }
+        public virtual ICollection<Exame> Exames { get; set; }
+        public virtual ICollection<Clinica> Clinicas { get; set; } 
     }
 }

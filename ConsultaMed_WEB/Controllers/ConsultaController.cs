@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.Security;
 using System.Web.Mvc;
 using ConsultaMed_WEB.Models;
 using ConsultaMed_WEB.Models.Repositorio;
+using DotNetOpenAuth.OAuth.Messages;
 
 namespace ConsultaMed_WEB.Controllers
 {
@@ -12,6 +14,7 @@ namespace ConsultaMed_WEB.Controllers
     {
         //OBJETOS:
         private readonly UnitOfWork _unitOfWork = new UnitOfWork();
+        private readonly ClsSendMail _sendMail = new ClsSendMail();
 
         //
         //GET: Consulta/NovaAgenda
@@ -33,6 +36,8 @@ namespace ConsultaMed_WEB.Controllers
             {
                 return View(model);
             }
+
+            model.MedicoUserId = _unitOfWork.UsuarioRepositorio.GetIdByUserName(User.Identity.Name);
 
             if (ModelState.IsValid)
             {
@@ -70,9 +75,14 @@ namespace ConsultaMed_WEB.Controllers
         //POST: Consulta/NovaAgendaTemp
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Medico, RespClnica")]
+        [Authorize(Roles = "Medico, RespClinica")]
         public ActionResult NovaAgendaTemp(HorarioTemp model)
         {
+            if (model.MedicoUserId == 0 && Roles.GetRolesForUser(User.Identity.Name)[0].ToString(CultureInfo.InvariantCulture) == "Medico")
+            {
+                model.MedicoUserId = _unitOfWork.UsuarioRepositorio.GetIdByUserName(User.Identity.Name);
+            }
+
             if (!FuValidaAgendaTemp(model))
             {
                 return View(model);
@@ -86,7 +96,7 @@ namespace ConsultaMed_WEB.Controllers
                     _unitOfWork.Save();
 
                     Session.Add("Mensagem", "Agenda temporária adiciondada com sucesso");
-                    return RedirectToAction("NovaAgenda");
+                    return RedirectToAction("NovaAgendaTemp");
                 }
                 catch (Exception)
                 {
@@ -102,8 +112,32 @@ namespace ConsultaMed_WEB.Controllers
 
         //
         //GET: Consulta/Gerenciar
-        [Authorize(Roles = "Medico, RespClinica")]
-        public ActionResult Gerenciar(int? id)
+        [Authorize(Roles = "Medico")]
+        public ActionResult Gerenciar()
+        {
+            TempData["Mensagem"] = Session["Mensagem"];
+            TempData["Erro"] = Session["Erro"];
+            Session.Remove("Mensagem");
+            Session.Remove("Erro");
+            try
+            {
+                var medico = _unitOfWork.MedicoRepositorio.Get(m => m.UserName == User.Identity.Name).First();
+                var model = _unitOfWork.AgendamentoRepositorio.GetAgendforDoctor(medico.UserId, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(20));
+                return View(model);
+            }
+            catch (Exception)
+            {
+                Session.Add("Erro", "Não foi possível retornar a pesquisa");
+                TempData["Erro"] = Session["Erro"];
+                Session.Remove("Erro");
+                return View();
+            }
+        }
+
+        //
+        //GET: Consulta/Gerenciar2
+        [Authorize(Roles = "RespClinica")]
+        public ActionResult Gerenciar2(int? id)
         {
             TempData["Mensagem"] = Session["Mensagem"];
             TempData["Erro"] = Session["Erro"];
@@ -112,12 +146,8 @@ namespace ConsultaMed_WEB.Controllers
             try
             {
                 IEnumerable<Agendamento> model;
-                if (Roles.GetRolesForUser(User.Identity.Name)[0] == "Medico")
-                {
-                    UsuarioMedico medico = _unitOfWork.MedicoRepositorio.Get(m => m.UserName == User.Identity.Name).First();
-                    model = _unitOfWork.AgendamentoRepositorio.GetAgendforDoctor(medico.UserId, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(7));
-                }
-                else if (id != null)
+
+                if (id != null)
                 {
                     model = _unitOfWork.AgendamentoRepositorio.GetAgendforDoctor(id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(7));
                     var clinica = _unitOfWork.UsuarioRepositorio.Get(m => m.UserName == User.Identity.Name).First();
@@ -141,8 +171,33 @@ namespace ConsultaMed_WEB.Controllers
         }
 
         //
+        //GET: Consulta/Gerenciar3
+        [Authorize(Roles = "Paciente")]
+        public ActionResult Gerenciar3()
+        {
+            TempData["Mensagem"] = Session["Mensagem"];
+            TempData["Erro"] = Session["Erro"];
+            Session.Remove("Mensagem");
+            Session.Remove("Erro");
+            try
+            {
+                var hoje = DateTime.Now.Date;
+                var user = _unitOfWork.PacienteRepositorio.Get(m => m.UserName == User.Identity.Name).First();
+                var model = _unitOfWork.AgendamentoRepositorio.Get(m=>m.PacienteUserId==user.UserId && m.DataConsulta >= hoje);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                Session.Add("Erro", "Não foi possível retornar a pesquisa");
+                TempData["Erro"] = Session["Erro"];
+                Session.Remove("Erro");
+                return View();
+            }
+        }
+
+        //
         //GET: Consulta/Remover
-        [Authorize(Roles = "Medico, RespClnica")]
+        [Authorize(Roles = "Medico, RespClnica, Paciente")]
         public ActionResult Deletar(int id)
         {
             try
@@ -227,10 +282,22 @@ namespace ConsultaMed_WEB.Controllers
                     _unitOfWork.AgendamentoRepositorio.Insert(model);
                     _unitOfWork.Save();
 
-                    Session.Add("Mensagem", "Consulta Agendada com sucesso");
-                    return RedirectToAction("Agendar");
+                    //envio de email
+                    var email = _unitOfWork.PacienteRepositorio.Get(m => m.UserId == model.PacienteUserId).First();
+                    var retorno = _sendMail.CreateEmail(1, model.MedicoUserId, model.MarcadorId, model.PacienteUserId, model.DataConsulta.ToShortDateString(), model.Horario.ToString(), email.Email);
+                    if (retorno == null)
+                    {
+                        Session.Add("Mensagem", "Consulta Agendada com sucesso, foi enviado um e-mail de confirmação");
+                        return RedirectToAction("Agendar");
+                    }
+                    else
+                    {
+                        Session.Add("Mensagem", "Consulta Agendada com sucesso");
+                        return RedirectToAction("Agendar");
+                    }
                 }
             }
+
             catch (Exception)
             {
                 ModelState.AddModelError("", "Não foi possível agendar a consulta");
@@ -246,7 +313,7 @@ namespace ConsultaMed_WEB.Controllers
 
         //
         //GET: Consulta/CarregaAgenda
-        [Authorize(Roles = "Medico, RespClinica")]
+        [Authorize(Roles = "Medico, RespClinica, Paciente")]
         public ActionResult CarregaAgenda(String agendaData, int? medicoUserId)
         {
             var dataAtual = DateTime.Now.AddMinutes(10.0);
@@ -360,25 +427,6 @@ namespace ConsultaMed_WEB.Controllers
         }
 
         //
-        //GET: Consulta/CarregaMedico
-        [HttpGet]
-        [Authorize(Roles = "RespClinica")]
-        public JsonResult CarregaMedico(int id)
-        {
-            try
-            {
-                var medicos = _unitOfWork.MedicoRepositorio.Get(m => m.EspecialidadeId == id);
-                var data = medicos.Select(m => new { m.UserId, m.Nome, m.Sobrenome }).ToList();
-                return Json(new { Result = data }, JsonRequestBehavior.AllowGet);
-
-            }
-            catch (Exception)
-            {
-                throw new Exception();
-            }
-        }
-
-        //
         //GET: Consulta/CriarProntuario
         [Authorize(Roles = "Medico")]
         public ActionResult CriarProntuario(int id)
@@ -467,19 +515,8 @@ namespace ConsultaMed_WEB.Controllers
             TempData["Mensagem"] = Session["Mensagem"];
             Session.Remove("Mensagem");
 
-            using (var ctx = new CmContext())
-            {
-                ViewData["pacienteList"] = new SelectList((from i in ctx.Usuarios.ToList()
-                                                           where i.Perfil == "Paciente"
-                                                           select new
-                                                           {
-                                                               i.UserId,
-                                                               NomeInteiro = i.Nome + " " + i.Sobrenome
-                                                           }),
-                                                          "UserId",
-                                                          "NomeInteiro",
-                                                          null);
-            }
+            CarregaListas("pacienteList", null);
+
             return View();
         }
 
@@ -515,8 +552,92 @@ namespace ConsultaMed_WEB.Controllers
                     _unitOfWork.AgendamentoRepositorio.Insert(model);
                     _unitOfWork.Save();
 
-                    Session.Add("Mensagem", "Consulta Agendada com sucesso");
-                    return RedirectToAction("Agendar2");
+
+                    //envio de email
+                    var email = _unitOfWork.PacienteRepositorio.Get(m => m.UserId == model.PacienteUserId).First();
+                    var retorno = _sendMail.CreateEmail(1, model.MedicoUserId, model.MarcadorId, model.PacienteUserId, model.DataConsulta.ToShortDateString(), model.Horario.ToString(), email.Email);
+                    if (retorno == null)
+                    {
+                        Session.Add("Mensagem", "Consulta Agendada com sucesso, foi enviado um e-mail de confirmação");
+                        return RedirectToAction("Agendar2");
+                    }
+                    else
+                    {
+                        Session.Add("Mensagem", "Consulta Agendada com sucesso");
+                        return RedirectToAction("Agendar2");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Não foi possível agendar a consulta");
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+            CarregaListas("pacienteList", null);
+            ModelState.AddModelError("", "Não foi possível agendar a consulta");
+            return View();
+        }
+
+        //
+        //GET: Consulta/Agendar3
+        [Authorize(Roles = "Paciente")]
+        public ActionResult Agendar3()
+        {
+            TempData["Mensagem"] = Session["Mensagem"];
+            Session.Remove("Mensagem");
+
+            return View();
+        }
+
+        //
+        //POST: Consulta/Agendar3
+        [HttpPost]
+        [Authorize(Roles = "Paciente")]
+        public ActionResult Agendar3(Agendamento model)
+        {
+            var def = Convert.ToDateTime("01/01/0001");
+            if (model.DataConsulta < DateTime.Now.Date && model.DataConsulta != def)
+            {
+                ModelState.AddModelError("", "Data não pode ser menor que hoje!");
+                return View();
+            }
+            try
+            {
+                model.MarcadorId = _unitOfWork.UsuarioRepositorio.GetIdByUserName(User.Identity.Name);
+                model.PacienteUserId = model.MarcadorId;
+                model.DataCriacao = DateTime.Now;
+
+                if (Session["HorarioId"] == null)
+                {
+                    model.HorarioTempId = Convert.ToInt32(Session["HorarioTempId"]);
+                }
+                else
+                {
+                    model.HorarioId = Convert.ToInt32(Session["HorarioId"]);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    _unitOfWork.AgendamentoRepositorio.Insert(model);
+                    _unitOfWork.Save();
+
+
+                    //envio de email
+                    var email = _unitOfWork.PacienteRepositorio.Get(m => m.UserId == model.PacienteUserId).First();
+                    var retorno = _sendMail.CreateEmail(1, model.MedicoUserId, model.MarcadorId, model.PacienteUserId, model.DataConsulta.ToShortDateString(), model.Horario.ToString(), email.Email);
+                    if (retorno == null)
+                    {
+                        Session.Add("Mensagem", "Consulta Agendada com sucesso, foi enviado um e-mail de confirmação");
+                        return RedirectToAction("Agendar3");
+                    }
+                    else
+                    {
+                        Session.Add("Mensagem", "Consulta Agendada com sucesso");
+                        return RedirectToAction("Agendar3");
+                    }
                 }
             }
             catch (Exception)
@@ -577,7 +698,6 @@ namespace ConsultaMed_WEB.Controllers
                 return false;
             }
 
-            model.MedicoUserId = _unitOfWork.UsuarioRepositorio.GetIdByUserName(User.Identity.Name);
             if (
                 _unitOfWork.HorarioRepositorio.Get(
                     m => m.MedicoUserId == model.MedicoUserId && model.PerInicio <= m.PerFim).Any())
@@ -671,13 +791,13 @@ namespace ConsultaMed_WEB.Controllers
                 using (var ctx = new CmContext())
                 {
                     ViewData["medicoList"] = new SelectList((from i in ctx.Usuarios.ToList()
-                                                               where i.Perfil == "Medico"
-                                                               && i.ClinicaId == id
-                                                               select new
-                                                               {
-                                                                   i.UserId,
-                                                                   NomeInteiro = i.Nome + " " + i.Sobrenome
-                                                               }),
+                                                             where i.Perfil == "Medico"
+                                                             && i.ClinicaId == id
+                                                             select new
+                                                             {
+                                                                 i.UserId,
+                                                                 NomeInteiro = i.Nome + " " + i.Sobrenome
+                                                             }),
                                                               "UserId",
                                                               "NomeInteiro",
                                                               null);

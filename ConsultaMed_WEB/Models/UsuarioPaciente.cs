@@ -9,13 +9,11 @@ namespace ConsultaMed_WEB.Models
 
         public int ConvenioId { get; set; }
 
-        //public ICollection<Agendamento> Agendamento { get; set; }
+        public ICollection<Agendamento> Agendamento { get; set; }
+
         public ICollection<Prontuario> Prontuario { get; set; }
 
         [ForeignKey("ConvenioId")]
         public virtual Convenio Convenio { get; set; }
-
-
-
     }
 }

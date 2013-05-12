@@ -1,0 +1,100 @@
+﻿@using ConsultaMed_WEB.Models
+
+@{
+    ViewBag.Title = "Associação de Exames";
+}
+
+
+<hgroup class="page-header">
+    <h2>@ViewBag.Title</h2>
+</hgroup>
+@using (Html.BeginForm("AssociarExame", "Especialidade"))
+{
+    @Html.AntiForgeryToken()
+    if (TempData["Erro"] != null)
+    {
+    <div id="mensagemErr" class="row">
+        <div class="span12">
+            <div class="alert alert-error">
+                <a id="fecharErr" class="close">x
+                </a>
+                <strong>Erro</strong>
+                @TempData["Erro"].ToString()
+            </div>
+        </div>
+    </div>
+    }
+    if (TempData["Mensagem"] != null)
+    {
+    <div id="mensagemSuc" class="row">
+        <div class="span12">
+            <div class="alert alert-success">
+                <a id="fecharSuc" class="close">x
+                </a>
+                <strong>Sucesso</strong><br />
+                <ul>
+                    <li>@TempData["Mensagem"]</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    }
+
+    <div class="form-horizontal well">
+        <fieldset>
+            <legend>Associar Exames ás Especialidades</legend>
+            @using (var ctx = new CmContext())
+            {
+                var list2 = ctx.Especialidades.OrderBy(c => c.Descricao).ToList();
+                <div class="control-group">
+                    @Html.Label("Especialidades", new { @class = "control-label" })
+                    <div class="controls">
+                        <select multiple="multiple" id="especialidadesEncontradas" class="span4">
+                            @foreach (var espec in list2)
+                            {
+                                <option value="@espec.EspecialidadeId">@espec.Descricao</option>
+                            }
+                        </select>
+                        <a id="addEspecialidade" class="btn btn-mini btn-primary" onclick=" adicionaEspecialidade() "><i class="icon-check icon-white"></i>Adicionar</a>
+                        <select multiple="multiple" id="especialidadesSelecionadas" class="span4">
+                        </select>
+                        <a id="delEspecialidade" class="btn btn-mini btn-danger" onclick=" removeEspecialidade() "><i class="icon-remove icon-white"></i>Remover</a>
+                    </div>
+                </div>
+
+                            var list = ctx.Exames.OrderBy(c => c.Nome).ToList();
+                <div class="control-group">
+                    @Html.Label("Exames", new { @class = "control-label" })
+                    <div class="controls">
+                        <select multiple="multiple" id="examesEncontrados" class="span4">
+                            @foreach (var exame in list)
+                            {
+                                <option value="@exame.ExameId">@exame.Nome</option>
+                            }
+                        </select>
+                        <a id="addExame" class="btn btn-mini btn-primary" onclick=" adicionaExame() "><i class="icon-check icon-white"></i>Adicionar</a>
+                        <select multiple="multiple" id="examesSelecionados" class="span4">
+                        </select>
+                        <a id="delExame" class="btn btn-mini btn-danger" onclick=" removeExame() "><i class="icon-remove icon-white"></i>Remover</a>
+                    </div>
+                </div>
+                            ctx.Dispose();
+            }
+            <div class="form-actions">
+                <input type="submit" role="button" id="btnEspeExa" class="btn btn-primary" data-toggle="modal" onclick=" carregaListas2() " value="Confirmar" />
+                <input type="reset" value="Limpar" class="btn btn-info" />
+                @Html.ActionLink("Cancelar", "Index", "Home", null, new { @class = "btn btn-danger", })
+            </div>
+        </fieldset>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("/bundles/jquerymask")
+    @Scripts.Render("~/bundles/formulario")
+
+}
+
+
+

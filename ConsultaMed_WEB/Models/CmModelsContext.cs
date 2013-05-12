@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace ConsultaMed_WEB.Models
@@ -14,6 +15,7 @@ namespace ConsultaMed_WEB.Models
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            modelBuilder.Entity<Usuario>().Property(p => p.UserId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
         }
         public DbSet<Agendamento> Agendamentos { get; set; }
         public DbSet<Convenio> Convenios { get; set; }
@@ -25,5 +27,8 @@ namespace ConsultaMed_WEB.Models
         public DbSet<Prontuario> Prontuarios { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Clinica> Clinicas { get; set; }
+        public DbSet<ClinicasFavorita> ClinicasFavoritas { get; set; }
+        public DbSet<EmailConfiguration> EmailConfigurations { get; set; }
+        public DbSet<CmLog> CmLogs { get; set; }
     }
 }

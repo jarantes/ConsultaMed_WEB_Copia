@@ -40,10 +40,11 @@ namespace ConsultaMed_WEB.Models
         [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime PerFim { get; set; }
 
+        [Required]
         public int MedicoUserId { get; set; }
 
-        [ForeignKey("MedicoUserId")]
-        public virtual UsuarioMedico UsuarioMedico { get; set; }
+        //[ForeignKey("MedicoUserId")]
+        //public virtual UsuarioMedico UsuarioMedico { get; set; }
 
         public virtual ICollection<Horario> Horarios { get; set; }
         public virtual ICollection<HorarioTemp> HorarioTemps { get; set; }

@@ -1,8 +1,7 @@
-﻿@model ConsultaMed_WEB.Models.HorarioTemp
+﻿@using System.Globalization
+@model ConsultaMed_WEB.Models.HorarioTemp
 @{
     ViewBag.Title = "Criar Agenda Reserva";
-
-    var profile = Roles.GetRolesForUser(User.Identity.Name);
 }
 
 <hgroup class="page-header">
@@ -44,6 +43,20 @@
         <fieldset>
             <legend>Formulário de criação de Agenda Reserva</legend>
 
+            <!-- Tratamento esclusivo para reposnsáveis clínicas -->
+            @if (Roles.GetRolesForUser(User.Identity.Name)[0].ToString(CultureInfo.InvariantCulture) == "RespClinica")
+            {
+                @Html.Partial("_EspecialidadesPartial")
+
+                <div class="control-group">
+                    @Html.Label("Médico", new { @class = "control-label" })
+                    <div class="controls">
+                        <select name="MedicoUserId" id="MedicosEncontrados" onchange="SessionaMedicoId()">
+                        </select>
+                        <img src="~/Resources/ajax-loader.gif" style="display: none" alt="carregando.." id="loadingMedico" />
+                    </div>
+                </div>
+            }
 
             <div class="control-group">
                 @Html.LabelFor(m => m.Data, new { @class = "control-label" })
@@ -99,6 +112,20 @@
                 @Html.ActionLink("Cancelar", "Index", "Home", null, new { @class = "btn btn-danger" })
             </div>
         </fieldset>
+    </div>
+
+    <!-- Modal Medico -->
+    <div id="dialogMedico" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Médico não encontrado</h3>
+        </div>
+        <div class="modal-body">
+            <p>Nenhum médico encontrada para especialidade informada!</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Ok</button>
+        </div>
     </div>
 }
 

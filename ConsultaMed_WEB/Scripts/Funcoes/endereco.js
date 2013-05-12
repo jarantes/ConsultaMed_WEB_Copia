@@ -1,5 +1,6 @@
 ﻿function getEndereco() {
-    if ($.trim($("#cep").val()) != "") {
+    var aux = $("#cep").val();
+    if ($.trim(aux) != "_____-___" ) {
         $("#loading").fadeIn();
         $.getScript("http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep=" + $("#cep").val(), function () {
             if (window.resultadoCEP["resultado"] != 0) {

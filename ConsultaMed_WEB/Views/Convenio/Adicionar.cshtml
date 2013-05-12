@@ -40,7 +40,7 @@
     </div>
     }
     
-      <div class="form-horizontal well">
+    <div class="form-horizontal well">
         <fieldset>
             <legend>Formulário de registro da convênio</legend>
             <div class="control-group">
@@ -48,6 +48,21 @@
                 <div class="controls">
                     @Html.TextBoxFor(m => m.Descricao, new { @class = "span4" })
                     @Html.ValidationMessageFor(m => m.Descricao)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Telefone, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Telefone, new { @id = "telefone", @class = "span2" })
+                    @Html.ValidationMessageFor(m => m.Telefone)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Site, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Site, new { @class = "span4" })
+                    @Html.ValidationMessageFor(m => m.Site)
                 </div>
             </div>
 

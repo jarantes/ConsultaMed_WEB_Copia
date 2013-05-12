@@ -34,10 +34,10 @@ namespace ConsultaMed_WEB.Models
         [Display(Name = "Horário de Descanso Fim")]
         public TimeSpan TempoDescansoFinal { get; set; }
 
-        
+        [Required]
         public int MedicoUserId { get; set; }
 
-        [ForeignKey("MedicoUserId")]
-        public virtual UsuarioMedico UsuarioMedico { get; set; }
+        //[ForeignKey("MedicoUserId")]
+        //public virtual UsuarioMedico UsuarioMedico { get; set; }
     }
 }

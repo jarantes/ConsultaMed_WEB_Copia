@@ -76,8 +76,6 @@ namespace ConsultaMed_WEB.Models.Repositorio
 
                 var userId = Convert.ToInt32(selUserId.UserId);
 
-                user.Dispose();
-
                 return userId;
             }
         }

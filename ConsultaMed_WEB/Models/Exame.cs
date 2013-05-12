@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConsultaMed_WEB.Models
 {    
@@ -16,6 +15,6 @@ namespace ConsultaMed_WEB.Models
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
-        public ICollection<Especialidade> Especialidades  { get; set; }
+        public virtual ICollection<Especialidade> Especialidades  { get; set; }
     }
 }

@@ -3846,6 +3846,7 @@ input[type="submit"].btn {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+    font-weight: bold;
 }
 
     .alert,
@@ -3868,6 +3869,7 @@ input[type="submit"].btn {
     background-color: #3cb521;
     border-color: #4b9f1d;
     color: #ffffff;
+    font-size: 1.1em;
 }
 
     .alert-success h4 {
@@ -3890,6 +3892,7 @@ input[type="submit"].btn {
     background-color: #3399f3;
     border-color: #11adf1;
     color: #ffffff;
+    font-size: 1.1em;
 }
 
     .alert-info h4 {
@@ -3899,6 +3902,7 @@ input[type="submit"].btn {
 .alert-block {
     padding-top: 14px;
     padding-bottom: 14px;
+    font-size: 1.1em;
 }
 
     .alert-block > p,

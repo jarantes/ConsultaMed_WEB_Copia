@@ -27,13 +27,13 @@ namespace ConsultaMed_WEB.Models
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Atendimento")]
-        [RegularExpression(@"^(?:0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$", ErrorMessage = "Formato de hora inválido")]
+        [Display(Name = "Atendimento das")]
+        [RegularExpression(@"^([0-1][0-9]|[2][0-3])(:([0-5][0-9])){1,2}$", ErrorMessage = "Formato de hora inválido")]
         public string HorarioInicial { get; set; }
 
         [Required]
-        [Display(Name = "ás ")]
-        [RegularExpression(@"^(?:0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$", ErrorMessage = "Formato de hora inválido")]
+        [Display(Name = "até ás ")]
+        [RegularExpression(@"^([0-1][0-9]|[2][0-3])(:([0-5][0-9])){1,2}$", ErrorMessage = "Formato de hora inválido")]
         public string HorarioFinal { get; set; }
 
         public int EnderecoId { get; set; }
@@ -43,6 +43,7 @@ namespace ConsultaMed_WEB.Models
 
         public virtual ICollection<Usuario> Usuarios { get; set; }
         public virtual ICollection<Convenio> Convenios { get; set; }
+        public virtual ICollection<Especialidade> Especialidades { get; set; } 
     }
 }
  

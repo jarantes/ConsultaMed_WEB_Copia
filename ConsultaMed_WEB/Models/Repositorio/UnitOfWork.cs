@@ -16,6 +16,30 @@ namespace ConsultaMed_WEB.Models.Repositorio
         private RepositorioGenerico<Prontuario> _prontuarioRepositorio;
         private RepositorioGenerico<Usuario> _usuarioRepositorio;
         private RepositorioGenerico<Endereco> _enderecoRepositorio;
+        private RepositorioGenerico<Especialidade> _especialidadeRepositorio;
+        private RepositorioGenerico<ClinicasFavorita>  _clinicaFavoritaRepositorio;
+        private RepositorioGenerico<EmailConfiguration> _emailConfigurationRepositorio;
+        private RepositorioGenerico<CmLog> _cmLogRepositorio;
+
+        public RepositorioGenerico<CmLog> CmLogRepositorio
+        {
+            get { return _cmLogRepositorio ?? (_cmLogRepositorio = new RepositorioGenerico<CmLog>(_context)); }
+        }
+
+        public RepositorioGenerico<EmailConfiguration> EmailConfigurationRepositorio
+        {
+            get { return _emailConfigurationRepositorio ?? (_emailConfigurationRepositorio = new RepositorioGenerico<EmailConfiguration>(_context)); }
+        }
+
+        public RepositorioGenerico<ClinicasFavorita> ClinicaFavoritaRepositorio
+        {
+            get { return _clinicaFavoritaRepositorio ?? (_clinicaFavoritaRepositorio = new RepositorioGenerico<ClinicasFavorita>(_context)); }
+        }
+
+        public  RepositorioGenerico<Especialidade> EspecialidadeRepositorio
+        {
+            get { return _especialidadeRepositorio ?? (_especialidadeRepositorio = new RepositorioGenerico<Especialidade>(_context)); }
+        }
 
         public RepositorioGenerico<Endereco> EnderecoRepositorio
         {

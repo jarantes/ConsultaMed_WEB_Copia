@@ -48,43 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CMModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CMModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CMModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CMModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CMModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CMModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="CMModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CMModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="CMModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CMModel.edmx</DependentUpon>
-      <LastGenOutput>CMModel.Context.cs</LastGenOutput>
-    </None>
-    <None Include="CMModel.edmx.diagram">
-      <DependentUpon>CMModel.edmx</DependentUpon>
-    </None>
-    <None Include="CMModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CMModel.edmx</DependentUpon>
-      <LastGenOutput>CMModel.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

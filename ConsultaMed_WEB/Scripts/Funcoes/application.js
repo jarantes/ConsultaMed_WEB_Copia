@@ -25,6 +25,7 @@ function adicionaClinica() {
     });
 }
 
+
 function adicionaExame() {
     jQuery("#examesEncontrados :selected").each(function (i, selected) {
         jQuery("#examesSelecionados").append(selected);
@@ -72,12 +73,39 @@ function carregaListas() {
     window.location.reload();
 }
 
+function adicionaEspecialidade() {
+    jQuery("#especialidadesEncontradas :selected").each(function (i, selected) {
+        jQuery("#especialidadesSelecionadas").append(selected);
+    });
+}
 
-//TODO mais parâmetros depois...        
+function removeEspecialidade() {
+    jQuery("#especialidadesSelecionadas :selected").each(function (i, selected) {
+        jQuery("#especialidadesEncontradas").append(selected);
+    });
+}
+
+function carregaListas2() {
+    var especialidadeId = new Array;
+    var exameId = new Array;
+    jQuery("#examesSelecionados :selected").each(function (i, selected) {
+        exameId[i] = selected.value;
+    });
+    jQuery("#especialidadesSelecionadas :selected").each(function (i, selected) {
+        especialidadeId[i] = selected.value;
+    });
+
+    jQuery.ajaxSettings.traditional = true;
+
+    $.post('../Especialidade/SalvarExame', { 'especialidadeId': especialidadeId, 'exameId': exameId });
+
+    window.location.reload();
+}
+
 function carregaAgenda() {
     $.ajax({
         url: '../Consulta/CarregaAgenda',
-        data:{agendaData: jQuery(".textData").val(), medicoUserId: jQuery("#MedicosEncontrados :selected").val()},
+        data: { agendaData: jQuery(".textData").val(), medicoUserId: jQuery("#MedicosEncontrados :selected").val() },
         dataType: "json",
         beforeSend: function () {
             $("#loading").fadeIn();
@@ -105,15 +133,20 @@ function carregaAgenda() {
 
 function carregaConsultas() {
     $.ajax({
-        url: '../Consulta/Gerenciar',
+        url: '../Consulta/Gerenciar2',
         data: { id: jQuery("#listaMedicos :selected").val() },
     });
     $('#tabela').load();
 }
 
 function carregaMédico() {
+    if (jQuery("#Especialidade").val() == "") {
+        $('#MedicosEncontrados').empty();
+        $("#escondido").slideUp();
+        return;
+    }
     jQuery.ajax({
-        url: '../Consulta/CarregaMedico',
+        url: '../Usuario/CarregaMedico',
         data: 'Id=' + jQuery("#Especialidade").val(),
         dataType: "json",
         beforeSend: function () {
@@ -136,6 +169,42 @@ function carregaMédico() {
             $.each(data.Result, function (index, medico) {
 
                 $('#MedicosEncontrados').append("<option value='" + medico.UserId + "'>" + medico.Nome + " " + medico.Sobrenome + "</option>");
+            });
+        }
+    });
+}
+
+function carregaEspecialidade() {
+    if (jQuery("#Clinica").val() == "") {
+        $('#Especialidade').empty();
+        $('#MedicosEncontrados').empty();
+        $("#escondido").slideUp();
+        return;
+    }
+    jQuery.ajax({
+        url: '../Especialidade/CarregaEspecialidade',
+        data: 'Id=' + jQuery("#Clinica").val(),
+        dataType: "json",
+        beforeSend: function () {
+            $("#loadingEspec").fadeIn();
+        },
+        complete: function () {
+            $("#loadingEspec").hide();
+        },
+
+        success: function (data) {
+            jQuery("#Especialidade").empty();
+            if (data.Result[0] == null) {
+                $('#dialogEspec').modal({
+                    keyboard: false
+                });
+                return;
+            }
+
+            $('#Especialidade').append("<option value=''>" + '[Selecione]' + "</option>");
+            $.each(data.Result, function (index, espec) {
+
+                $('#Especialidade').append("<option value='" + espec.EspecialidadeId + "'>" + espec.Descricao + "</option>");
             });
         }
     });

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ConsultaMed_WEB.Models.Convenio>
 
 @{
-    ViewBag.Title = "Lista de Convênios Cadastrados";
+    ViewBag.Title = "Lista de Convênios Associados";
 }
 
 <hgroup class="page-header">
@@ -26,23 +26,19 @@
 <br>
 @if (Model.Any())
 {
-    <table class="table table-bordered table-striped table-hover">
-        <thead>
-            <tr>
-
-                <th>Descrição do Convênio</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Descricao</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    foreach (var item in Model)
+    {
+    <address>
+        <strong>@item.Descricao,</strong>
+        <br>
+        Fone: @item.Telefone
+        <br>
+        Site: @item.Site
+    </address>
+    <br />
+    }
 }
+
 else
 {
     <p class="lead"><em>Nenhum Convênio foi encontrado...</em></p>
