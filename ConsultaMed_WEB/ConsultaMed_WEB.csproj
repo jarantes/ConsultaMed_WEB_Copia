@@ -628,6 +628,9 @@
     <Content Include="Views\Consulta\Agendar3.cshtml" />
     <Content Include="Views\Consulta\_ClinicasPartial.cshtml" />
     <Content Include="Views\Consulta\Gerenciar3.cshtml" />
+    <Content Include="Views\Usuario\AtualizarMedico.cshtml" />
+    <Content Include="Views\Usuario\AtualizarRespClinica.cshtml" />
+    <Content Include="Views\Usuario\AtualizarPaciente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -92,7 +92,7 @@ namespace ConsultaMed_WEB.Controllers
                 if (ModelState.IsValid)
                 {
                     //validar Unique Constraint
-                    var validacao =  ValidacaoBruta(medico.Email, medico.Rg, medico.Cpf, null);
+                    var validacao = ValidacaoBruta(medico.Email, medico.Rg, medico.Cpf, null);
                     if (validacao != null)
                     {
                         ModelState.AddModelError("", validacao);
@@ -337,6 +337,193 @@ namespace ConsultaMed_WEB.Controllers
             {
                 _unitOfWork.Dispose();
             }
+        }
+
+        //
+        // GET: /Usuario/Atualizar
+        [Authorize(Roles = "Medico, Paciente, RespClinica")]
+        public ActionResult Atualizar()
+        {
+            var perfil = Roles.GetRolesForUser(User.Identity.Name).GetValue(0).ToString();
+
+            switch (perfil)
+            {
+                case "Medico":
+                    return RedirectToAction("AtualizarMedico");
+
+                case "Paciente":
+                    return RedirectToAction("AtualizarPaciente");
+
+                case "RespClinica":
+                    return RedirectToAction("AtualizarRespClinica");
+            }
+            return null;
+        }
+
+        //
+        // GET: /Usuario/AtualizarMedico
+        [Authorize(Roles = "Medico")]
+        public ActionResult AtualizarMedico()
+        {
+            TempData["Mensagem"] = Session["Mensagem"];
+            TempData["Erro"] = Session["Erro"];
+            //limpar sessão
+            Session.Remove("Mensagem");
+            Session.Remove("Erro");
+            try
+            {
+                var userId = _unitOfWork.UsuarioRepositorio.GetIdByUserName(User.Identity.Name);
+                var model = _unitOfWork.MedicoRepositorio.GetById(userId);
+                model.DataNascimento = model.DataNascimento.Date;
+                Session.Add("UserId", model.UserId);
+                Session.Add("enderecoId", model.EnderecoId);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                Session.Add("Erro", "Não foi possível carregar os dados");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        //
+        // GET: /Usuario/AtualizarPaciente
+        [Authorize(Roles = "Paciente")]
+        public ActionResult AtualizarPaciente()
+        {
+            TempData["Mensagem"] = Session["Mensagem"];
+            TempData["Erro"] = Session["Erro"];
+            //limpar sessão
+            Session.Remove("Mensagem");
+            Session.Remove("Erro");
+            try
+            {
+                var userId = _unitOfWork.UsuarioRepositorio.GetIdByUserName(User.Identity.Name);
+                var model = _unitOfWork.PacienteRepositorio.GetById(userId);
+                Session.Add("UserId", model.UserId);
+                Session.Add("enderecoId", model.EnderecoId);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                Session.Add("Erro", "Não foi possível carregar os dados");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        //
+        // GET: /Usuario/AtualizarRespClinica
+        [Authorize(Roles = "RespClinica")]
+        public ActionResult AtualizarRespClinica()
+        {
+            TempData["Mensagem"] = Session["Mensagem"];
+            TempData["Erro"] = Session["Erro"];
+            //limpar sessão
+            Session.Remove("Mensagem");
+            Session.Remove("Erro");
+            try
+            {
+                var userId = _unitOfWork.RespClinicaRepositorio.GetIdByUserName(User.Identity.Name);
+                var model = _unitOfWork.RespClinicaRepositorio.GetById(userId);
+                Session.Add("UserId", model.UserId);
+                Session.Add("enderecoId", model.EnderecoId);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                Session.Add("Erro", "Não foi possível carregar os dados");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        //
+        // POST: /Usuario/SalvarMedico
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Medico")]
+        public ActionResult SalvarMedico(UsuarioMedico model)
+        {
+            try
+            {
+                model.ClinicaId = Convert.ToInt32(Session["UserId"]);
+                model.EnderecoId = Convert.ToInt32(Session["enderecoId"]);
+                model.Endereco.EnderecoId = model.EnderecoId;
+                _unitOfWork.MedicoRepositorio.Update(model);
+                _unitOfWork.EnderecoRepositorio.Update(model.Endereco);
+                _unitOfWork.Save();
+
+                Session.Add("Mensagem", "Dados atualizados com sucesso");
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception)
+            {
+                Session.Add("Erro", "Não foi possível atualizar os dados");
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        //
+        // POST: /Usuario/SalvarPaciente
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Paciente")]
+        public ActionResult SalvarPaciente(UsuarioPaciente model)
+        {
+            try
+            {
+                model.ClinicaId = Convert.ToInt32(Session["UserId"]);
+                model.EnderecoId = Convert.ToInt32(Session["enderecoId"]);
+                model.Endereco.EnderecoId = model.EnderecoId;
+                _unitOfWork.PacienteRepositorio.Update(model);
+                _unitOfWork.EnderecoRepositorio.Update(model.Endereco);
+                _unitOfWork.Save();
+
+                Session.Add("Mensagem", "Dados atualizados com sucesso");
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception)
+            {
+                Session.Add("Erro", "Não foi possível atualizar os dados");
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        //
+        // POST: /Usuario/SalvarRespClinica
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "RespClinica")]
+        public ActionResult SalvarRespClinica(UsuarioRespClinica model)
+        {
+            try
+            {
+                model.ClinicaId = Convert.ToInt32(Session["UserId"]);
+                model.EnderecoId = Convert.ToInt32(Session["enderecoId"]);
+                model.Endereco.EnderecoId = model.EnderecoId;
+                _unitOfWork.RespClinicaRepositorio.Update(model);
+                _unitOfWork.EnderecoRepositorio.Update(model.Endereco);
+                _unitOfWork.Save();
+
+                Session.Add("Mensagem", "Dados atualizados com sucesso");
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception)
+            {
+                Session.Add("Erro", "Não foi possível atualizar os dados");
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         public string ValidacaoBruta(string email, string rg, string cpf, string numCarteira)

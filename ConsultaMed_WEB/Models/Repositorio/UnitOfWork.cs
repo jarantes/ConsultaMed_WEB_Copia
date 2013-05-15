@@ -20,6 +20,12 @@ namespace ConsultaMed_WEB.Models.Repositorio
         private RepositorioGenerico<ClinicasFavorita>  _clinicaFavoritaRepositorio;
         private RepositorioGenerico<EmailConfiguration> _emailConfigurationRepositorio;
         private RepositorioGenerico<CmLog> _cmLogRepositorio;
+        private RepositorioGenerico<UsuarioRespClinica> _respClinicaRepositorio;
+
+        public RepositorioGenerico<UsuarioRespClinica> RespClinicaRepositorio
+        {
+            get { return _respClinicaRepositorio ?? (_respClinicaRepositorio = new RepositorioGenerico<UsuarioRespClinica>(_context)); }
+        }
 
         public RepositorioGenerico<CmLog> CmLogRepositorio
         {

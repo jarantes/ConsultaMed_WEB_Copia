@@ -6,7 +6,6 @@ using System.Web.Security;
 using System.Web.Mvc;
 using ConsultaMed_WEB.Models;
 using ConsultaMed_WEB.Models.Repositorio;
-using DotNetOpenAuth.OAuth.Messages;
 
 namespace ConsultaMed_WEB.Controllers
 {

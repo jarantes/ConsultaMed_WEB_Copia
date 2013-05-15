@@ -28,7 +28,19 @@
 @using (Html.BeginForm("AddUserPaciente", "Usuario"))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    if (Html.ValidationSummary(true) != null)
+    {
+    <div id="mensagemErr" class="row">
+        <div class="span12">
+            <div class="alert alert-error">
+                <a id="fecharErr" class="close">x
+                </a>
+                <strong>Erro</strong>
+                @Html.ValidationSummary(true)
+            </div>
+        </div>
+    </div>
+    }
     
     <div class="form-horizontal well">
         <fieldset>
@@ -103,7 +115,7 @@
                 @Html.LabelFor(m => m.Endereco.Cep, new { @class = "control-label" })
                 <div class="controls">
                     @Html.TextBoxFor(m => m.Endereco.Cep, new { @id = "cep", @class = "span2", Onblur = "getEndereco()" })
-                    <img src="~/Resources/ajax-loader.gif" style="display: none" alt="carregando.."id="loading"/>
+                    <img src="~/Resources/ajax-loader.gif" style="display: none" alt="carregando.." id="loading" />
                     @Html.ValidationMessageFor(m => m.Endereco.Cep)
                 </div>
             </div>
@@ -185,20 +197,21 @@
                     @Html.ValidationMessageFor(m => m.Endereco.Complemento)
                 </div>
             </div>
-            
-             @{
-                 var ctx = new CmContext();
 
-                 var list = ctx.Convenios.OrderBy(c => c.Descricao).ToList();
-                 var selectList = new SelectList(list, "ConvenioId", "Descricao", Model);
+            @{
+    var ctx = new CmContext();
 
-                 <div class="control-group">
-                     @Html.Label("Convênio", new {@class = "control-label"})
-                     <div class="controls">
-                         @Html.DropDownListFor(c => c.ConvenioId, selectList, "[Selecione]")
-                     </div>
-                 </div>
-             }
+    var list = ctx.Convenios.OrderBy(c => c.Descricao).ToList();
+    var selectList = new SelectList(list, "ConvenioId", "Descricao", Model);
+
+                <div class="control-group">
+                    @Html.Label("Convênio", new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DropDownListFor(c => c.ConvenioId, selectList, "[Selecione]")
+                        @Html.ValidationMessageFor(c=>c.ConvenioId)
+                    </div>
+                </div>
+            }
 
             <div class="control-group">
                 @Html.LabelFor(m => m.NumeroConvenio, new { @class = "control-label" })

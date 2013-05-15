@@ -44,6 +44,11 @@ namespace ConsultaMed_WEB.Controllers
             // 3 - Disponibilização de Prontuário
             // 4 - Primeiro Acesso
             // 5 - Recuperar Senha
+            // 6 - Deleção de Cadastro
+            // 7 - Alteração de Clinica
+            // 8 - Solicitação de Novo Cadastro de Médico
+            // 9 - Suporte
+            // 10- Cadastro de Clínica
             //************************************************************************
 
             EmailConfiguration param;

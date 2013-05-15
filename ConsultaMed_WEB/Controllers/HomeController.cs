@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using ConsultaMed_WEB.Models.Repositorio;
+﻿using System.Web.Mvc;
 
 namespace ConsultaMed_WEB.Controllers
 {
     public class HomeController : Controller
     {
         //
-        // GET: /Home/
+        // GET: /Home/Index
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Home/EnviarSolicitacao
+        public ActionResult EnviarSolicitacao()
         {
             return View();
         }

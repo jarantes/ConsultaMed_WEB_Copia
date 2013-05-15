@@ -15,6 +15,7 @@ namespace ConsultaMed_WEB.Models
 
         [Required]
         [Display(Name = "Cidade")]
+        [RegularExpression(@"^\([a-zA-Z]$", ErrorMessage = "Tipo de dados inválidos, não permitido assentos ou números")]
         public string Cidade { get; set; }
 
         [Required]

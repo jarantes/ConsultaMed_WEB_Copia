@@ -1,5 +1,8 @@
-﻿@if (Request.IsAuthenticated)
+﻿@using System.Web.UI.WebControls
+@if (Request.IsAuthenticated)
 {
+    if (Roles.GetRolesForUser(User.Identity.Name).GetValue(0).ToString() != "Administrador")
+    {
     <ul class="nav pull-right">
         <li>@Html.ActionLink("Bem-Vindo " + User.Identity.Name.ToUpper() + "!", null, null, null, new { @class = "navbar-link linkN", title = "Você está logado como " + User.Identity.Name.ToUpper() })<li>
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "frmLogout" }))
@@ -10,17 +13,28 @@
         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Configurações"><i class="icon-wrench icon-white"></i></a>
             <ul class="dropdown-menu">
                 <li>@Html.ActionLink("Alterar Senha ", "Manage", "Account")</li>
-                <li>@Html.ActionLink("Alterar Cadastro ", null, null, null)</li>
-                <li>@Html.ActionLink("Alterar Clinica ",  null, null, null)</li>
+                <li>@Html.ActionLink("Alterar Cadastro ", "Atualizar", "Usuario")</li>
+                <li>@Html.ActionLink("Alterar Clinica Favorita", null, null, null)</li>
             </ul>
         </li>
     </ul> 
-
+    }
+    else
+    {
+    <ul class="nav pull-right">
+        <li>@Html.ActionLink("Bem-Vindo " + User.Identity.Name.ToUpper() + "!", null, null, null, new { @class = "navbar-link linkN", title = "Você está logado como " + User.Identity.Name.ToUpper() })<li>
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "frmLogout" }))
+        {
+            @Html.AntiForgeryToken()
+            <li><a class="logout navbar-link" href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>
+        }
+    </ul>
+    }
 }
 else
 {
     <ul class="nav pull-right">
-        <li>@Html.ActionLink("Registre-se", "Register", "Account", null, new { @class = "navbar-link" })</li>
+        <li>@Html.ActionLink("Registre-se", "Register", "Account", null, new { @class = "navbar-link", title = "Para você paciente, registre-se agora para obter todos acessos" })</li>
         <li>@Html.ActionLink("Entrar", "Login", "Account", null, new { @class = "navbar-link" })</li>
     </ul>
 }

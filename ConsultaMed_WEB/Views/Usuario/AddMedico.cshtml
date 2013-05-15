@@ -28,7 +28,19 @@
 @using (Html.BeginForm("AddMedico", "Usuario"))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    if (Html.ValidationSummary(true) != null)
+    {
+    <div id="mensagemErr" class="row">
+        <div class="span12">
+            <div class="alert alert-error">
+                <a id="fecharErr" class="close">x
+                </a>
+                <strong>Erro</strong>
+                @Html.ValidationSummary(true)
+            </div>
+        </div>
+    </div>
+    }
     
     <div class="form-horizontal well">
         <fieldset>
@@ -204,6 +216,7 @@
                     @Html.Label("Especialidade", new { @class = "control-label" })
                     <div class="controls">
                         @Html.DropDownListFor(c => c.EspecialidadeId, selectList, "[Selecione]")
+                        @Html.ValidationMessageFor(c=>c.EspecialidadeId)
                     </div>
                 </div>
                
@@ -214,6 +227,7 @@
                     @Html.Label("Clinica", new { @class = "control-label" })
                     <div class="controls">
                         @Html.DropDownListFor(c => c.ClinicaId, selectList2, "[Selecione]")
+                        @Html.ValidationMessageFor(c=>c.ClinicaId)
                     </div>
                 </div>
                 

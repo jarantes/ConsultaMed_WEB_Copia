@@ -1,0 +1,246 @@
+﻿@using ConsultaMed_WEB.Models
+@model UsuarioRespClinica
+
+@{
+    ViewBag.Title = "Atualizar Cadastro";
+}
+
+<hgroup class="page-header">
+    <h2>@ViewBag.Title</h2>
+</hgroup>
+
+@if (TempData["Mensagem"] != null)
+{
+    <div id="mensagemSuc" class="row">
+        <div class="span12">
+            <div class="alert alert-block">
+                <a id="fecharSuc" class="close">x
+                </a>
+                <strong>Aviso</strong><br />
+                <ul>
+                    <li>@TempData["Mensagem"]</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("Atualizar", "Usuario"))
+{
+    @Html.AntiForgeryToken()
+    if (Html.ValidationSummary(true) != null)
+    {
+    <div id="mensagemErr" class="row">
+        <div class="span12">
+            <div class="alert alert-error">
+                <a id="fecharErr" class="close">x
+                </a>
+                <strong>Erro</strong>
+                @Html.ValidationSummary(true)
+            </div>
+        </div>
+    </div>
+    }
+    
+    <div class="form-horizontal well">
+        <fieldset>
+            <legend>Atualizar registro do usuário clínica</legend>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Nome, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Nome, new { @class = "span4 yellow" })
+                    @Html.ValidationMessageFor(m => m.Nome)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Sobrenome, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Sobrenome, new { @class = "span4 yellow" })
+                    @Html.ValidationMessageFor(m => m.Sobrenome)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "span4 yellow" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Cpf, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Cpf, new { @id = "cpf", @class = "span2 yellow" })
+                    @Html.ValidationMessageFor(m => m.Cpf)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Rg, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Rg, new { @id = "rg", @class = "span2 yellow" })
+                    @Html.ValidationMessageFor(m => m.Rg)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Telefone, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Telefone, new { @id = "telefone", @class = "span2 yellow" })
+                    @Html.ValidationMessageFor(m => m.Telefone)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Celular, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Celular, new { @id = "celular", @class = "span2 yellow" })
+                    @Html.ValidationMessageFor(m => m.Celular)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.DataNascimento, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.DataNascimento, new { @id = "datepicker", @class = "textData yellow" })
+                    @Html.ValidationMessageFor(m => m.DataNascimento)
+                </div>
+            </div>
+
+            <!-- Tratamento do Endereco -->
+            <div class="control-group">
+                @Html.LabelFor(m => m.Endereco.Cep, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Endereco.Cep, new { @id = "cep", @class = "span2 yellow", Onblur = "getEndereco()" })
+                    <img src="~/Resources/ajax-loader.gif" style="display: none" alt="carregando.." id="loading" />
+                    @Html.ValidationMessageFor(m => m.Endereco.Cep)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Endereco.Bairro, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Endereco.Bairro, new { @id = "bairro", @class = "span5 yellow" })
+                    @Html.ValidationMessageFor(m => m.Endereco.Bairro)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Endereco.Rua, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Endereco.Rua, new { @id = "rua", @class = "span5 yellow" })
+                    @Html.ValidationMessageFor(m => m.Endereco.Rua)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Endereco.Numero, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Endereco.Numero, new { @id = "numero", @class = "span1 yellow" })
+                    @Html.ValidationMessageFor(m => m.Endereco.Numero)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Endereco.Cidade, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Endereco.Cidade, new { @id = "cidade", @class = "span3 yellow" })
+                    @Html.ValidationMessageFor(m => m.Endereco.Cidade)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.Endereco.Estado, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(m => m.Endereco.Estado, new[]
+                        {
+                            new SelectListItem {Text = "UF", Value = ""},
+                            new SelectListItem {Text = "AC", Value = "AC"},
+                            new SelectListItem {Text = "AL", Value = "AL"},
+                            new SelectListItem {Text = "AM", Value = "AM"},
+                            new SelectListItem {Text = "AP", Value = "AP"},
+                            new SelectListItem {Text = "BA", Value = "BA"},
+                            new SelectListItem {Text = "CE", Value = "CE"},
+                            new SelectListItem {Text = "DF", Value = "DF"},
+                            new SelectListItem {Text = "ES", Value = "ES"},
+                            new SelectListItem {Text = "GO", Value = "GO"},
+                            new SelectListItem {Text = "MA", Value = "MA"},
+                            new SelectListItem {Text = "MG", Value = "MG"},
+                            new SelectListItem {Text = "MS", Value = "MS"},
+                            new SelectListItem {Text = "MT", Value = "MT"},
+                            new SelectListItem {Text = "PA", Value = "PA"},
+                            new SelectListItem {Text = "PB", Value = "PB"},
+                            new SelectListItem {Text = "PE", Value = "PE"},
+                            new SelectListItem {Text = "PI", Value = "PI"},
+                            new SelectListItem {Text = "PR", Value = "PR"},
+                            new SelectListItem {Text = "RJ", Value = "RJ"},
+                            new SelectListItem {Text = "RN", Value = "RN"},
+                            new SelectListItem {Text = "RO", Value = "RO"},
+                            new SelectListItem {Text = "RR", Value = "RR"},
+                            new SelectListItem {Text = "RS", Value = "RS"},
+                            new SelectListItem {Text = "SC", Value = "SC"},
+                            new SelectListItem {Text = "SP", Value = "SP"},
+                            new SelectListItem {Text = "SE", Value = "SE"},
+                            new SelectListItem {Text = "TO", Value = "TO"},
+                        }, new { @id = "estado", @class = "txtEstado yellow" })
+                    @Html.ValidationMessageFor(m => m.Endereco.Estado)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Endereco.Complemento, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(m => m.Endereco.Complemento, new { @class = "span5 yellow" })
+                    @Html.ValidationMessageFor(m => m.Endereco.Complemento)
+                </div>
+            </div>
+
+
+            @{
+    var ctx = new CmContext();
+
+    var list2 = ctx.Clinicas.OrderBy(c => c.Descricao).ToList();
+    var selectList2 = new SelectList(list2, "ClinicaId", "Nome", Model);
+                
+                <div class="control-group">
+                    @Html.Label("Clinica", new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DropDownListFor(c => c.ClinicaId, selectList2, "[Selecione]" new {@class="yellow"})
+                        @Html.ValidationMessageFor(c=>c.ClinicaId)
+                    </div>
+                </div>
+                
+    ctx.Dispose();
+            }
+
+            <div class="form-actions">
+                <input type="submit" value="Salvar Atualização" class="btn btn-primary" />
+                <input type="reset" value="Limpar" class="btn btn-info" />
+                @Html.ActionLink("Cancelar", "Index", "Home", null, new { @class = "btn btn-danger" })
+            </div>
+        </fieldset>
+    </div>
+    
+    <!-- Modal -->
+    <div id="dialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">CEP não encontrado</h3>
+        </div>
+        <div class="modal-body">
+            <p>Não foi possível localiizar o CEP informado!</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Ok</button>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("/bundles/jquerymask")
+    @Scripts.Render("~/bundles/formulario")
+
+}
+

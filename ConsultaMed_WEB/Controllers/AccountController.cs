@@ -40,14 +40,18 @@ namespace ConsultaMed_WEB.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, model.RememberMe))
             {
-                if (_unitOfWork.PacienteRepositorio.Get(m => m.UserName == model.UserName).Any())
-                {
+                if (_unitOfWork.UsuarioRepositorio.Get(m => m.UserName == model.UserName).Any() || Roles.FindUsersInRole("Administrador", model.UserName).Any())
+                {   
                     return RedirectToLocal(returnUrl);
                 }
+
+                // caso o paciente não teneha concluído o cadastro, será redirecionado para a página para conclusão
                 Session.Add("UserNameCadastrado", model.UserName);
                 Session.Add("Mensagem", "Para concluir o cadastro preencha as informações abaixo!");
                 return RedirectToAction("AddUserPaciente", "Usuario");
             }
+
+            
 
             // Se chegarmos até aqui e houver alguma falha, exibir novamente o formulário
             ModelState.AddModelError("", "O nome de usuário ou a senha fornecido está incorreto.");

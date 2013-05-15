@@ -46,16 +46,21 @@
             <legend>Formulário de registro do Login do Usuário</legend>
             <div class="control-group">
                 @Html.LabelFor(m => m.Perfil, new { @class = "control-label" })
-                
+
                 @{
     for (var i = 0; i < Roles.GetAllRoles().Count(); i++)
-    {
+    {   
+        if (Roles.GetAllRoles()[i] != "Administrador")
+         {
                     <div class="controls">
                         <label class="radio">
+
                             @Html.RadioButtonFor(m => m.Perfil, Roles.GetAllRoles()[i])
                             @Roles.GetAllRoles()[i]
+
                         </label>
                     </div>
+         }
     }
                 }
             </div>
